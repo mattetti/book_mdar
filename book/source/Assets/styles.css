@@ -1,9 +1,9 @@
 /* @group Layout */
 
 body {
-	background-color: #fff;
-	color: #191919;
-	font: 76.5%/1.4 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+ 	background-color: #fff;
+ 	color: #191919;
+ 	font: 62.5%/1.4 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
 
 #book {
@@ -15,6 +15,35 @@ body {
 
 /* @group Book styles */
 
+#book-content {
+ 	font-size: 1.2em;
+ 	text-align: left;
+}
+
+#book-content h1 {
+ 	text-align: center;
+}
+
+#book-content h2 {
+ 	text-align: center;
+}
+
+#book-content h3 {
+ 	
+}
+
+#book-content h4 {
+ 	
+}
+
+#book-content strong {
+ 	
+}
+
+#book-content em {
+ 	
+}
+
 #book-content img {
  	float: right;
  	margin: .5em 0 .5em .5em;
@@ -24,27 +53,28 @@ body {
 }
 
 #book-content a {
-	color: #3366ff;
-	text-decoration: underline;
+ 	color: #3366ff;
+ 	text-decoration: underline;
 }
 
 #book-content a:hover {
-	color: #ff6633;
+ 	color: #ff6633;
 }
 
 #book-content pre code {
-	clear: both;
-	display:block;
-	margin: 0;
-	padding: 1em 2em;
-	font: 1em Monaco, "Courier New", Courier, mono;
-	background: #191919;
-	color: #f2ffdf;
+ 	clear: both;
+ 	display: block;
+ 	margin: 0;
+ 	padding: 1em 2em;
+ 	font: 1em Monaco, "Courier New", Courier, mono;
+ 	background: #191919;
+ 	color: #f2ffdf;
+ 	overflow: auto;
 }
 
 #book-content blockquote p {
-	padding:2em;
-	font-style: italic;
+ 	padding: 2em;
+ 	font-style: italic;
 }
 
 /* @end */
