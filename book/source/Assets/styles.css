@@ -1,25 +1,58 @@
+/* @group Layout */
+
 body {
-	background-color: #F2FFDF;
+	background-color: #fff;
 	color: #191919;
-	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	font: 76.5%/1.4 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
 
-pre code {
-	margin-left:2em;
+#book {
+ 	width: 50em;
+ 	margin: 0 auto;
+}
+
+/* @end */
+
+/* @group Book styles */
+
+#book-content img {
+ 	float: right;
+ 	margin: .5em 0 .5em .5em;
+ 	padding: 2px;
+ 	background: #fff;
+ 	border: 1px solid #ccc;
+}
+
+#book-content a {
+	color: #3366ff;
+	text-decoration: underline;
+}
+
+#book-content a:hover {
+	color: #ff6633;
+}
+
+#book-content pre code {
+	clear: both;
 	display:block;
+	margin: 0;
+	padding: 1em 2em;
+	font: 1em Monaco, "Courier New", Courier, mono;
+	background: #191919;
+	color: #f2ffdf;
 }
 
-blockquote p {
+#book-content blockquote p {
 	padding:2em;
 	font-style: italic;
 }
 
-#book-content a {
-	color: #DDD4AB;
-	text-decoration:none;
-	background-color: #7F9989;
+/* @end */
+
+/* @group TOC */
+
+#table-of-contents {
+ 	display: none;
 }
 
-#book-content a:hover {
-	border-bottom: solid 1px #262626;
-}
+/* @end */
