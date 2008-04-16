@@ -1,5 +1,4 @@
 ## The Framework
-(TODO) - rewrite for 0.9
 
 The directory structure of the project created should look like the following. We'll give brief overview of the framework here and go into further details of each component in subsequent chapters.
 
