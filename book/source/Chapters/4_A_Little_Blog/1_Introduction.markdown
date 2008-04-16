@@ -1,7 +1,6 @@
 ## A little blog
 
-In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from 
-(TODO) -location, so you can follow along with the examples.
+In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from [http://github.com/deimos1986/book_mdar/tree/master/code](http://github.com/deimos1986/book_mdar/tree/master/code), so you can follow along with the examples.
 
 First of all let's define some of the functionality we would expect from any blogging application. 
 
@@ -11,9 +10,9 @@ First of all let's define some of the functionality we would expect from any blo
 * Attaching images
 * Authentication
 
-Lets get started with out application:
+Lets get started with our application:
 
-    merb-gen simple_blog
+    merb-gen golb
 
 We're going to use the Linguistics gem later on, you can install it with:
     
@@ -27,27 +26,28 @@ config/init.rb
 
     use_test :rspec
     
-    Merb::BootLoader.before_app_loads do
-      dependencies "RedCloth", "merb_helpers"
-      dependencies 'linguistics'
-    end
+	dependencies "RedCloth", "merb_helpers"
+    dependencies 'linguistics'
+
     
 Now add a config/database.yml file with the following:
 
     ---
-    :development: &defaults
-      :adapter: mysql
-      :database: simple_blog
-      :username: root
-      :password: 
-      :host: localhost
+    development: &defaults
+      adapter: mysql
+      database: golb
+      username: root
+      password: 
+      host: localhost
+	  log_stream: STDOUT
+	  log_level: 0
 
-    :test:
+    test:
       <<: *defaults
-      :database: simple_blog_test
+      database: golb_test
 
-    :production:
+    production:
       <<: *defaults
-      :database: simple_blog_production
+      database: golb_production
       
 Now we're ready to rock and roll ...

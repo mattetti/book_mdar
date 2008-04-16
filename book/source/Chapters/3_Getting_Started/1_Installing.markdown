@@ -9,7 +9,9 @@ Before we get started I'm going to assume you have the following installed:
 
 ### Installing Merb
 
-If you just want to play around with Merb install the `merb` gem:
+_If you have an older version of Merb (<0.9) you should remove the gem before continuing._
+
+To install the `merb` gem:
     
     sudo gem install merb --source http://merbivore.org 
     

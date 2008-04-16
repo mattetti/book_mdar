@@ -59,9 +59,7 @@ config/init.rb
 
     use_test :rspec
     
-    Merb::BootLoader.before_app_loads do
-        dependencies "RedCloth", "merb_helpers"
-    end
+    dependencies "RedCloth", "merb_helpers"
 
 Typing `merb` now in your command line will try and start the server.
 
@@ -80,6 +78,10 @@ As you can see, we forgot to set up the database. A sample file has kindly been 
       :host: localhost
 
 Starting Merb again shows everything is running okay.
+
+The following command will give you access to the Merb console:
+
+	merb -i
 
 You'll notice Merb runs on port 4000, but this can be changed with flag `-p [port number]`. More options can be found by typing:
 

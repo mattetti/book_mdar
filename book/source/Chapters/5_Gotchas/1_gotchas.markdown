@@ -122,10 +122,10 @@
     </tr>    
 </table>
 
-#### Freezing gems
+#### Freezing Gems
 As Merb is spilt up into various gems, and it's hard to keep update with each one it's a good idea to freeze them into your application, so an update to one gem doesn't break your app.
 
-The easiest way to freeze a gem is to add -i gems as a command line option to specify the location for the installed gem.
+The easiest way to freeze a gem is to add -i gems as a command line option to specify the location for the installed gem. And then add the gem as a dependency in your `init.rb`.
 
     gem install merb-core -i gems
 

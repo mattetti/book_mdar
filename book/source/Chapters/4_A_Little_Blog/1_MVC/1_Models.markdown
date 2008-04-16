@@ -1,5 +1,7 @@
 ## Models
 
+(TODO) - rewrite for DM 0.9, and make this section clearer
+
 ### Getting started
 
 Having discussed the functionality we can deduce that we will need the following models, `Post`, `Comment`, `Tag`, `User` and `Image`.

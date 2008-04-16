@@ -33,3 +33,8 @@ Your problem may or may not be a known bug, search the bug trackers and submit a
 * [http://merb.lighthouseapp.com/](http://merb.lighthouseapp.com/)
 * [http://wm.lighthouseapp.com/projects/4819-datamapper/overview](http://wm.lighthouseapp.com/projects/4819-datamapper/overview)
 * [http://rspec.lighthouseapp.com/](http://wm.lighthouseapp.com/projects/4819-datamapper/overview)
+
+### Wikis
+
+* [http://wiki.merbivore.com/](http://wiki.merbivore.com/)
+* [http://wiki.datamapper.org/](http://wiki.datamapper.org/doku.php?id=start)
