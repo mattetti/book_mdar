@@ -1,6 +1,6 @@
-# Gotchas
+## Gotchas
 
-## Merb
+### Merb
 <table>
     <th>
         The Rails way
@@ -122,7 +122,7 @@
     </tr>    
 </table>
 
-### Freezing gems
+#### Freezing gems
 As Merb is spilt up into various gems, and it's hard to keep update with each one it's a good idea to freeze them into your application, so an update to one gem doesn't break your app.
 
 The easiest way to freeze a gem is to add -i gems as a command line option to specify the location for the installed gem.
@@ -143,7 +143,7 @@ To freeze the `merb-core` gem I have from trunk I would need to run:
 
 Run the `merb-gen frozen-merb` command to instal a script for running your frozen merb gem. Once your gem is frozen, you can run merb with `./script/frozen-merb`
 
-## DataMapper
+### DataMapper
 (TODO) - DM / AR diffs
 
-## RSpec
+### RSpec

@@ -1,10 +1,10 @@
-# What's Merb, DataMapper & RSpec?
+## What's Merb, DataMapper & RSpec?
 
 > If you're not living on the edge, you're taking up too much room. - Alice Bartlett
 
 Merb, DataMapper and RSpec are all open source projects that are great for building kick-ass web applications. They are all in active development and although it can be hard, we'll try our best to keep up-to-date.
 
-## [Merb](http://merbivore.com/)
+### [Merb](http://merbivore.com/)
 
 It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can user any web server that has rack support (Mongrel, Thin, ebb, etc).
 
@@ -18,7 +18,7 @@ Thanks to Merb's modularity, you are not locked into using any particular librar
 
 `merb-core` alone provides a lightweight framework (a la [camping](http://code.whytheluckystiff.net/camping/)) that can be used to create a simple web app such as an upload server or API provider where the functionality of an all-inclusive framework is not necessary.
 
-## [DataMapper](http://datamapper.org/)
+### [DataMapper](http://datamapper.org/)
 
 DataMapper is an Object-Relational Mapper (ORM) written in Ruby by Sam Smoot. We'll be using DataMapper with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
 
@@ -26,7 +26,7 @@ DataMapper has some nice features that make it faster than ActiveRecord in some 
 
 While DataMapper has similarities to ActiveRecord we will be highlighting the differences as we go along.
 
-## [RSpec](http://rspec.info/)
+### [RSpec](http://rspec.info/)
 
 RSpec is a Behaviour Driven Development framework for Ruby. 
 Merb currently supports the Test::Unit and RSpec testing frameworks. As the specs for Merb and Datamapper are written in RSpec, we will be covering some aspects of RSpec but it will not be our main focus.

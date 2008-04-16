@@ -1,4 +1,4 @@
-# Getting Started
+## Getting Started
 
 Before we get started I'm going to assume you have the following installed:
 
@@ -7,7 +7,7 @@ Before we get started I'm going to assume you have the following installed:
 * [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (if you want to get the source code)
 
 
-## Installing Merb
+### Installing Merb
 
 If you just want to play around with Merb install the `merb` gem:
     
@@ -32,7 +32,7 @@ If you need to use JSON you should install the `json` gem (as it's faster). `jso
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
-## Installing Datamapper
+### Installing Datamapper
 
 ***
 Note: DataMapper is splitting into dm-core and dm-more so `datamapper 0.3` will be outdated soon
@@ -62,7 +62,7 @@ If you want the latest source:
     
 To update a gem from source, run `git pull` and `rake install` again.
 
-## Install RSpec
+### Install RSpec
 
 The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the it from source, run the following commands:
 

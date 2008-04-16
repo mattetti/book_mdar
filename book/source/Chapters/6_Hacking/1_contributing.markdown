@@ -1,4 +1,4 @@
-# Submitting a patch
+## Submitting a patch
 http://www.gweezlebur.com/2008/2/1/so-you-want-to-contribute-to-merb-core-part-1
 
 (TODO) - example patch

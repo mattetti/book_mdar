@@ -1,4 +1,4 @@
-# The Framework
+## The Framework
 (TODO) - rewrite for 0.9
 
 ![Directory Structure](Assets/merb-gen1.png)
