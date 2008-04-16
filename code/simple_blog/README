@@ -1,8 +1,0 @@
-# simple_blog
-
-As the name suggests it's a very simple blog.
-
-Dependancies: merb, datamapper
-
-TODO:
-rewrite for 0.9
