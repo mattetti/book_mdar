@@ -80,15 +80,22 @@ body {
  	color: #ff6633;
 }
 
-#book-content pre code {
+#book-content pre {
  	clear: both;
  	display: block;
  	margin: 0;
  	padding: 1em 2em;
- 	font: .8em Monaco, "Courier New", Courier, mono;
- 	background: #191919;
- 	color: #f2ffdf;
+ 	background: #002241;
  	overflow: auto;
+} 
+
+#book-content code {
+ 	font: .9em Monaco, "Courier New", Courier, mono;
+ 	color: #933;
+}
+
+#book-content pre code {
+ 	color: #f6f07d;
 }
 
 #book-content blockquote p {
