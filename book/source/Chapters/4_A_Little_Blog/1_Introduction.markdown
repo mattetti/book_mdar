@@ -1,4 +1,4 @@
-# A little blog
+## A little blog
 
 In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from 
 (TODO) -location, so you can follow along with the examples.

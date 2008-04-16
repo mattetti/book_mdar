@@ -1,10 +1,10 @@
-# Deploying a Merb Application
+## Deploying a Merb Application
 
 > "Yes, Rails scales just like everything else scale." - Ezra Zygmuntowicz
 
 The most satisfying experience of building a web application is having others use it.  Implementing a robust deployment plan is essential to ensure each release of your project goes off with out a hitch.  
 
-## The Pieces
+### The Pieces
 
 #### Subversion
 
@@ -24,7 +24,7 @@ For our merb instances, there are a variety of Ruby web servers.  The de facto s
 
 ## Preparing Your Production Server
 
-## Nginx
+### Nginx
 
 The stable version of Nginx at the time of writing is 0.5.35 with the latest development of 0.6.29.  There is also a branch that supports a newer balancer for handing out requests.  For this example we'll compile the latest development version.
 
@@ -237,7 +237,7 @@ Create a configuration file, this example has been maintained by Ezra and is ava
       }
     }
 
-## Building a Deployment Recipe with Capistrano
+### Building a Deployment Recipe with Capistrano
 
 Install Capistrano.
 

@@ -1,6 +1,6 @@
-## Spec'ing Controllers
+### Spec'ing Controllers
 
-### Getting started
+#### Getting started
 
 Testing controllers typically involves stubbing out some methods, making a fake request and then ensuring the right variables are assigned, exceptions are raised and views rendered.
 
@@ -49,7 +49,7 @@ A more important test would be ensuring that a 404 is returned when the post can
 
 Unlike the last test there was no need for us to stub the render method because DataMapper::ObjectNotFoundError is raised before it is reached.
 
-### Testing multipart forms
+#### Testing multipart forms
 
 (TODO: Make and example of uploading assets in the simple blog)
 
@@ -76,6 +76,6 @@ Your controller would look something like this.
         end
     end
 
-### More ways to dispatch a request
+#### More ways to dispatch a request
 
 There are several other ways to dispatch a request in your test.

@@ -1,4 +1,4 @@
-# Creating an App
+## Creating an App
 
 Right now that we've got all of that installed, time to create a test Merb application. Merb follows the same naming convention for projects that rails does, so 'my\_test\_app' and 'Test2' for example are valid names but 'T 3' is not, as they need to be valid SQL table names.
 
@@ -49,7 +49,7 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
       create  spec/spec_helper.rb
       create  /Rakefile
 
-## Configuring Merb
+### Configuring Merb
 
 Right, so let's try and get the server running, before we do that you'll need to edit the init.rb file, un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 

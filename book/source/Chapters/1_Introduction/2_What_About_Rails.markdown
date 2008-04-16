@@ -1,4 +1,4 @@
-# What About Ruby On Rails?
+## What About Ruby On Rails?
 
 > [Merb is] Harder, Better, Faster, Stronger, to quote Daft Punk - Max Williams
 

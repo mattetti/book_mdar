@@ -1,14 +1,20 @@
+/* @override file:///Users/andy/dev/git/book_mdar/book/output/assets/styles.css */
+
 /* @group Layout */
 
 body {
- 	background-color: #fff;
- 	color: #191919;
- 	font: 62.5%/1.4 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+ 	background-color: #191919;
+ 	color: #3D3B37;
+ 	font: 62.5%/1.4 times, Times New Roman, times-roman, georgia, serif;
+ 	margin: 0;
+ 	padding: 0;
 }
 
 #book {
- 	width: 50em;
+ 	width: 60em;
  	margin: 0 auto;
+ 	padding: 1em 2em;
+ 	background: #fff;
 }
 
 /* @end */
@@ -16,16 +22,29 @@ body {
 /* @group Book styles */
 
 #book-content {
- 	font-size: 1.2em;
+ 	font-size: 1.3em;
  	text-align: left;
 }
 
-#book-content h1 {
- 	text-align: center;
+#book-content p {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
+#book-content h1,
 #book-content h2 {
+ 	margin: 2em 0 0;
  	text-align: center;
+ 	font-weight: normal;
+ 	text-transform: uppercase;
+ 	color: #c60;
+ 	border-top: 1px solid #f1f1f1;
+ 	border-bottom: 1px solid #f1f1f1;
+ 	font-size: 2em;
+}
+
+#book-content h1 {
+	margin: 1em 0 5em 0;
+	font-size: 2.4em;
 }
 
 #book-content h3 {
@@ -66,7 +85,7 @@ body {
  	display: block;
  	margin: 0;
  	padding: 1em 2em;
- 	font: 1em Monaco, "Courier New", Courier, mono;
+ 	font: .8em Monaco, "Courier New", Courier, mono;
  	background: #191919;
  	color: #f2ffdf;
  	overflow: auto;
@@ -75,6 +94,8 @@ body {
 #book-content blockquote p {
  	padding: 2em;
  	font-style: italic;
+ 	font-family: times, Times New Roman, times-roman, georgia, serif;
+ 	font-size: 1.1em;
 }
 
 /* @end */
@@ -83,6 +104,10 @@ body {
 
 #table-of-contents {
  	display: none;
+ 	padding: 1em;
+ 	position: fixed;
+ 	top: 0;
+ 	background: #fff;
 }
 
 /* @end */

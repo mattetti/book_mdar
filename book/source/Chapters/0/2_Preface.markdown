@@ -1,4 +1,4 @@
-# Preface
+## Preface
 
 At New Bamboo we've been building our internal applications in Merb for quite some time now. This is a collaborative effort to document the features of Merb and DataMapper, while also providing example Merb applications.  
 
@@ -9,14 +9,14 @@ The target reader is someone who has some experience with writing Ruby on Rails 
 
 Copyright &copy; 2008 Matthew Ford. All rights reserved. 
 
-## Authors
+### Authors
 
 * Matthew Ford
 * Damien Tanner
 * Ben Reubenstein
 * (add your name)
 
-## Contributors
+### Contributors
 
 * Andy Kent - book publishing framework
 * (add your name)

@@ -1,9 +1,9 @@
-# Hacking Merb
+## Hacking Merb
 (TODO) - Hacking Merb
 
 ## 
 
-## Changing the directory structure
+### Changing the directory structure
 
     # Build the framework paths.
     #
