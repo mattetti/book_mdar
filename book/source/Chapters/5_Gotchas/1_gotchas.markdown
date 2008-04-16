@@ -148,9 +148,9 @@ If you want to freeze merb itself you need to add this to your `init.rb`, then r
 	rake freeze:more
 	rake freeze:plugins
 	 
-Once the `merb` gem is frozen, you can run merb with `frozen-merb`.
+Once the `merb` gem is frozen, you can run merb with `frozen-merb`. If you want to update your frozen gem version, pass the update parameter to the rake task:
 
-(TODO) - update merb **http://railsontherun.com/2008/4/15/merb-tip-how-to-freeze-a-project**
+	rake freeze:core UPDATE=true
 
 ### DataMapper
 (TODO) - DM / AR diffs
