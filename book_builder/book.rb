@@ -24,6 +24,7 @@ module BookBuilder
     end
     
     def render(format)
+      clear_stale_data
       copy_support_files
       template = ERB.new File.open("#{@root_path}templates/#{@name}.#{format}.erb",'r') { |f| f.read }
       template.result(binding)
@@ -109,6 +110,11 @@ module BookBuilder
     
     def self.dom_id_from(text)
       text.gsub(/\W+/,'_').downcase!
+    end
+    
+    def clear_stale_data
+      FileUtils.rm_rf "#{@root_path}output"
+      FileUtils.mkdir "#{@root_path}output"
     end
   end
 end
