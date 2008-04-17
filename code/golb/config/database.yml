@@ -4,7 +4,11 @@ development: &defaults
   # These are the settings for repository :default
   adapter:  mysql
   database: golb
+  host: localhost
   username: root
-  password: 
-  log_stream: STDOUT
-  log_level: 0
+  password:
+  socket: /tmp/mysql.sock
+
+  test: &defaults
+    # These are the settings for repository :default
+    database: golb_test
