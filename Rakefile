@@ -33,8 +33,14 @@ namespace :book do
     desc "compile files from the current directory into pain text"
     task :text do
       log 'Publishing plain text...'
+      
       plain_text
       log 'Done!'
+    end
+    
+    desc "publish all versions and then deploy"
+    task :deploy => [:html,:text] do
+      deploy
     end
   end
   
@@ -44,6 +50,11 @@ namespace :book do
     book = default_book
     book.prepare!
     log 'Done!'
+  end
+  
+  desc "deploy the currently built version to the site"
+  task :deploy do
+    deploy
   end
 end
 
@@ -59,6 +70,11 @@ def plain_text
   book = default_book
   log 'Processing Plain Text format...'
   book.plain_text!
+end
+
+# move the output to the server
+def deploy
+  `scp -r book/output/* ninja@4ninjas.org:public_html/merb/`
 end
 
 
