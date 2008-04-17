@@ -11,12 +11,13 @@ Copyright &copy; 2008 Respective Authors.
 
 ### Authors
 
-* Matthew Ford
-* Damien Tanner
-* Ben Reubenstein
-* Gwyn Morfey
 * Andy Kent
+* Ben Reubenstein
+* Damien Tanner
+* Gwyn Morfey
 * Martyn Loughran
+* Matthew Ford
+
 * (add your name here)
 
 <br />
