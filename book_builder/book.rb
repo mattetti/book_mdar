@@ -24,7 +24,6 @@ module BookBuilder
     end
     
     def render(format)
-      clear_stale_data
       copy_support_files
       template = ERB.new File.open("#{@root_path}templates/#{@name}.#{format}.erb",'r') { |f| f.read }
       template.result(binding)

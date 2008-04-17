@@ -17,6 +17,18 @@ body {
  	background: #fff;
 }
 
+#warning {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	margin: 0;
+	padding: .5em;
+	font-size: 2em;
+	background: #ff9;
+	text-align: center;
+}
+
 /* @end */
 
 /* @group Book styles */
@@ -41,7 +53,7 @@ body {
 }
 
 #book-content h1 {
-	margin: 1em 0 5em 0;
+	margin: 3em 0 5em 0;
 	font-size: 2.4em;
 }
 
