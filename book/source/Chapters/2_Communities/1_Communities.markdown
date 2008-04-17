@@ -1,5 +1,9 @@
 ## Communities
 
+> i'm going to become rich and famous after i invent a device that allows you to stab people in the face over the internet - <[SA]HatfulOfHollow>
+
+The internet is a scary place, but fortunately the Ruby community is very friendly. All these open source projects rely on the contributions from the community so if something needs fixing consider helping out.
+ 
 ### Websites
 
 These are the first places to go for help. Check out the API documentation and see if you can find your answer there.
