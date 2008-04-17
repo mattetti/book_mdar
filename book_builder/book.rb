@@ -30,7 +30,7 @@ module BookBuilder
     end
     
     def save!(txt,format=:txt)
-      output_file = "#{@root_path}output/#{@name}.#{format}"
+      output_file = "#{@root_path}output/index.#{format}"
       FileUtils.touch(output_file)
       File.open(output_file,'w') { |file| file << txt }
     end
