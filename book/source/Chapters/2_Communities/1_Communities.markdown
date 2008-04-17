@@ -1,10 +1,8 @@
 ## Communities
 
-None of this would be possible without the help of the fantastic communities around these open source projects so instead of being tucked away in the appendix here is how to get involved with them.
-
 ### Websites
 
-These are the first places to go for help, check out the documentation and see if you can find your answer there.
+These are the first places to go for help. Check out the API documentation and see if you can find your answer there.
 
 * [http://merbivore.com/](http://merbivore.com/)
 * [http://datamapper.org/](http://datamapper.org/)
@@ -12,7 +10,7 @@ These are the first places to go for help, check out the documentation and see i
 
 ### IRC Channels - freenode.net
 
-If you can't find what you were looking for in the APIs then you could join the respective IRC channel on FreeNode and ask your question in there. 
+If you can't find what you were looking for in the APIs then you could join the respective IRC channel on FreeNode and ask your question in there, you may need to wait for a response. 
 
 * [#merb](irc://irc.freenode.net/merb)
 * [#datamapper](irc://irc.freenode.net/datamapper)
@@ -28,7 +26,7 @@ The mailing lists are another good way to get help, the response time isn't as f
 
 ### Bug Trackers
 
-Your problem may or may not be a known bug, search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases, or better yet: a patch!).
+Your problem may or may not be a known bug. Search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases, or better yet: a patch!). You may find the ticket is solved in the edge version.
 
 * [http://merb.lighthouseapp.com/](http://merb.lighthouseapp.com/)
 * [http://wm.lighthouseapp.com/projects/4819-datamapper/overview](http://wm.lighthouseapp.com/projects/4819-datamapper/overview)

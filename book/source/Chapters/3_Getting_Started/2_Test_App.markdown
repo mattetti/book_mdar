@@ -1,11 +1,7 @@
 ## Creating an App
 
-Right now that we've got all of that installed, time to create a test Merb application. Merb follows the same naming convention for projects that rails does, so 'my\_test\_app' and 'Test2' for example are valid names but 'T 3' is not, as they need to be valid SQL table names.
+Now that we've got all of that installed, time to create a test Merb application. Merb follows the same naming convention for projects as rails, so 'my\_test\_app' and 'Test2' are valid names but 'T 3' is not (they need to be valid SQL table names).
 
-It is nice to separate your Merb apps from your Rails apps (but it's up to you); at the command line type:
-
-    mkdir merb
-    cd merb
     merb-gen app test
     
 This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
@@ -51,7 +47,7 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
 
 ### Configuring Merb
 
-Right, so let's try and get the server running, before we do that you'll need to edit the init.rb file, un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
+Before we get the server running, you'll need to edit the init.rb file and un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 
 config/init.rb
     
@@ -65,10 +61,10 @@ Typing `merb` now in your command line will try and start the server.
     No database.yml file found in /Users/work/merb/example_one/config.
     A sample file was created called database.sample.yml for you to copy and edit.
 
-As you can see, we forgot to set up the database. A sample file has kindly been generated for us. So create a `database.yml` file a bit like this one (remember to create the database you specify):
+As you can see, we forgot to set up the database. A sample file has helpfully been generated for us. Edit this and rename it to database.yml:
 
     # This is a sample database file for the DataMapper ORM
-    :development:
+    development:
        adapter: mysql
        database: test
        username: root
@@ -82,7 +78,7 @@ Don't forget to specify your socket, if you do not its location you can find it 
 	
 	mysql> SHOW VARIABLES LIKE 'socket';
 
-Starting Merb again shows everything is running okay.
+Starting Merb again shows it's running okay.
 
 The following command will give you access to the Merb console:
 
