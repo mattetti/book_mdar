@@ -22,11 +22,10 @@ Set up the configuration files as before:
 
 config/init.rb
 
-    use_orm :data_mapper
+    use_orm :dm_core
 
     use_test :rspec
     
-	dependencies "RedCloth", "merb_helpers"
     dependencies 'linguistics'
 
     

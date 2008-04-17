@@ -4,19 +4,19 @@ At New Bamboo we've been building our internal applications in Merb for quite so
 
 ___Who is this for?___
 
-The target reader is someone who has some experience with writing Ruby on Rails applications, and is looking to try out a new framework. So if your looking for the [AWDR](http://www.pragprog.com/titles/rails2) equivalent for Merb, you may be disappointed as not all topics will be covered.
+The target reader is someone who has some experience with writing Ruby on Rails applications, and is looking to try out a new framework. So if your looking for the [AWDR](http://www.pragprog.com/titles/rails2) equivalent for Merb, you may be disappointed as not all topics will be covered (yet).
 
 
 Copyright &copy; 2008 Respective Authors.
 
 ### Authors
 
-* Matthew Ford
-* Damien Tanner
-* Ben Reubenstein
-* Gwyn Morfey
 * Andy Kent
+* Ben Reubenstein
+* Damien Tanner
+* Gwyn Morfey
 * Martyn Loughran
+* Matthew Ford
 * (add your name here)
 
 <br />

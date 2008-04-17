@@ -6,10 +6,11 @@ Before we get started I'm going to assume you have the following installed:
 * A DBMS (we'll use [MySQL](http://mysql.org/))
 * [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (if you want to get the source code)
 
+(TODO) - git install instructions
 
 ### Installing Merb
 ***
-If you have an older version of Merb (<0.9.2) you should remove the gem(s) before continuing.
+If you have an older version of Merb (<0.9.2) you should remove the all the gems before continuing. Use `gem list` to see your installed gems.
 ***
 To install the `merb` gem:
     
@@ -29,7 +30,9 @@ and you'll need to install the following gems:
     cd merb-more ; rake install ; cd ..
     cd merb-plugins; rake install ; cd ..
 
-If you need to use JSON you should install the `json` gem (as it's faster). `json_pure` is used so Merb will install on JRuby.
+The `json_pure` gem is needed for merb to install on JRuby, otherwise use the `json` gem as it's faster.
+
+(TODO) - What is JRuby
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
@@ -38,14 +41,14 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 
 ***
 DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
-If you have an older version of `datamapper`, `data_objects`, `do_mysql` (< 0.9) you should remove them first.
+If you have an older version of `datamapper`, `data_objects`, or `do_mysql` (< 0.9) you should remove them first.
 ***
 
-We will use MySQL, but you can use any database with a data objects adapter. You will also need to ensure that MySQL is on your system path.
+We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
 
 (TODO) - gem instructions for DM, once 0.9 comes out
 
-If you want the latest source:
+To get the gem from source:
 
 	git clone git://github.com/sam/do.git
 
