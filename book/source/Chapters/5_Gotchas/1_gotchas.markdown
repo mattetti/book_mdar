@@ -122,12 +122,12 @@
     </tr>    
 </table>
 
-#### Freezing gems
+#### Freezing Gems
 As Merb is spilt up into various gems, and it's hard to keep update with each one it's a good idea to freeze them into your application, so an update to one gem doesn't break your app.
 
-The easiest way to freeze a gem is to add -i gems as a command line option to specify the location for the installed gem.
+The easiest way to freeze a gem is to add -i gems as a command line option to specify the location for the installed gem. And then add the gem as a dependency in your `init.rb`.
 
-    gem install merb-core -i gems
+    gem install aquarium -i gems
 
 When running this command from the root of your merb application, it will install the gem inside the gem directory
 
@@ -136,12 +136,21 @@ If you want to freeze the version of the gem that you have installed which is fr
     gem environment gemdir
     
 As I have installed Ruby via port my gem folder is located at `/opt/local/lib/ruby/gems/1.8`.
-To freeze the `merb-core` gem I have from trunk I would need to run:
+To freeze the `aquarium` gem I have from trunk I would need to run:
 
-    gem install /opt/local/lib/ruby/gems/1.8/cache/merb-core-0.9.1.gem -i gems
+    gem install /opt/local/lib/ruby/gems/1.8/cache/aquarium-0.4.1/ -i gems
 
+If you want to freeze merb itself you need to add this to your `init.rb`, then run the following:
 
-Run the `merb-gen frozen-merb` command to instal a script for running your frozen merb gem. Once your gem is frozen, you can run merb with `./script/frozen-merb`
+	require 'merb-freezer'
+	
+	rake freeze:core
+	rake freeze:more
+	rake freeze:plugins
+	 
+Once the `merb` gem is frozen, you can run merb with `frozen-merb`. If you want to update your frozen gem version, pass the update parameter to the rake task:
+
+	rake freeze:core UPDATE=true
 
 ### DataMapper
 (TODO) - DM / AR diffs

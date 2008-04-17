@@ -8,8 +8,10 @@ Before we get started I'm going to assume you have the following installed:
 
 
 ### Installing Merb
-
-If you just want to play around with Merb install the `merb` gem:
+***
+If you have an older version of Merb (<0.9.2) you should remove the gem(s) before continuing.
+***
+To install the `merb` gem:
     
     sudo gem install merb --source http://merbivore.org 
     
@@ -32,15 +34,16 @@ If you need to use JSON you should install the `json` gem (as it's faster). `jso
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
-### Installing Datamapper
+### Installing DataMapper
 
 ***
-Note: DataMapper is splitting into dm-core and dm-more so `datamapper 0.3` will be outdated soon
+DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
+If you have an older version of `datamapper`, `data_objects`, `do_mysql` (< 0.9) you should remove them first.
 ***
 
 We will use MySQL, but you can use any database with a data objects adapter. You will also need to ensure that MySQL is on your system path.
 
-(TODO) - gem instructions for dm, once 0.9 comes out
+(TODO) - gem instructions for DM, once 0.9 comes out
 
 If you want the latest source:
 

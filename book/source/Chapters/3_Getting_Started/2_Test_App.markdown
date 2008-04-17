@@ -55,14 +55,10 @@ Right, so let's try and get the server running, before we do that you'll need to
 
 config/init.rb
     
-    use_orm :data_mapper
+    use_orm :dm_core
 
     use_test :rspec
     
-    Merb::BootLoader.before_app_loads do
-        dependencies "RedCloth", "merb_helpers"
-    end
-
 Typing `merb` now in your command line will try and start the server.
 
     Started merb_init.rb ...
@@ -73,13 +69,24 @@ As you can see, we forgot to set up the database. A sample file has kindly been 
 
     # This is a sample database file for the DataMapper ORM
     :development:
-      :adapter: mysql
-      :database: test
-      :username: root
-      :password: 
-      :host: localhost
+       adapter: mysql
+       database: test
+       username: root
+       password: 
+       host: localhost
+	   socket: /tmp/mysql.sock
+
+Don't forget to specify your socket, if you do not its location you can find it by typing:
+
+	mysql
+	
+	mysql> SHOW VARIABLES LIKE 'socket';
 
 Starting Merb again shows everything is running okay.
+
+The following command will give you access to the Merb console:
+
+	merb -i
 
 You'll notice Merb runs on port 4000, but this can be changed with flag `-p [port number]`. More options can be found by typing:
 
