@@ -5,7 +5,7 @@
 body {
  	background-color: #191919;
  	color: #3D3B37;
- 	font: 62.5%/1.4 times, Times New Roman, times-roman, georgia, serif;
+ 	font: 62.5%/1.4 "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
  	margin: 0;
  	padding: 0;
 }
@@ -13,7 +13,7 @@ body {
 #book {
  	width: 60em;
  	margin: 0 auto;
- 	padding: 1em 2em;
+ 	padding: 1em 8em;
  	background: #fff;
 }
 
@@ -26,9 +26,6 @@ body {
  	text-align: left;
 }
 
-#book-content p {
-	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
 
 #book-content h1,
 #book-content h2 {
@@ -40,6 +37,7 @@ body {
  	border-top: 1px solid #f1f1f1;
  	border-bottom: 1px solid #f1f1f1;
  	font-size: 2em;
+	font-family: times, Times New Roman, times-roman, georgia, serif;
 }
 
 #book-content h1 {
