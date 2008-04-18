@@ -72,7 +72,7 @@ As you can see, we forgot to set up the database. A sample file has helpfully be
        host: localhost
 	   socket: /tmp/mysql.sock
 
-Don't forget to specify your socket, if you do not know where it's location you can find it by typing:
+Don't forget to specify your socket, if you do not know it's location, you can find it by typing:
 
 	mysql_config --socket
 
