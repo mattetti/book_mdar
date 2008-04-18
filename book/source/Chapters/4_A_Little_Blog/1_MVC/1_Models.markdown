@@ -6,11 +6,11 @@
 
 Having discussed the functionality we can deduce that we will need the following models, `Post`, `Comment`, `Tag`, `User` and `Image`.
 
-Merb has a model generator just as rails does:
+DataMapper has a model generator just as rails does:
 
     merb-gen model post
 
-This is make a post model for you, provided that you have defined an orm and the database simple_blog, in the previous steps.
+This will make a post model for you, provided that you have defined an orm and the database golb, in the previous steps.
 
 When you run `rake dm:db:auto_migrate`, it will create the database table and all the properties, but take care this is a destructive method!
 

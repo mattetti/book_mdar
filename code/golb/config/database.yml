@@ -1,5 +1,5 @@
 ---
-# This is a sample database file for the DataMapper ORM
+# Edit this file:
 development: &defaults
     # These are the settings for repository :default
     adapter:  mysql
@@ -8,6 +8,8 @@ development: &defaults
     username: root
     password:
     socket: /opt/local/var/run/mysql5/mysqld.sock
+    log_stream: STDOUT
+    log_level: 0
 
 test: &defaults
     # These are the settings for repository :default

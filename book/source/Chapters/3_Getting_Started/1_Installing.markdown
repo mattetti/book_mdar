@@ -28,9 +28,7 @@ and you'll need to install the following gems:
     cd merb-more ; rake install ; cd ..
     cd merb-plugins; rake install ; cd ..
 
-The `json_pure` gem is needed for merb to install on JRuby, otherwise use the `json` gem as it's faster.
-
-(TODO) - What is JRuby
+The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codehaus.org/) (Java implementation of a Ruby Interpreter), otherwise use the `json` gem as it's faster.
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
@@ -44,7 +42,7 @@ If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `me
 
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
 
-(TODO) - gem instructions for DM, once 0.9 comes out
+(TODO) - gem instructions for DM 0.9 once they are released
 
 To get the gem from source:
 
