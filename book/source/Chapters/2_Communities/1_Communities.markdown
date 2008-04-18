@@ -2,7 +2,7 @@
 
 > i'm going to become rich and famous after i invent a device that allows you to stab people in the face over the internet - <[SA]HatfulOfHollow>
 
-The internet is a scary place, but fortunately the Ruby community is very friendly. All these open source projects rely on the contributions from the community so if something needs fixing consider helping out.
+The internet is a scary place, but fortunately the Ruby community is very friendly. All these open source projects rely on the contributions from the community, if something needs fixing consider helping out.
  
 ### Websites
 
@@ -14,7 +14,7 @@ These are the first places to go for help. Check out the API documentation and s
 
 ### IRC Channels - freenode.net
 
-If you can't find what you were looking for in the APIs then you could join the respective IRC channel on FreeNode and ask your question in there, you may need to wait for a response. 
+If you can't find what you were looking for in the API docs then you could join the respective IRC channel on FreeNode and ask your question in there, you may need to wait for a response. 
 
 * [#merb](irc://irc.freenode.net/merb)
 * [#datamapper](irc://irc.freenode.net/datamapper)

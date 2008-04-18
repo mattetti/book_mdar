@@ -1,9 +1,10 @@
-class Post
+class Comment
   include DataMapper::Resource
   # include DataMapper::Validate
   
-  property :slug, String
-  property :title, String, :nullable => false, :length => 255
+  property :username, String, :length => 255
+  property :email, String, :format => :email_address
   property :body, DataMapper::Types::Text, :nullable => false
   property :body_html, DataMapper::Types::Text, :nullable => false, :lazy => false
+  property :post_id, Fixnum
 end
