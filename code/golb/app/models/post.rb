@@ -1,9 +1,9 @@
 class Post
   include DataMapper::Resource
-  # include DataMapper::Validate
-  
-  # property :slug, String
-  property :title, String, :nullable => false, :length => 255
-  # property :body, DataMapper::Types::Text, :nullable => false
-  # property :body_html, DataMapper::Types::Text, :nullable => false, :lazy => false
+  include DataMapper::Validate
+  property :id, Fixnum, :serial => true
+  property :slug, String
+  property :title, String, :length => 255, :nullable => false
+  property :body, DataMapper::Types::Text, :nullable => false
+  property :body_html, DataMapper::Types::Text, :nullable => false, :lazy => false
 end
