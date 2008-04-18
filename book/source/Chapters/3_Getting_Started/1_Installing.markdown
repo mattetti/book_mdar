@@ -55,14 +55,14 @@ To get the gem from source:
 	cd do
 	cd data_objects
 	rake install ; cd ..
-	cd ../do_mysql  # || do_postgres || do_sqlite3
+	cd do_mysql  # || do_postgres || do_sqlite3
 	rake install
 
     git clone git://github.com/sam/dm-core.git
     git clone git://github.com/sam/dm-more.git
 
     cd dm-core ; rake install ; cd ..
-    cd dm-more ; rake install ; cd ..
+    cd dm-more
     cd dm-merb ; rake install ; cd ..    
     cd dm-validations ; rake install ; cd ..
     
