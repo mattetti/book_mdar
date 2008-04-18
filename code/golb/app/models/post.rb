@@ -1,6 +1,9 @@
 class Post
   include DataMapper::Resource
   include DataMapper::Validate
+  
+  one_to_many :comments
+  
   property :id, Fixnum, :serial => true
   property :slug, String
   property :title, String, :length => 255, :nullable => false
