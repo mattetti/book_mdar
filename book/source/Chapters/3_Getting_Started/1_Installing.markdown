@@ -44,7 +44,7 @@ We will use MySQL in the following example, but you can use either sqlite3 or Po
 
 (TODO) - gem instructions for DM 0.9 once they are released
 
-To get the gem from source:
+To get the gems from source:
 
 	git clone git://github.com/sam/do.git
 
