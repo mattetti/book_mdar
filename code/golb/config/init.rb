@@ -13,6 +13,8 @@ use_orm :dm_core
 
 use_test :rspec
 
+dependencies "Linguistics", "dm-validations"
+
 Merb::BootLoader.after_app_loads do
 
 end

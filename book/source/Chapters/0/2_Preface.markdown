@@ -25,7 +25,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/2.0/uk/88x31.png" />
 </a>
 
-Source code is dual licensed under the MIT and GPL licenses:
+Source code of the applications are dual licensed under the MIT and GPL licenses:
 
 * http://www.opensource.org/licenses/mit-license.php
 * http://www.gnu.org/licenses/gpl.html

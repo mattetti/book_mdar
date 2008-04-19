@@ -4,9 +4,7 @@ Before we get started I'm going to assume you have the following installed:
 
 * [Ruby](http://www.ruby-lang.org/) 
 * A DBMS (we'll use [MySQL](http://mysql.org/))
-* [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (if you want to get the source code)
-
-(TODO) - git install instructions
+* [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (on OSX, port install `git-core` worked for me)
 
 ### Installing Merb
 ***
@@ -30,9 +28,7 @@ and you'll need to install the following gems:
     cd merb-more ; rake install ; cd ..
     cd merb-plugins; rake install ; cd ..
 
-The `json_pure` gem is needed for merb to install on JRuby, otherwise use the `json` gem as it's faster.
-
-(TODO) - What is JRuby
+The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codehaus.org/) (Java implementation of a Ruby Interpreter), otherwise use the `json` gem as it's faster.
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
@@ -41,28 +37,28 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 
 ***
 DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
-If you have an older version of `datamapper`, `data_objects`, or `do_mysql` (< 0.9) you should remove them first.
+If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first. Remove the `merb_datamapper` gem  before installing `dm-merb` within `dm-more`.
 ***
 
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
 
-(TODO) - gem instructions for DM, once 0.9 comes out
+(TODO) - gem instructions for DM 0.9 once they are released
 
-To get the gem from source:
+To get the gems from source:
 
 	git clone git://github.com/sam/do.git
 
 	cd do
 	cd data_objects
 	rake install ; cd ..
-	cd ../do_mysql  # || do_postgres || do_sqlite3
+	cd do_mysql  # || do_postgres || do_sqlite3
 	rake install
 
     git clone git://github.com/sam/dm-core.git
     git clone git://github.com/sam/dm-more.git
 
     cd dm-core ; rake install ; cd ..
-    cd dm-more ; rake install ; cd ..
+    cd dm-more
     cd dm-merb ; rake install ; cd ..    
     cd dm-validations ; rake install ; cd ..
     

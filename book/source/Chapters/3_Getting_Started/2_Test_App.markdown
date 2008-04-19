@@ -72,13 +72,11 @@ As you can see, we forgot to set up the database. A sample file has helpfully be
        host: localhost
 	   socket: /tmp/mysql.sock
 
-Don't forget to specify your socket, if you do not its location you can find it by typing:
+Don't forget to specify your socket, if you do not know it's location, you can find it by typing:
 
-	mysql
-	
-	mysql> SHOW VARIABLES LIKE 'socket';
+	mysql_config --socket
 
-Starting Merb again shows it's running okay.
+Starting Merb again shows that everything is running okay.
 
 The following command will give you access to the Merb console:
 

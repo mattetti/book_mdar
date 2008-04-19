@@ -25,28 +25,27 @@ config/init.rb
     use_orm :dm_core
 
     use_test :rspec
-    
-    dependencies 'linguistics'
+
+	dependencies "Linguistics", "dm-validations"
 
     
 Now add a config/database.yml file with the following:
 
-    ---
-    development: &defaults
-      adapter: mysql
-      database: golb
-      username: root
-      password: 
-      host: localhost
-	  log_stream: STDOUT
-	  log_level: 0
+	---
+	# Edit this file:
+	development: &defaults
+	    # These are the settings for repository :default
+	    adapter:  mysql
+	    database: golb
+	    host: localhost
+	    username: root
+	    password:
+	    socket: /opt/local/var/run/mysql5/mysqld.sock
+	    log_stream: STDOUT
+	    log_level: 0
 
-    test:
-      <<: *defaults
-      database: golb_test
-
-    production:
-      <<: *defaults
-      database: golb_production
+	test: &defaults
+	    # These are the settings for repository :default
+	    database: golb_test
       
 Now we're ready to rock and roll ...
