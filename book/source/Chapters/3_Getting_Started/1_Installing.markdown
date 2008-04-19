@@ -10,19 +10,24 @@ Before we get started I'm going to assume you have the following installed:
 ***
 If you have an older version of Merb (<0.9.2) you should remove the all the gems before continuing. Use `gem list` to see your installed gems.
 ***
-To install the `merb` gem:
+Installing the `merb` gems should be as simple as:
     
     sudo gem install merb --source http://merbivore.org 
     
-On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
-and you'll need to install the following gems:
+__Unfortunately__ we are living right on the edge of development so we'll need to get down and dirty with building our own gems from source. Luckiliy this is much easier than it sounds... 
+
+Start by installing the `gem` dependancies:
 
     sudo gem install rack mongrel json_pure erubis mime-types rspec hpricot \
         mocha rubigen haml markaby mailfactory ruby2ruby
 
+Then download the `merb` source:
+
     git clone git://github.com/wycats/merb-core.git
     git clone git://github.com/wycats/merb-plugins.git
     git clone git://github.com/wycats/merb-more.git
+
+Then install the gems via rake:
 
    	cd merb-core ; rake install ; cd ..    
     cd merb-more ; rake install ; cd ..

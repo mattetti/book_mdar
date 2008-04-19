@@ -110,5 +110,10 @@ module BookBuilder
     def self.dom_id_from(text)
       text.gsub(/\W+/,'_').downcase!
     end
+    
+    def clear_stale_data
+      FileUtils.rm_rf "#{@root_path}output"
+      FileUtils.mkdir "#{@root_path}output"
+    end
   end
 end
