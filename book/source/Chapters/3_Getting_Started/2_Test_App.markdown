@@ -1,6 +1,10 @@
 ## Creating an App
 
-Now that we've got all of that installed, time to create a test Merb application. Merb follows the same naming convention for projects as rails, so 'my\_test\_app' and 'Test2' are valid names but 'T 3' is not (they need to be valid SQL table names).
+Now that we've got all of that installed, time to create a test Merb application. 
+
+Merb more comes with a `gem` called `merb-gen`, this gives you a command line tool by the same name which is used for all of your generator needs. You can think of it as `script/generate`  done the Merb way. Running `merb-gen` from the command line with no arguments will show you all of the generators that are available.
+
+Merb follows the same naming convention for projects as rails, so 'my\_test\_app' and 'Test2' are valid names but 'T 3' is not (they need to be valid SQL table names).
 
     merb-gen app test
     

@@ -4,11 +4,11 @@ This recipe was contributed by __Michael Klishin__
 
 One thing Merb community gets right is gems bundling. config/init.rb in Merb apps has the following magic line that shows idea of independency of the application from environment it runs in is baked into the core:
 
-		Gem.path.unshift(Merb.root / "gems")
+	Gem.path.unshift(Merb.root / "gems")
 
 Yay, no need to reinvent Gem plugin. It is that simple. A note here: to actually get up and running with Merb and Edge ActiveSupport and ActiveRecord bundled under /gems directory you have to specify installation directory with -i option:
 
-		sudo gem install -i ~/dev/workspace/some-merb-application/gems
+	sudo gem install -i ~/dev/workspace/some-merb-application/gems
 
 
 This sets up a directory structure RubyGems' custom require expects to see.
@@ -21,26 +21,26 @@ With git modules freezing you can track what commit hash app is frozen to, what 
 
 To use merb freezer all you have to do is to install merb-freezer from merb-more repo and include a line
 
-		require 'merb-freezer'
+	require 'merb-freezer'
 
 into your config/init.rb. Then run
 
-		rake freeze:core
+	rake freeze:core
 
 if you want to use Git submodules or
 
-		MODE=gems rake freeze:core
+	MODE=gems rake freeze:core
 
 if you want to go with installed gems.
 
-freeze:more and freeze:plugins do freezes of merb-more and merb-plugins, respectively.
+`freeze:more` and `freeze:plugins` do freezes of merb-more and merb-plugins, respectively.
 
 If you choose submodules, make sure you start with a clean branch. Submodules meta information file (.gitmodules) and frameworks directory where Merb is frozen to have to be commited after run of Rake task that does the freeze.
 
 To update Merb use the same Rake task with UPDATE env variable set to true. To see what commits application is frozen to, use
 
-		git submodule status
+	git submodule status
 
 To see N recent commits in Merb core installed as a submodule use
 
-		git submodule summary -n <N> frameworks/merb-core
+	git submodule summary -n <N> frameworks/merb-core
