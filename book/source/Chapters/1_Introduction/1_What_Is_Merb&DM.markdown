@@ -20,7 +20,7 @@ Thanks to Merb's modularity, you are not locked into using any particular librar
 
 ### [DataMapper](http://datamapper.org/)
 
-DataMapper is an Object-Relational Mapper (ORM) written in Ruby by Sam Smoot. We'll be using DataMapper with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
+DataMapper is an Object-Relational Mapper (ORM) written in Ruby by Sam Smoot. We'll be using DataMapper with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already so we've chosen to focus on DataMapper.
 
 DataMapper has some nice features that make it faster than ActiveRecord in some cases. What really stands out for me is the way it handles database attributes. The schema, migrations and attributes are all defined in one place: your model. So you no longer have to look around in your database or other files to see what is defined.
 
