@@ -77,3 +77,20 @@ The `rspec` gem was installed in the Merb section above. However, if for some re
 
     gem install rspec
     svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
+
+### The Easy Way
+
+If you're on a *nix or OSX operating system then keeping upto date with all the edge versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
+
+All you need to run to get `RSpec`, `merb-core`, `merb-more`, `dm-core`, `dm-more`, `data_objects` & all the other dependent gems installed automgically is...
+
+		sudo gem install sake
+		sake -i 'http://edgy.4ninjas.org/edgy.sake'
+		sake edgy:install packages="merb-stack"
+		
+
+And then to keep upto date you just need to execute
+
+		sake edgy:update
+
+

@@ -12,7 +12,7 @@ DataMapper has a model generator just as rails does:
 
 This will make a post model for you, provided that you have defined an orm and the database golb, in the previous steps.
 
-When you run `rake dm:db:auto_migrate`, it will create the database table and all the properties, but take care this is a destructive method!
+When you run `rake dm:db:automigrate`, it will create the database table and all the properties, but take care this is a destructive method!
 
 You can set the name of the database table in your model if it is called something different with:
 
