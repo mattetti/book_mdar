@@ -14,9 +14,13 @@ If you have an older version of Merb (<0.9.2) you should remove the all the gems
 ***
 Installing the `merb` gems should be as simple as:
     
-    sudo gem install merb --source http://merbivore.org 
+    sudo gem install merb --source http://merbivore.org
     
-__Unfortunately__ we are living right on the edge of development so we'll need to get down and dirty with building our own gems from source. Luckiliy this is much easier than it sounds... 
+    or for JRuby:
+    
+    jruby -S gem install merb mongrel 
+    
+__Unfortunately__ we are living right on the edge of development so we'll need to get down and dirty with building our own gems from source. Luckily this is much easier than it sounds... 
 
 Start by installing the `gem` dependancies:
 
@@ -50,6 +54,7 @@ If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `me
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
 
 (TODO) - gem instructions for DM 0.9 once they are released
+(TODO) - JDBC_do install
 
 To get the gems from source:
 
