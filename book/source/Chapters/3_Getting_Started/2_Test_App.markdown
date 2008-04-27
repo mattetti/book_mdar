@@ -51,13 +51,11 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
 
 ### Configuring Merb
 
-Before we get the server running, you'll need to edit the init.rb file and un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
+Before we get the server running, you'll need to edit the init.rb file and un-comment the following line (this is only necessary if you need to connect to a database, which we do in our case):
 
 config/init.rb
     
-    use_orm :dm_core
-
-    use_test :rspec
+    use_orm :datamapper
     
 Typing `merb` now in your command line will try and start the server.
 

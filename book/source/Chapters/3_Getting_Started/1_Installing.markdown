@@ -46,6 +46,7 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 
 ### Installing DataMapper
 
+
 ***
 DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
 If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first. Remove the `merb_datamapper` gem  before installing `dm-merb` within `dm-more`.
@@ -53,7 +54,6 @@ If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `me
 
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
 
-(TODO) - gem instructions for DM 0.9 once they are released
 (TODO) - JDBC_do install
 
 To get the gems from source:
@@ -71,7 +71,7 @@ To get the gems from source:
 
     cd dm-core ; rake install ; cd ..
     cd dm-more
-    cd dm-merb ; rake install ; cd ..    
+    cd merb_datamapper ; rake install ; cd ..    
     cd dm-validations ; rake install ; cd ..
     
 To update a gem from source, run `git pull` and `rake install` again.
@@ -82,6 +82,8 @@ The `rspec` gem was installed in the Merb section above. However, if for some re
 
     gem install rspec
     svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
+
+(TODO) RSpec moved to http://github.com/dchelimsky/rspec/tree/master
 
 ### The Easy Way
 

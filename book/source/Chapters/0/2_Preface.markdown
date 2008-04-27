@@ -17,6 +17,7 @@ Copyright &copy; 2008 Respective Authors.
 * Gwyn Morfey
 * Martyn Loughran
 * Matthew Ford
+* Matt Aimonetti
 * (add your name here)
 
 <br />
