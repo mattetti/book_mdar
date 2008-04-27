@@ -58,15 +58,17 @@ namespace :book do
   end
 end
 
-# crate an html output
+# create an html output
 def html
+  create_output_folder
   book = default_book
   log 'Processing HTML format...'
   book.html!
 end
 
-# crate a plain text output
+# create a plain text output
 def plain_text
+  create_output_folder
   book = default_book
   log 'Processing Plain Text format...'
   book.plain_text!
@@ -87,5 +89,10 @@ def default_book
   BookBuilder::Book.new('merb_book','./book/', :markdown)
 end
 
+# create the output folder if it doesn't exist yet
+def create_output_folder
+  output_folder = './book/output/'
+  Dir.mkdir(output_folder) unless File.directory?(output_folder)
+end
 
 
