@@ -6,9 +6,9 @@ Merb, DataMapper and RSpec are all open source projects that are great for build
 
 ### [Merb](http://merbivore.com/)
 
-It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can user any web server that has rack support (Mongrel, Thin, ebb, etc).
+It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can use any web server that has rack support (Mongrel, Thin, ebb, etc).
 
-If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Noticeable differences between Merb and Rails include its stance on being less opinionated and it's approach to modularisation.
+If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Noticeable differences between Merb and Rails include its stance on being less opinionated and its approach to modularisation.
 (TODO) - Clarify "opinionated?" doesn't force a particular style?
 (TODO) - Add more differences, or change the structure of this sentence to just reflect on one major difference.
 
