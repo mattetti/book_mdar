@@ -33,22 +33,21 @@ config/init.rb
 
 
 Now add a config/database.yml file with the following:
-
+    
 	---
 	# Edit this file:
-	development: &defaults
+	:development: &defaults
 	    # These are the settings for repository :default
-	    adapter:  mysql
-	    database: golb
-	    host: localhost
-	    username: root
-	    password:
-	    socket: /opt/local/var/run/mysql5/mysqld.sock
-	    log_stream: STDOUT
-	    log_level: 0
+	    :adapter:  mysql
+	    :database: golb
+	    :host: localhost
+	    :encoding: utf8
+	    :username: root
+	    :password:
+	    :socket: /opt/local/var/run/mysql5/mysqld.sock
 
 	test: &defaults
 	    # These are the settings for repository :default
-	    database: golb_test
+	    :database: golb_test
       
 Now we're ready to rock and roll ...
