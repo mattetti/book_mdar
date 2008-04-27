@@ -14,7 +14,7 @@ We're going to call our app `golb`, think of it as a backward blog. Feel free to
 
 To make a new app we'll use the command
 
-		merb-gen app golb
+    merb-gen app golb
 
 We're going to use the Linguistics gem later on, you can install it with:
     
