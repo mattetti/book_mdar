@@ -78,4 +78,5 @@ Your controller would look something like this.
 
 #### More ways to dispatch a request
 
-There are several other ways to dispatch a request in your test.
+There are several other ways to dispatch a request in your test. 
+Look at [Merb's Wiki](http://wiki.merbivore.com/pages/controller-specs) for more information
