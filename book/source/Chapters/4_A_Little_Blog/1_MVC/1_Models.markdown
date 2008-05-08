@@ -26,17 +26,24 @@ So DataMapper models differ a bit from ActiveRecord models as previously stated.
 
 app/models/post.rb
 
-    property :title,      :string,    :lazy => false
+    property :title,  String, :lazy => false
     
 This is the `title` property of the post model. As we can see, the parameters are the name of the table column followed by the type and finally the options. 
 
 Some of the available options are:
+(TODO) - cover more properties
 
+    :public, :protected, :private, :accessor, :reader, :writer,
+    :lazy, :default, :nullable, :key, :serial, :field, :size, :length,
+    :format, :index, :check, :ordinal, :auto_validation, :validates, :unique,
+    :lock, :track, :scale, :precision
+
+    :key          - Set as primary key
+    :serial       - auto-incrementing key
     :lazy         - Lazy load the specified property (:lazy => true).
     :default      - Specifies the default value
     :column       - Specifies the table column
     :nullable     - Can the value be null?
-    :key          - Set as primary key
     :index        - Creates a database index for the column
     :accessor     - Set method visibility for the property accessors. Affects both
                     reader and writer. Allowable values are :public, :protected, :private.
@@ -44,16 +51,33 @@ Some of the available options are:
     :writer       - Like the accessor option but affects only the property writer.
     :protected    - Alias for :reader => :public, :writer => :protected
     :private      - Alias for :reader => :public, :writer => :private
+    
+(TODO) - talk about accessors and overriding them
+    
+DataMapper supports the following properties:
 
+* TrueClass, Boolean
+* String
+* Text (limit of 65k characters by default)
+* Float
+* Fixnum, Integer
+* BigDecimal
+* DateTime
+* Date
+* Object (marshalled out during serialization)
+* Class (datastore primitive is the same as String. Used for Inheritance)
+
+(TODO) - creating your own custom properties
 
 #### Associations
 
-Like ActiveRecord, DataMapper has associations which define relationships between models. Continuing with the `Post` model we can see a few of the associations defined:
+Like ActiveRecord, DataMapper has associations which define relationships between models.
+There is difference in syntax but the underling idea is the same. Continuing with the `Post` model we can see a few of the associations defined:
     
-    has_many :comments
-    belongs_to :author, :class => 'User', :foreign_key => 'author_id'
+    one_to_many :comments
+    many_to_one :author, :class => 'User', :foreign_key => 'author_id'
     
-You also can have the associations, `has\_one` and `has\_and\_belongs\_to\_many` (where you can specify the `:join_table`).
+(TODO) the alternate has n..n syntax for relationships
     
 Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association, and currently `has\_one` is implemented as `has\_many` (so it returns an array with one object instead of just the object itself, but this is will likely change!).
 
