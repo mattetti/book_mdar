@@ -27,6 +27,7 @@ body {
 	font-size: 2em;
 	background: #ff9;
 	text-align: center;
+	-webkit-box-shadow: #333 0px 1px 5px;
 }
 
 /* @end */
