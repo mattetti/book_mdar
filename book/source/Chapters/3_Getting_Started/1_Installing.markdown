@@ -8,7 +8,24 @@ Before we get started I'm going to assume you have the following installed:
 * A DBMS (we'll use [MySQL](http://mysql.org/))
 * [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (on OSX, port install `git-core` worked for me)
 
-### Installing Merb
+### The Easy Way
+
+If you're on a *nix or OSX operating system then keeping upto date with all the edge versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
+
+All you need to run to get `RSpec`, `merb-core`, `merb-more`, `dm-core`, `dm-more`, `data_objects` & all the other dependent gems installed automgically is...
+
+		sudo gem install sake
+		sake -i 'http://edgy.4ninjas.org/edgy.sake'
+		sake edgy:install packages="merb-stack"
+		
+
+And then to keep upto date you just need to execute
+
+		sake edgy:update
+
+### The Hard Way
+
+#### Installing Merb
 ***
 If you have an older version of Merb (<0.9.2) you should remove all the gems before continuing. Use `gem list` to see your installed gems.
 
@@ -51,7 +68,7 @@ The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codeha
 Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
-### Installing DataMapper
+#### Installing DataMapper
 
 
 ***
@@ -84,7 +101,7 @@ To get the gems from source:
     
 To update a gem from source, run `git pull` and `rake install` again.
 
-### Install RSpec
+#### Install RSpec
 
 The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the it from source, run the following commands:
 
@@ -92,20 +109,4 @@ The `rspec` gem was installed in the Merb section above. However, if for some re
     svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
 
 (TODO) RSpec moved to http://github.com/dchelimsky/rspec/tree/master
-
-### The Easy Way
-
-If you're on a *nix or OSX operating system then keeping upto date with all the edge versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
-
-All you need to run to get `RSpec`, `merb-core`, `merb-more`, `dm-core`, `dm-more`, `data_objects` & all the other dependent gems installed automgically is...
-
-		sudo gem install sake
-		sake -i 'http://edgy.4ninjas.org/edgy.sake'
-		sake edgy:install packages="merb-stack"
-		
-
-And then to keep upto date you just need to execute
-
-		sake edgy:update
-
 
