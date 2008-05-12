@@ -7,17 +7,18 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 
-contents = `head -n1 $TM_FILEPATH`
+contents = `head -n1 "$TM_FILEPATH"`
 
 scroll_to_here = contents.gsub(/^#/,'').strip.gsub(/\W+/,'_').downcase!
 
 base_tag = `echo "&lt;base href='tm-file://$TM_PROJECT_DIRECTORY/book/output/'/&gt;"`
 
-`cd $TM_PROJECT_DIRECTORY; rake book:publish:html`
-output = `cat $TM_PROJECT_DIRECTORY/book/output/merb_book.html`
-output.gsub! '&lt;/head&gt;' , "#{base_tag}\n&lt;/head&gt;"
+`cd "$TM_PROJECT_DIRECTORY"; rake book:publish:html`
+output = `cat "$TM_PROJECT_DIRECTORY/book/output/"*.html`
+output.gsub! '&lt;head&gt;' , "&lt;head&gt;\n#{base_tag}"
 output &lt;&lt; %(\n&lt;script&gt;window.location.hash = "#{scroll_to_here}";&lt;/script&gt;)
-puts output</string>
+puts output
+</string>
 	<key>input</key>
 	<string>none</string>
 	<key>keyEquivalent</key>
