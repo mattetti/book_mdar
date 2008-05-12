@@ -27,7 +27,7 @@ And then to keep upto date you just need to execute
 
 #### Installing Merb
 ***
-If you have an older version of Merb (<0.9.2) you should remove all the gems before continuing. Use `gem list` to see your installed gems.
+If you have an older version of Merb (<0.9.2) you should remove all merb and datamapper related gems before continuing. Use `gem list` to see your installed gems.
 
     sudo gem uninstall merb
 ***
