@@ -10,7 +10,9 @@ Before we get started I'm going to assume you have the following installed:
 
 ### Installing Merb
 ***
-If you have an older version of Merb (<0.9.2) you should remove the all the gems before continuing. Use `gem list` to see your installed gems.
+If you have an older version of Merb (<0.9.2) you should remove all the gems before continuing. Use `gem list` to see your installed gems.
+
+    sudo gem uninstall merb
 ***
 Installing the `merb` gems should be as simple as:
     
