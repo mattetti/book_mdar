@@ -18,7 +18,7 @@ Installing the `merb` gems should be as simple as:
     
     sudo gem install merb --source http://merbivore.org
     
-    or for JRuby:
+*or for JRuby:*
     
     jruby -S gem install merb mongrel 
     
@@ -26,7 +26,12 @@ __Unfortunately__ we are living right on the edge of development so we'll need t
 
 Start by installing the `gem` dependancies:
 
-    sudo gem install rack mongrel json_pure erubis mime-types rspec hpricot \
+    sudo gem install rack mongrel json erubis mime-types rspec hpricot \
+        mocha rubigen haml markaby mailfactory ruby2ruby
+
+*or for JRuby:*
+
+    jruby -S gem install rack mongrel json_pure erubis mime-types rspec hpricot \
         mocha rubigen haml markaby mailfactory ruby2ruby
 
 Then download the `merb` source:
