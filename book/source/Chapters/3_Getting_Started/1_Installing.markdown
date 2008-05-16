@@ -5,6 +5,7 @@
 Before we get started I'm going to assume you have the following installed:
 
 * [Ruby](http://www.ruby-lang.org/) 
+* [RubyGems >= 1.1.0](http://www.rubygems.org/)
 * A DBMS (we'll use [MySQL](http://mysql.org/))
 * [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (on OSX, port install `git-core` worked for me)
 
