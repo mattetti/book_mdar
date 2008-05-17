@@ -1,7 +1,8 @@
 # Life On The Edge With Merb, DataMapper & RSpec
 
 The book is written in Markdown comes complete with a set of rake tasks for publishing to HTML and plain text formats.
-run 'rake -T' from the root to see the options available.
+run 'rake -T' from the root to see the options available (you will need to have BlueCloth installed, sudo gem install BlueCloth).
+
 
 This work is licensed under a Creative Commons Attribution-Noncommercial 2.0 UK: England & Wales License.
 
