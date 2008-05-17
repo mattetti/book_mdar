@@ -11,10 +11,9 @@ Before we get started I'm going to assume you have the following installed:
 
 #### What will be covered
 
-In this chapter we will cover:
- * Installing Merb, DataMapper and Rspec
+ * Installing Merb, DataMapper and RSpec
  * Creating a temporary test app
- * The basic directory structure for the framwork
+ * The basic directory structure for the framework
 
 ### The Easy Way
 
