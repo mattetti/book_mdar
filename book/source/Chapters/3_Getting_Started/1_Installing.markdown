@@ -9,6 +9,13 @@ Before we get started I'm going to assume you have the following installed:
 * A DBMS (we'll use [MySQL](http://mysql.org/))
 * [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (on OSX, port install `git-core` worked for me)
 
+#### What will be covered
+
+In this chapter we will cover:
+ * Installing Merb, DataMapper and Rspec
+ * Creating a temporary test app
+ * The basic directory structure for the framwork
+
 ### The Easy Way
 
 If you're on a *nix operating system (including Mac OS X) then keeping upto date with all the edge versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).

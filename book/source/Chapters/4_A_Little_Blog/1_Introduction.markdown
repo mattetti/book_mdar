@@ -1,5 +1,14 @@
 ## A little blog
 
+#### What will be covered
+
+ * Setting up the example blog application
+ * Creating the models
+ * Configuring your routes
+ * RESTful controllers
+ * Some of the view helpers in `merb_helpers`
+ * Configuring and sending emails
+
 In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from [http://github.com/deimos1986/book_mdar/tree/master/code](http://github.com/deimos1986/book_mdar/tree/master/code), so you can follow along with the examples.
 
 First of all let's define some of the functionality we would expect from any blogging application. 
