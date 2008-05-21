@@ -6,13 +6,17 @@
 
 Having discussed the functionality we can deduce that we will need the following models, `Post`, `Comment`, `Tag`, `User` and `Image`.
 
-DataMapper has a model generator just as rails does:
+Building a model with Merb and DataMapper requires generating a model, specifying attributes (properties), and running a migration to create the database table and all the properties. Generating a model is similar to Rails, as is running a migration. But unlike Rails and ActiveRecord, Mern and DataMapper use no separate migration files. Instead, properties are defined in the model itself. (Describe the benefit of defining properties in the model? Why is that better than the separate ActiveRecord migrations?)
+
+#### The Model Generator
+
+DataMapper has a model generator just as Rails does:
 
     merb-gen model post
 
 This will make a post model for you, provided that you have defined an orm and the database golb, in the previous steps.
 
-When you run `rake dm:db:automigrate`, it will create the database table and all the properties, but take care this is a destructive method!
+(Don't mention `rake dm:db:automigrate` at this point because if it is run without properties, the user will get an SQL error.)
 
 You can set the name of the database table in your model if it is called something different with:
 
