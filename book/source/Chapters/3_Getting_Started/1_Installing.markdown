@@ -72,15 +72,14 @@ Then install the gems via rake:
 
 The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codehaus.org/) (Java implementation of a Ruby Interpreter), otherwise use the `json` gem as it's faster.
 
-Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
-Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
+Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper. Should you want to stick with ActiveRecord or play with Sequel, check the [Merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
 #### Installing DataMapper
-
 
 ***
 DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
 If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first. Remove the `merb_datamapper` gem  before installing `dm-merb` within `dm-more`.
+
 ***
 
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
@@ -89,13 +88,13 @@ We will use MySQL in the following example, but you can use either sqlite3 or Po
 
 To get the gems from source:
 
-	git clone git://github.com/sam/do.git
-
-	cd do
-	cd data_objects
-	rake install ; cd ..
-	cd do_mysql  # || do_postgres || do_sqlite3
-	rake install
+    git clone git://github.com/sam/do.git
+    
+    cd do
+    cd data_objects
+    rake install ; cd ..
+    cd do_mysql  # || do_postgres || do_sqlite3
+    rake install
 
     git clone git://github.com/sam/dm-core.git
     git clone git://github.com/sam/dm-more.git
@@ -110,10 +109,13 @@ To update a gem from source, run `git pull` and `rake install` again.
 
 #### Install RSpec
 
-The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the it from source, run the following commands:
+The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there or want to grab the it from source, run one of the following commands:
 
-    gem install rspec
-    svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
-
-(TODO) RSpec moved to http://github.com/dchelimsky/rspec/tree/master
-
+    gem install -r rspec
+    
+    # or
+    
+    git clone git://github.com/dchelimsky/rspec.git
+    cd rspec
+    rake gem
+    sudo gem install pkg/rspec-*.gem
