@@ -147,7 +147,7 @@ But with DataMapper and it’s use of Validatable, you can check for the validit
 If this shit doesn’t work, consider it pseudo-code. If it does work, I’m a badass (quoted! -bj)
 
     class Post
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       property :title, :string, :length => 0..255
       property :body, :text
@@ -217,7 +217,7 @@ Say, for example, you’ve got an Event model that needs to make sure the `end\_
 Yup, it’s pretty simple with ActiveRecord. Just toss in our own valid? method and we’re done. With DataMapper, things are a touch more complicated, but overall not brutally difficult, and buy you the full power of Validatable validations:
 
     class Event
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       # properties here
 
@@ -231,7 +231,7 @@ So, a couple of things are going on here. First, we’re declaring the check to 
 Say we want to do much more complicated logic, though.
 
     class Event
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       # properties here
 
