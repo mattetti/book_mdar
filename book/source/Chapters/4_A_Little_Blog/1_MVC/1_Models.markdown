@@ -290,7 +290,8 @@ Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource yo
 
 There is a rake task to migrate your models, but be warned migrations are currently destructive!
 
-    rake dm:auto_migrate    # Automigrates all models
+    rake dm:db:auto_migrate    # Automigrates all models
+    rake dm:db:autoupgrade     # Perform non destructive automigration
 
 You can also create databases from the Merb console (`merb -i`)
 
@@ -298,7 +299,7 @@ You can also create databases from the Merb console (`merb -i`)
 
 This does the same job as the rake task migrating all your models.
 
-    DataMapper::Persistence.auto_migrate! 
+    DataMapper.auto_migrate! 
 
 Migrations in the sense of AR migrations, don't exist yet, so you'll have to manually alter your database if you want to retain your data. There are plans however to include migrations in a future version of DataMapper.
 
