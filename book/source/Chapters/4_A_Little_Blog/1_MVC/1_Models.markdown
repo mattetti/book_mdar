@@ -74,12 +74,26 @@ DataMapper supports the following properties:
 Like ActiveRecord, DataMapper has associations which define relationships between models.
 There is difference in syntax but the underling idea is the same. Continuing with the `Post` model we can see a few of the associations defined:
     
-    one_to_many :comments
-    many_to_one :author, :class => 'User', :foreign_key => 'author_id'
+    has n, :comments
+    belongs_to :author, :class => 'User', :foreign_key => 'author_id'
     
-(TODO) the alternate has n..n syntax for relationships
+The `has n` syntax is a very flexible way to define associations and the standard way in DataMapper > 0.9. It can be used to model all of ActiveRecord associations plus more.  The types of associations currently in DataMapper are:
+  
+     # DataMapper 0.9  | ActiveRecord
+     has n             # has_many
+     has 1             # has_one
+     belongs_to        # belongs_to
+     many_to_one       # belongs_to
+     has n, :association => :join_table # has_and_belongs_to_many NOTE: not currently support see HABTM section below
+     has n, :association => :model      # has_many :association, :through => :model  
+     
+The `has n` syntax is more powerful than above, since n is the cardinality of the association, it can be an arbitrary range.  Some examples:
+
+    has 0..n #=> will have a MIN of 0 records and a MAX of n
+    has 1..n #=> will have a MIN of 1 record and a MAX of n
+    has 1..3 #=> will have a MIN of 1 record and a MAX of 3
     
-Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association, and currently `has\_one` is implemented as `has\_many` (so it returns an array with one object instead of just the object itself, but this is will likely change!).
+Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association.
 
 You also don't have to specify a relationship at all if you don't want to, as models can have one way relationships.
 
@@ -87,19 +101,31 @@ You also don't have to specify a relationship at all if you don't want to, as mo
 http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
 (TODO) -polly assoc (pastie link is broken)
 
+##### Has And Belongs To Many (HABTM)
+As of this writing HABTM is not supported in DataMapper associations, but it can be modeled as a `has_many :through` association.  The only difference is that instead of having a simple join table, you will need a join Model.  The example below for `has_many :through` would effectively replace a HABTM relationship to Category.
+
 ##### Where is my `has\_many :through`?!
-`has\_many :through` is in the pipes, but it is not currently in DM. You can however mimic that behaviour by specifying the tables to join on, in the join model.
+DataMapper > 0.9 now supports has_many :through.  For example, if you have a Post model that has many Categories through the Categorization model you would define these associations:
 
-    # has_many :categories, :through => :categorizations
-    has_many :categorizations
+     class Post
+       include DataMapper::Resource
 
-    has_and_belongs_to_many :categories,
-      :join_table => "categorizations",
-      :left_foreign_key => "post_id",
-      :right_foreign_key => "category_id",
-      :class => "Category"
+       has n, :categorizations
+       has n, :categories => :categorizations
+       # or you could use an alternative syntax:
+       has n, :categories, :through => :categorizations
+       
+     end
+     
+     post = Post.first
+     post.categorizations #=> []
+     post.categories #=> []
+     # to attach a category to a post:
+     post.categorizations << Categorization.new(:category => Category.first)
+     # or you could just create a Categorization object passing in both category and post:
+     Categorization.create(:post => post, :category => Category.first)
     
-You still have access to `.categorizations` and you now have access to `.categories` as well… plus no new tables or nothing. If `categorizations` had, say, a `score` column on it which stores how strongly your `categorization` process thinks this post belongs to this category, you could tack on `:order => 'score desc'` to the `has\_and\_belongs\_to\_many` just fine.
+
  
 #### Validation
 
