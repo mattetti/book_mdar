@@ -9,6 +9,7 @@ The internet is a scary place, but fortunately the Ruby community is very friend
 These are the first places to go for help. Check out the API documentation and see if you can find your answer there.
 
 * [http://merbivore.com/](http://merbivore.com/)
+* [http://merbunity.com/](http://merbunity.com/)
 * [http://datamapper.org/](http://datamapper.org/)
 * [http://rspec.info/](http://rspec.info/)
 
