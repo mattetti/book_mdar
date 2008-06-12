@@ -253,7 +253,38 @@ Validations with Validatable (in DataMapper) are that much more powerful than th
 
 #### Callbacks
 
-(TODO) list of available call backs
+Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource you can set before and after callbacks on any instance/class method.  There are a couple of different ways to define callbacks:
+
+    class Post
+      include DataMapper::Resource
+      
+      property :id, Integer, :serial => true
+      property :title, String, :length => 200
+      
+      # before save call the instance method make_permalink
+      before :save, :make_permalink
+      
+      def make_permalink
+        self.title = PermalinkFu.permalink(self.title)
+      end
+      
+      #callbacks can be defined for any method
+      after :publish, :send_message
+      
+      def publish
+        # do some publishing here
+      end
+      
+      def send_message
+        # email someone here
+      end
+      
+      # defining a callback on a class method, passing in a block to run before its created.
+      before_class_method :create do
+        # do something before a record is created
+      end
+      
+    end
 
 #### Migrations
 
