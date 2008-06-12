@@ -306,17 +306,41 @@ Migrations in the sense of AR migrations, don't exist yet, so you'll have to man
 ### CRUD
 
 #### Creating
-To create a new record, just call the method new on a model and pass it your attributes.
+To create a new record, just call the method create on a model and pass it your attributes.
 
-    @post = Post.new(:title => 'My first post')
+    @post = Post.create(:title => 'My first post')
     
-There is also an AR like method to `find\_or\_create` which attempts to find an object with the attributes provided, and creates the object if it cannot find it.
+Or you can instantiate an object with #new and save it to the repository later:
 
-There is another way to create an object, which is to save it after the attributes have been set like this:
-   
     @post = Post.new
-    @post.attributes = {:name => 'Hi!',:body => 'This is just awesome!'}
+    @post.title = 'My first post'
     @post.save
+    
+There is also an AR like method to `find\_or\_create` which attempts to find an object with the attributes provided, and creates the object if it cannot find it:
+
+    @post = Post.first_or_create(:title => 'My first post')
+    
+There are a couple of different ways to set attributes on a model:
+
+    @post.title = 'My first post'
+    @post.attributes = {:title => 'My first post'}
+    @post.attribute_set(:title, 'My first post')
+    
+Find out if an attribute has been changed (aka is dirty):
+
+    @post = Post.first
+    @post.dirty?
+    => false
+    @post.attribute_dirty?(:title)
+    => false
+    @post.title = 'Changing the title'
+    @post.dirty?
+    => true
+    @post.attribute_dirty?(:title)
+    => true
+    @post.dirty_attributes
+    => Set: {#<Property:Post:title>}
+
     
 #### Reading (aka finding)
 
