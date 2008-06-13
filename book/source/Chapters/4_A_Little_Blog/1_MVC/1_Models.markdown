@@ -348,13 +348,13 @@ The syntax for retrieving data from the database is clean an simple. As you can 
 
 Finding a post with one as its primary key is done with the following:
 
-    Post[1]
+    # will raise a DataMapper::ObjectNotFoundError if not found
+    # use #get to just return nil if not record is found
+    Post.get!(1)
  
 To get an array of all the records for the post model:
 
     Post.all
-
-*NOTE*: you can also do Post.find(:all), like the AR syntax but this is just a synonym for Post.all
 
 To get the first post, with the condition author = 'Matt':
 
@@ -365,7 +365,7 @@ When retrieving data the following parameters can be used:
     #   Posts.all :order => 'created_at desc'              # => ORDER BY created_at desc
     #   Posts.all :limit => 10                             # => LIMIT 10
     #   Posts.all :offset => 100                           # => OFFSET 100
-    #   Posts.all :include => [:comments]
+    #   Posts.all :includes => [:comments]
 
 If the parameters are not found in these conditions it is assumed to be an attribute of the object.
 
@@ -385,13 +385,17 @@ Here is a list of the valid operators:
 * like  - like
 * in    - will be used automatically when an array is passed in as an argument
     
-If you require a custom find, you can use SQL with the method, `find\_by\_sql`. This will return an array of Structs (which are read-only) with the result of the query. 
+TODO: no more find_by_sql, but im sure there is another way to just execute SQL.
 
-##### Count
+##### Aggregates
 
-DM provides a count method to count the number of records of a model, you can also pass search conditions to count:
+DataMapper by default does not provide aggregator methods, but dm-aggregates in dm-more does. After adding `dependency "dm-aggregates"` to your merb init.rb file, your resource model will have aggregator methods including #count, #min, #max, #avg, and #sum.  You can pass conditions to any of these aggregator methods the same as Resource.first or Resource.all
 
-    comment_count = Post[1].comments.count
+    Post.count :title.like => "%hello world%"
+    
+    # you can also do a count on an association:
+    @post.comments.count
+    
     
 ##### Each
 
