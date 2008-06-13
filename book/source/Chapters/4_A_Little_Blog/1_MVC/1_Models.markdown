@@ -1,6 +1,6 @@
 ## Models
 
-(TODO) - Started the rewrite for DM 0.9, finish it!
+(TODO) - rewrite for DM 0.9, and make this section clearer
 
 ### Getting started
 
@@ -14,9 +14,7 @@ This will make a post model for you, provided that you have defined an orm and t
 
 When you run `rake dm:db:automigrate`, it will create the database table and all the properties, but take care this is a destructive method!
 
-You can set the name of the database table in your model if it is called something different with: 
-
-(TODO): this doesn't work anymore, how does it work in 0.9?
+You can set the name of the database table in your model if it is called something different with:
 
     set_table_name 'list_of_posts'
     
@@ -24,11 +22,11 @@ This is only necessary if you are using an already existing database.
 
 #### Properties
 
-DataMapper models differ a bit from ActiveRecord models as previously stated. Defining the database columns is achieved with the `property` method.
+So DataMapper models differ a bit from ActiveRecord models as previously stated. Defining the database columns is achieved with the `property` method.
 
 app/models/post.rb
 
-    property :title, String, :lazy => false
+    property :title,  String, :lazy => false
     
 This is the `title` property of the post model. As we can see, the parameters are the name of the table column followed by the type and finally the options. 
 
@@ -132,7 +130,6 @@ DataMapper > 0.9 now supports has_many :through.  For example, if you have a Pos
 #### Validation
 
 (TODO) - custom validation, and validatable gem
-(TODO) - does this really need all the user bashing fluff?
 It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
 
 But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
@@ -388,7 +385,7 @@ Here is a list of the valid operators:
 * like  - like
 * in    - will be used automatically when an array is passed in as an argument
     
-(TODO): no more find_by_sql, but im sure there is another way to just execute SQL.
+TODO: no more find_by_sql, but im sure there is another way to just execute SQL.
 
 ##### Aggregates
 
