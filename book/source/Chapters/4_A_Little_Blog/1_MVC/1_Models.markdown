@@ -1,6 +1,6 @@
 ## Models
 
-(TODO) - rewrite for DM 0.9, and make this section clearer
+(TODO) - rewrite for DM 0.9 almost done, just need to finish it!
 
 ### Getting started
 
@@ -130,6 +130,7 @@ DataMapper > 0.9 now supports has_many :through.  For example, if you have a Pos
 #### Validation
 
 (TODO) - custom validation, and validatable gem
+(TODO) - does this user bashing fluff need to be here?
 It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
 
 But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
