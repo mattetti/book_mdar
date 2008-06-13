@@ -396,6 +396,10 @@ DataMapper by default does not provide aggregator methods, but dm-aggregates in 
     # you can also do a count on an association:
     @post.comments.count
     
+    Post.avg(:reads_count)
+    
+    Post.sum(:comments_count)
+    
     
 ##### Each
 
