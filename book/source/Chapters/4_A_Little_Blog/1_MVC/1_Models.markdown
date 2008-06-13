@@ -413,18 +413,19 @@ Each works like like expected iterating over a number of rows and you can pass a
 
 Updating attributes has a similar syntax to ARs `update_attributes`:
 
-    Post.update_attributes(:title => 'Opps the title has changed!')
-    Post.save
+    @post.update_attributes(:title => 'Opps the title has changed!')
+    
+You can also just set attributes and then save:
 
-Post will only update the attributes which it persists and have changed, so changing virtual attributes will require marking the object as dirty to force a save.
+    @post = Post.first
+    @post.title = 'New Title!'
+    @post.save
+
 
 #### Destroying
 
 You can destroy database records with the method destroy!, this work much like AR.
  
-    bad_comment = Comment[6]
-    bad_comment.destroy!
+    bad_comment = Comment.first
+    bad_comment.destroy
     
-Should you want to delete all the records of a model, you can do the following:
-
-    Comment.delete_all
