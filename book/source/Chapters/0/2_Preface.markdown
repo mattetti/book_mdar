@@ -19,6 +19,7 @@ Copyright &copy; 2008 Respective Authors.
 * Matthew Ford
 * Matt Aimonetti
 * Eric Allam
+* Jonathan Stott
 * (add your name here)
 
 <br />
