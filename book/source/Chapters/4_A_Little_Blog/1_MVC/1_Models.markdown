@@ -289,6 +289,8 @@ hack-around. How enterprise-y!
 
 ##### validates\_true\_for
 
+TODO: Update this to DM 0.9 - however that works 
+
 The second outstanding feature of Validatable that I’m oh-so-in-love with is `validates\_true\_for`. Think of it like overloading `valid?` only capable of the full power of real validations behind it.
 
 Say, for example, you’ve got an Event model that needs to make sure the `end\_date` for the event is greater than the start_date. Wouldn’t want to break the laws of physics, so we’d do something like:
