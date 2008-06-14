@@ -159,7 +159,13 @@ Both ActiveRecord and DataMapper have a concept called Validations, which is ult
 
     end
 
-How many validations do we have on the content of the post class? To someone familar with ActiveRecord, the answer is obviously one.  We have a validation that the body must contain something, that it is present.  In fact DataMapper, through `dm-validations`, has set up _four_ validations for us.  When we declare properties like `:length => 0..255` as well as declaring the maximum length for the field, it also adds a validation to check that the supplied values will fit within that field.  So when we validate our model DataMapper will check we ...
+How many validations do we have on the content of the post class? To someone
+familar with ActiveRecord, the answer is obviously one.  We have a validation
+that the body must contain something - that it is present.  In fact DataMapper,
+through dm-validations, has set up _four_ validations for us.  When we declare
+properties like `:length => 0..255` as well as declaring the maximum length for
+the field, it also adds a validation to check that the supplied values will fit
+within that field.  So when we validate our model DataMapper will check we ...
 
 * have a `body`, which contains ... something, at least
 
