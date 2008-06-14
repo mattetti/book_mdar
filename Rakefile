@@ -12,13 +12,9 @@ namespace :book do
   
   desc "Outstanding TODO's"  
   task :todo do
-    # man this is messy! -bj
-    `grep --exclude=\*.svn\* -nr TODO book/source/`.each_line do |line|
-      path, line, *note = line.split ':'
-      note = note.join(':').strip
-      path.gsub!(/[^\d]+/, '.').gsub!(/^\.|\.$/,'')
-      
-      log "#{note} (Section #{path}, Line #{line})"
+    FileList["book/source/**/*.markdown"].egrep(/TODO/) do |fn, count, line|
+      fn.gsub!(/\D+/, '.').gsub!(/^\.|\.$/,'')
+      log "#{line.chomp} (Section #{fn}, Line #{count})"
     end
   end
 
