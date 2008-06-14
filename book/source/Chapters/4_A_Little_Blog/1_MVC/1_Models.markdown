@@ -287,52 +287,56 @@ headache and work later on down the line, as well as supporting different
 scenarios where a post might be valid or might not -- all without having to
 hack-around. How enterprise-y!
 
-##### validates\_true\_for
+##### validates\_with\_method
 
-TODO: Update this to DM 0.9 - however that works 
+Another very powerful feature in dm-validations is `validates\_with\_method`.
+Think of it as like overloading `valid?` only with the full power of real
+validations still there too.
 
-The second outstanding feature of Validatable that I’m oh-so-in-love with is `validates\_true\_for`. Think of it like overloading `valid?` only capable of the full power of real validations behind it.
-
-Say, for example, you’ve got an Event model that needs to make sure the `end\_date` for the event is greater than the start_date. Wouldn’t want to break the laws of physics, so we’d do something like:
+Say, for example, you’ve got an Event model that needs to make sure the
+`end\_date` for the event is greater than the start_date. Wouldn’t want to
+break the laws of physics, so we’d do something like:
 
     class Event < ActiveRecord::Base
       def valid?
         start_time < end_time
       end
     end
-	
-Yup, it’s pretty simple with ActiveRecord. Just toss in our own valid? method and we’re done. With DataMapper, things are a touch more complicated, but overall not brutally difficult, and buy you the full power of Validatable validations:
+
+Yup, it’s pretty simple with ActiveRecord. Just toss in our own valid? method and
+we’re done. With DataMapper, things are a touch more complicated, but not
+difficult, and buy you the full power of dm-validations:
 
     class Event
       include DataMapper::Resource
 
       # properties here
 
-      validates_true_for :start_time, :logic => lambda {
-        start_time < end_time
-      }
-    end
-	
-So, a couple of things are going on here. First, we’re declaring the check to make sure `start\_time` being less than `end\_time` on the `start\_time` property. We could have easily done it on the `end\_time` property as well (take your pick). Secondly, we’re passing in a block (lambda) to be called when the check occurs. As long as our lambda returns true, we’re golden, the validation passes, and the object can be saved out to the persistence layer.
+      validates_with_method :check_times
 
-Say we want to do much more complicated logic, though.
-
-    class Event
-      include DataMapper::Resource
-
-      # properties here
-
-      scary_validation = lambda do
-        # freakish logic here for particularly complicated
-        # validations.
+      def check_times
+        if start_time < end_time
+          return true
+        else
+          return [false, 'End time must be after start time']
+        end
       end
-
-      validates_true_for :start_time, :logic => scary_validation
     end
-	
-Ruby’s support for closures is so damn-skippy that we can pass blocks of code around, assign them to variables, execute them later, totally forget about them, whatever we want. We don’t need to overload a method or anything.
 
-Plus, we’ve elevated our advanced validation logic into a real Validation which we can then assign to groups, pass around from object to object, what-have-you. Had we just stuck this code in an overloaded .valid? method, we wouldn’t get our spiffy Group Validation stuff as well as a few other things that make Validatable so-very-sexy.
+
+So, a couple of things are going on here.  First, we declare that we're going to
+use our custom validation method `check_times` for the model.  Then comes the
+method itself.  It's a pretty simple method.  If our `start\_time` is before
+our `end\_time`, return `true` as we're valid.  Otherwise, it return an array. The
+first entry in the array is `false`, which lets DataMapper know the validation
+has failed.  The second entry is a string, which is added to `@event.errors` so
+the user has some idea what has gone wrong.
+
+Of course, this custom validator can also be applied only in certain contexts,
+just by adding a `:when => [...]` on the `validates_with_method` line.  This
+brings us a lot of flexibility, and as we're validating with a ruby method, we
+can get as complex as we need to specify our behaviour.  Much nicer than just
+overriding valid.
 
 ##### In Conclusion
 
