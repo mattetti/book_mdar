@@ -133,9 +133,8 @@ DataMapper > 0.9 now supports has_many :through.  For example, if you have a Pos
  
 #### Validation
 
-(TODO) - custom validation, and validatable gem
 (TODO) - does this user bashing fluff need to be here?
-(TODO) - still needs 0.9 love
+(TODO) - still needs 0.9 love - mostly done now, I think
 
 It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
 
