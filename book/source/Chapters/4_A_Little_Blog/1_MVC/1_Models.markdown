@@ -136,11 +136,49 @@ DataMapper > 0.9 now supports has_many :through.  For example, if you have a Pos
 (TODO) - custom validation, and validatable gem
 (TODO) - does this user bashing fluff need to be here?
 (TODO) - still needs 0.9 love
+
 It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
 
 But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
 
-Both ActiveRecord and DataMapper have a concept called Validations, which is ultimately a set of callbacks which fire right before an object gets saved out to our persistence layer and interrupt things when it detects something awry.
+Both ActiveRecord and DataMapper have a concept called Validations, which is ultimately a set of callbacks which fire right before an object gets saved out to our persistence layer and interrupt things when it detects something awry.  To use them in datamapper, all we have to do is require the gem `dm-validations`
+
+    require 'dm-validations'
+
+    class Post
+      include DataMapper::Resource
+
+      property :id, Integer, :serial => true
+      property :title, String, :length => 0..255
+      property :body, Text
+      property :original_uri, String, :length => 0..255
+      property :created_at, DateTime
+      property :can_be_displayed, Boolean, :default => false
+
+      validates_present :body
+
+    end
+
+How many validations do we have on the content of the post class? To someone familar with ActiveRecord, the answer is obviously one.  We have a validation that the body must contain something, that it is present.  In fact DataMapper, through `dm-validations`, has set up _four_ validations for us.  When we declare properties like `:length => 0..255` as well as declaring the maximum length for the field, it also adds a validation to check that the supplied values will fit within that field.  So when we validate our model DataMapper will check we ...
+
+* have a `body`, which contains ... something, at least
+
+And also, without us having to type anything, that we ...
+
+* have a `title`, with a length somewhere between 0 and 255 characters
+* have an `original_url`, with a length somewhere between 0 and 255 characters.
+* have a value for `can_be_displayed` which is `true` or `false` (but not `nil`)
+
+We can test this by calling `valid?` on one of our posts:
+
+    @post = Post.new
+    @post.valid?
+    => false
+    @post.title = "A cool story!"
+    @post.body = "It was a dark and stormy ..."
+    @post.valid?
+    => true
+
 
 A problem arises when your website has users creating content and content being created automatically from scrapers or some sort of automated background process (be it from RSS feeds, an FTP server or a web service). No idiots are involved in the creation of content when it’s imported into the system and you likely really want that content to appear in your system. This is where Group Validations come in to play.
 
