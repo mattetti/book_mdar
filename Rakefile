@@ -26,7 +26,7 @@ namespace :book do
       log 'Done!'
     end
   
-    desc "compile files from the current directory into pain text"
+    desc "compile files from the current directory into plain text"
     task :text do
       log 'Publishing plain text...'
       
