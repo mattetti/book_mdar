@@ -336,7 +336,10 @@ Plus, we’ve elevated our advanced validation logic into a real Validation whic
 
 ##### In Conclusion
 
-Validations with Validatable (in DataMapper) are that much more powerful than their counter-parts in ActiveRecord, and therefore, you should switch to DataMapper (or Validatable)
+TODO: Do we actually need this?
+
+Validations with dm-validations (in DataMapper) are that much more powerful than
+their counter-parts in ActiveRecord, and therefore, you should switch to DataMapper.
 
 #### Callbacks
 
