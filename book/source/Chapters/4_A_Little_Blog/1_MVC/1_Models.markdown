@@ -141,7 +141,10 @@ It’s a known fact that users are stupid. They screw up; it happens. They enter
 
 But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
 
-Both ActiveRecord and DataMapper have a concept called Validations, which is ultimately a set of callbacks which fire right before an object gets saved out to our persistence layer and interrupt things when it detects something awry.  To use them in datamapper, all we have to do is require the gem `dm-validations`
+Both ActiveRecord and DataMapper have a concept called Validations, which is
+ultimately a set of callbacks which fire right before an object gets saved out
+to our persistence layer and interrupt things when it detects something awry.
+To use them in datamapper, all we have to do is require the gem dm-validations.
 
     require 'dm-validations'
 
