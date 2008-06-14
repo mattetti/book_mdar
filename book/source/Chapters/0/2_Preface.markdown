@@ -18,6 +18,7 @@ Copyright &copy; 2008 Respective Authors.
 * Martyn Loughran
 * Matthew Ford
 * Matt Aimonetti
+* Eric Allam
 * (add your name here)
 
 <br />

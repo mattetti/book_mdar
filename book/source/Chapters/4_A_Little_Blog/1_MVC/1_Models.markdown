@@ -1,6 +1,6 @@
 ## Models
 
-(TODO) - rewrite for DM 0.9, and make this section clearer
+(TODO) - rewrite for DM 0.9 almost done, just need to finish it!
 
 ### Getting started
 
@@ -78,12 +78,26 @@ DataMapper supports the following properties:
 Like ActiveRecord, DataMapper has associations which define relationships between models.
 There is difference in syntax but the underling idea is the same. Continuing with the `Post` model we can see a few of the associations defined:
     
-    one_to_many :comments
-    many_to_one :author, :class => 'User', :foreign_key => 'author_id'
+    has n, :comments
+    belongs_to :author, :class => 'User', :foreign_key => 'author_id'
     
-(TODO) the alternate has n..n syntax for relationships
+The `has n` syntax is a very flexible way to define associations and the standard way in DataMapper > 0.9. It can be used to model all of ActiveRecord associations plus more.  The types of associations currently in DataMapper are:
+  
+     # DataMapper 0.9  | ActiveRecord
+     has n             # has_many
+     has 1             # has_one
+     belongs_to        # belongs_to
+     many_to_one       # belongs_to
+     has n, :association => :join_table # has_and_belongs_to_many NOTE: not currently support see HABTM section below
+     has n, :association => :model      # has_many :association, :through => :model  
+     
+The `has n` syntax is more powerful than above, since n is the cardinality of the association, it can be an arbitrary range.  Some examples:
+
+    has 0..n #=> will have a MIN of 0 records and a MAX of n
+    has 1..n #=> will have a MIN of 1 record and a MAX of n
+    has 1..3 #=> will have a MIN of 1 record and a MAX of 3
     
-Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association, and currently `has\_one` is implemented as `has\_many` (so it returns an array with one object instead of just the object itself, but this is will likely change!).
+Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association.
 
 You also don't have to specify a relationship at all if you don't want to, as models can have one way relationships.
 
@@ -91,23 +105,37 @@ You also don't have to specify a relationship at all if you don't want to, as mo
 http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
 (TODO) -polly assoc (pastie link is broken)
 
+##### Has And Belongs To Many (HABTM)
+As of this writing HABTM is not supported in DataMapper associations, but it can be modeled as a `has_many :through` association.  The only difference is that instead of having a simple join table, you will need a join Model.  The example below for `has_many :through` would effectively replace a HABTM relationship to Category.
+
 ##### Where is my `has\_many :through`?!
-`has\_many :through` is in the pipes, but it is not currently in DM. You can however mimic that behaviour by specifying the tables to join on, in the join model.
+DataMapper > 0.9 now supports has_many :through.  For example, if you have a Post model that has many Categories through the Categorization model you would define these associations:
 
-    # has_many :categories, :through => :categorizations
-    has_many :categorizations
+     class Post
+       include DataMapper::Resource
 
-    has_and_belongs_to_many :categories,
-      :join_table => "categorizations",
-      :left_foreign_key => "post_id",
-      :right_foreign_key => "category_id",
-      :class => "Category"
+       has n, :categorizations
+       has n, :categories => :categorizations
+       # or you could use an alternative syntax:
+       has n, :categories, :through => :categorizations
+       
+     end
+     
+     post = Post.first
+     post.categorizations #=> []
+     post.categories #=> []
+     # to attach a category to a post:
+     post.categorizations << Categorization.new(:category => Category.first)
+     # or you could just create a Categorization object passing in both category and post:
+     Categorization.create(:post => post, :category => Category.first)
     
-You still have access to `.categorizations` and you now have access to `.categories` as well… plus no new tables or nothing. If `categorizations` had, say, a `score` column on it which stores how strongly your `categorization` process thinks this post belongs to this category, you could tack on `:order => 'score desc'` to the `has\_and\_belongs\_to\_many` just fine.
+
  
 #### Validation
 
 (TODO) - custom validation, and validatable gem
+(TODO) - does this user bashing fluff need to be here?
+(TODO) - still needs 0.9 love
 It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
 
 But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
@@ -125,7 +153,7 @@ But with DataMapper and it’s use of Validatable, you can check for the validit
 If this shit doesn’t work, consider it pseudo-code. If it does work, I’m a badass (quoted! -bj)
 
     class Post
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       property :title, :string, :length => 0..255
       property :body, :text
@@ -195,7 +223,7 @@ Say, for example, you’ve got an Event model that needs to make sure the `end\_
 Yup, it’s pretty simple with ActiveRecord. Just toss in our own valid? method and we’re done. With DataMapper, things are a touch more complicated, but overall not brutally difficult, and buy you the full power of Validatable validations:
 
     class Event
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       # properties here
 
@@ -209,7 +237,7 @@ So, a couple of things are going on here. First, we’re declaring the check to 
 Say we want to do much more complicated logic, though.
 
     class Event
-      include DataMapper::Persistence
+      include DataMapper::Resource
 
       # properties here
 
@@ -231,13 +259,45 @@ Validations with Validatable (in DataMapper) are that much more powerful than th
 
 #### Callbacks
 
-(TODO) list of available call backs
+Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource you can set before and after callbacks on any instance/class method.  There are a couple of different ways to define callbacks:
+
+    class Post
+      include DataMapper::Resource
+      
+      property :id, Integer, :serial => true
+      property :title, String, :length => 200
+      
+      # before save call the instance method make_permalink
+      before :save, :make_permalink
+      
+      def make_permalink
+        self.title = PermalinkFu.permalink(self.title)
+      end
+      
+      #callbacks can be defined for any method
+      after :publish, :send_message
+      
+      def publish
+        # do some publishing here
+      end
+      
+      def send_message
+        # email someone here
+      end
+      
+      # defining a callback on a class method, passing in a block to run before its created.
+      before_class_method :create do
+        # do something before a record is created
+      end
+      
+    end
 
 #### Migrations
 
 There is a rake task to migrate your models, but be warned migrations are currently destructive!
 
-    rake dm:auto_migrate    # Automigrates all models
+    rake dm:db:auto_migrate    # Automigrates all models
+    rake dm:db:autoupgrade     # Perform non destructive automigration
 
 You can also create databases from the Merb console (`merb -i`)
 
@@ -245,24 +305,48 @@ You can also create databases from the Merb console (`merb -i`)
 
 This does the same job as the rake task migrating all your models.
 
-    DataMapper::Persistence.auto_migrate! 
+    DataMapper.auto_migrate! 
 
 Migrations in the sense of AR migrations, don't exist yet, so you'll have to manually alter your database if you want to retain your data. There are plans however to include migrations in a future version of DataMapper.
 
 ### CRUD
 
 #### Creating
-To create a new record, just call the method new on a model and pass it your attributes.
+To create a new record, just call the method create on a model and pass it your attributes.
 
-    @post = Post.new(:title => 'My first post')
+    @post = Post.create(:title => 'My first post')
     
-There is also an AR like method to `find\_or\_create` which attempts to find an object with the attributes provided, and creates the object if it cannot find it.
+Or you can instantiate an object with #new and save it to the repository later:
 
-There is another way to create an object, which is to save it after the attributes have been set like this:
-   
     @post = Post.new
-    @post.attributes = {:name => 'Hi!',:body => 'This is just awesome!'}
+    @post.title = 'My first post'
     @post.save
+    
+There is also an AR like method to `find\_or\_create` which attempts to find an object with the attributes provided, and creates the object if it cannot find it:
+
+    @post = Post.first_or_create(:title => 'My first post')
+    
+There are a couple of different ways to set attributes on a model:
+
+    @post.title = 'My first post'
+    @post.attributes = {:title => 'My first post'}
+    @post.attribute_set(:title, 'My first post')
+    
+Find out if an attribute has been changed (aka is dirty):
+
+    @post = Post.first
+    @post.dirty?
+    => false
+    @post.attribute_dirty?(:title)
+    => false
+    @post.title = 'Changing the title'
+    @post.dirty?
+    => true
+    @post.attribute_dirty?(:title)
+    => true
+    @post.dirty_attributes
+    => Set: {#<Property:Post:title>}
+
     
 #### Reading (aka finding)
 
@@ -270,13 +354,13 @@ The syntax for retrieving data from the database is clean an simple. As you can 
 
 Finding a post with one as its primary key is done with the following:
 
-    Post[1]
+    # will raise a DataMapper::ObjectNotFoundError if not found
+    # use #get to just return nil if not record is found
+    Post.get!(1)
  
 To get an array of all the records for the post model:
 
     Post.all
-
-*NOTE*: you can also do Post.find(:all), like the AR syntax but this is just a synonym for Post.all
 
 To get the first post, with the condition author = 'Matt':
 
@@ -287,7 +371,7 @@ When retrieving data the following parameters can be used:
     #   Posts.all :order => 'created_at desc'              # => ORDER BY created_at desc
     #   Posts.all :limit => 10                             # => LIMIT 10
     #   Posts.all :offset => 100                           # => OFFSET 100
-    #   Posts.all :include => [:comments]
+    #   Posts.all :includes => [:comments]
 
 If the parameters are not found in these conditions it is assumed to be an attribute of the object.
 
@@ -307,13 +391,21 @@ Here is a list of the valid operators:
 * like  - like
 * in    - will be used automatically when an array is passed in as an argument
     
-If you require a custom find, you can use SQL with the method, `find\_by\_sql`. This will return an array of Structs (which are read-only) with the result of the query. 
+TODO: no more find_by_sql, but im sure there is another way to just execute SQL.
 
-##### Count
+##### Aggregates
 
-DM provides a count method to count the number of records of a model, you can also pass search conditions to count:
+DataMapper by default does not provide aggregator methods, but dm-aggregates in dm-more does. After adding `dependency "dm-aggregates"` to your merb init.rb file, your resource model will have aggregator methods including #count, #min, #max, #avg, and #sum.  You can pass conditions to any of these aggregator methods the same as Resource.first or Resource.all
 
-    comment_count = Post[1].comments.count
+    Post.count :title.like => "%hello world%"
+    
+    # you can also do a count on an association:
+    @post.comments.count
+    
+    Post.avg(:reads_count)
+    
+    Post.sum(:comments_count)
+    
     
 ##### Each
 
@@ -327,18 +419,19 @@ Each works like like expected iterating over a number of rows and you can pass a
 
 Updating attributes has a similar syntax to ARs `update_attributes`:
 
-    Post.update_attributes(:title => 'Opps the title has changed!')
-    Post.save
+    @post.update_attributes(:title => 'Opps the title has changed!')
+    
+You can also just set attributes and then save:
 
-Post will only update the attributes which it persists and have changed, so changing virtual attributes will require marking the object as dirty to force a save.
+    @post = Post.first
+    @post.title = 'New Title!'
+    @post.save
+
 
 #### Destroying
 
 You can destroy database records with the method destroy!, this work much like AR.
  
-    bad_comment = Comment[6]
-    bad_comment.destroy!
+    bad_comment = Comment.first
+    bad_comment.destroy
     
-Should you want to delete all the records of a model, you can do the following:
-
-    Comment.delete_all
