@@ -143,7 +143,7 @@ But, alas, they’re how we make our money online. Thus, we need to guard agains
 Both ActiveRecord and DataMapper have a concept called Validations, which is
 ultimately a set of callbacks which fire right before an object gets saved out
 to our persistence layer and interrupt things when it detects something awry.
-To use them in datamapper, all we have to do is require the gem dm-validations.
+To use them in DataMapper, all we have to do is require the gem dm-validations.
 
     require 'dm-validations'
 
@@ -162,7 +162,7 @@ To use them in datamapper, all we have to do is require the gem dm-validations.
     end
 
 How many validations do we have on the content of the post class? To someone
-familar with ActiveRecord, the answer is obviously one.  We have a validation
+familiar with ActiveRecord, the answer is obviously one.  We have a validation
 that the body must contain something - that it is present.  In fact DataMapper,
 through dm-validations, has set up _four_ validations for us.  When we declare
 properties like `:length => 0..255` as well as declaring the maximum length for
@@ -248,7 +248,7 @@ second are the `:when => [...]` following some of our validations.  These define
 in what situation (or _context_) these validations will be applied.
 
 To check if a post is valid in a particular context, we pass the context as an
-arguement to `valid?`.  For example `@post.valid? :display` tells us if the post
+argument to `valid?`.  For example `@post.valid? :display` tells us if the post
 is valid for displaying. These contexts are also honoured by the `save` method,
 allowing us to call `@post.save :import` after our RSS scrapper has parsed the
 RSS feed and assigned our variables.
@@ -280,7 +280,7 @@ Becomes…
 
 Pretty sexy, no? I can't off-hand think of a way to get this functionality from
 ActiveRecord objects without a lot of fuss and bother - perhaps using
-single-table inheritence and with the validations on the subclasses?
+single-table inheritance and with the validations on the subclasses?
 
 With the proper use of validation contexts, you end up saving yourself a lot of
 headache and work later on down the line, as well as supporting different
