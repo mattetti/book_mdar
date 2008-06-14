@@ -189,71 +189,104 @@ We can test this by calling `valid?` on one of our posts:
     => true
 
 
-A problem arises when your website has users creating content and content being created automatically from scrapers or some sort of automated background process (be it from RSS feeds, an FTP server or a web service). No idiots are involved in the creation of content when it’s imported into the system and you likely really want that content to appear in your system. This is where Group Validations come in to play.
 
-Group Validations are callbacks which kick-in as a subset, rather than all validations running at once. You might want to make sure that a user enters the title for a blog post in your system, but you don’t really want such a check for when that blog post comes in off of your RSS scraping system. Maybe you’d send those imported blog posts into a holding pen somewhere so that they can be rescued later, rather than preventing their save and never importing them in at all.
+##### Contextual Validation
 
-With ActiveRecord, if you declare a `validates\_presence\_of` on `:title`, that’s it - game over. The only way to bypass that validation is to `save\_without\_validations` and that skips all of your validations, rather than just this one.
+A problem arises when your website has users creating content and content being
+created automatically from scrapers or some sort of automated background process
+(be it from RSS feeds, an FTP server or a web service). No idiots are involved
+in the creation of content when it’s imported into the system and you likely
+really want that content to appear in your system. This is where context specific
+validations come into play.
 
-But with DataMapper and it’s use of Validatable, you can check for the validity of an object depending on the circumstance you’re in. Here’s what that blog post model would look like if we wanted to validate blog posts by idiots, but not from our not-so-idiotic scrapper:
+Contexts let you control which validations run when you perform a particular
+operation. You might want to make sure that a user enters the title for a blog
+post in your system, but you don’t really want such a check for when that blog post
+comes in off of your RSS scraping system. Maybe you’d send those imported blog
+posts into a holding pen somewhere so that they can be rescued later, rather than
+preventing their save and never importing them in at all.
 
-If this shit doesn’t work, consider it pseudo-code. If it does work, I’m a badass (quoted! -bj)
+With ActiveRecord, if you declare a `validates\_presence\_of` on `:title`,
+that’s it - game over. The only way to bypass that validation is to
+`save\_without\_validations` and that skips all of your validations, rather
+than just this one.
+
+But with DataMapper and dm-validations , you can check for the validity of an
+object depending on the circumstance you're in. Here's what that blog post model
+would look like if we wanted to validate blog posts by idiots, but not from our
+not-so-idiotic scrapper:
+
+    require 'dm-validations'
 
     class Post
       include DataMapper::Resource
 
-      property :title, :string, :length => 0..255
-      property :body, :text
-      property :original_uri, :string, :length => 0..255
-      property :created_at, :datetime
-      property :can_be_displayed, :boolean, :default => false
+      property :id, Integer, :serial => true
+      property :title, String, :length => 0..255, :auto_validation => false
+      property :body, Text
+      property :original_uri, String, :length => 0..255, :auto_validation => false
+      property :created_at, DateTime
+      property :can_be_displayed, Boolean, :default => false
 
       # user creation
-      validates_presence_of :title,
-        :groups => [:manual_entry, :display]
-      validates_presence_of :body,
-        :groups => [:manual_entry, :save, :display]
+      validates_present :title, :when => [:default, :display]
+      validates_present :body, :when => [:default, :display, :import]
 
       # automated import
-      validates_presence_of :original_uri, :groups => [:import]
+      validates_length :original_uri, :in => 0..255, :when => :import
 
-      alias_method :__save, :save
-
-      def save(context = :valid_for_save?)
-        self.__save if self.send(context)
-      end
-
-      before_save do |instance|
-        instance.can_be_displayed = true if instance.valid_for_display?
+      # a callback to set can_be_displayed appropriately (more on these later)
+      before :save do
+        self.can_be_displayed = true if self.valid? :display
       end
     end
-	
-Running quickly through my sample here, you’ll spot this odd `:groups => [...]` argument to a few of the validations. These define which group these validations are a part of. Validatable uses these to give us a few dynamic methods like `valid\_for\_display?` and `valid\_for\_manual\_entry?`, which is the mechanism used to check if an instance is valid in one context or another.
 
-Using a model setup like this, we could call `@post.valid\_for\_manual\_entry?` when we need to verify that the idiot’s blog post can be added into our persistence layer safely. By overloading the `save()` method so that you pass in the group of validations to be executed (like `:valid\_for\_manual\_entry` or `:valid\_for\_import`) to use when checking validity, we’ve effectively made it possible to choose which validation callbacks get fired and which don’t when saving out the model. NOTE: As I wrote this, a discussion was occurring in [#datamapper on irc.freenode.net](irc://irc.freenode.net/datamapper) about making `save()` smarter so it respects grouping. Having to overload `save()` may not be needed in the future. As usual, your results may vary.
+Running quickly through my sample here, you’ll spot a few things.  The first
+is the `:auto_validation => false` on the `title` and the `original_uri`.
+Because we want to define custom contexts for when we need these properties to
+be checked, we have to override the ones dm-validations adds by default.  The
+second are the `:when => [...]` following some of our validations.  These define
+in what situation (or _context_) these validations will be applied.
 
-You’ll notice that I gave `:body` a `validates\_presence\_of` for both the `:manual\_entry` group and the `:save` group. This means that, no matter what, that validation callback will kick in.
+To check if a post is valid in a particular context, we pass the context as an
+arguement to `valid?`.  For example `@post.valid? :display` tells us if the post
+is valid for displaying. These contexts are also honoured by the `save` method,
+allowing us to call `@post.save :import` after our RSS scrapper has parsed the
+RSS feed and assigned our variables.
 
-Also of note is the `can\_be\_displayed` boolean and the `before\_save` manual callback I defined. Here, I’m helping myself out later on so that it’s easy to pull out valid blog posts that can be displayed without worrying about nil field values and such:
+You’ll notice that I gave `:body` a `validates\_present` for all my contexts.
+This means that, no matter what, that validation callback will kick in.  At
+present there doesn't appear to be a meta "all" context, which will fire under
+any circumstances.
+
+Also of note is the `can\_be\_displayed` boolean and the `before :save` manual
+callback I defined. Here, I’m helping myself out later on so that it’s easy to
+pull out valid blog posts that can be displayed without worrying about nil field
+values and such:
 
     @posts = Post.all(
       :title.not => nil,
       :slug.not => nil,
-      :order => 'created_at desc',
+      :order => :created_at.desc,
       :limit => 10
     )
-	
+
 Becomes…
 
     @posts = Post.all(
       :can_be_displayed => true,
-      :order => 'created_at desc',
+      :order => :created_at.desc,
       :limit => 10
     )
-	
-Pretty sexy, no? I can’t off-hand think of a way to get this functionality from ActiveRecord objects without manually mixing in Validatable and then fighting the battle between AR’s validations and Validatable’s validations. (I likely just need to think harder, though….maybe using single-table inheritance and then tacking on different validations for different subclasses…maybe?)
 
-With the proper use of Group Validations, you end up saving yourself a lot of headache and work later on down the line, as well as supporting different scenarios where a post might be valid or might not–all without having to hack-around. How enterprise-y!
+Pretty sexy, no? I can't off-hand think of a way to get this functionality from
+ActiveRecord objects without a lot of fuss and bother - perhaps using
+single-table inheritence and with the validations on the subclasses?
+
+With the proper use of validation contexts, you end up saving yourself a lot of
+headache and work later on down the line, as well as supporting different
+scenarios where a post might be valid or might not -- all without having to
+hack-around. How enterprise-y!
 
 ##### validates\_true\_for
 
