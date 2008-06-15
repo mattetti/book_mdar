@@ -1,3 +1,13 @@
 <h1>Posts controller, new action</h1>
 
 <p>Edit this file in <tt>app/views/posts/new.html.erb</tt></p>
+
+<%= error_messages_for :post %>
+
+<% form_for(@post, :action => url(:posts) ) do |f| %>
+  <p>
+    <%= submit_button "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', url(:posts) %>

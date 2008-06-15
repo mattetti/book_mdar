@@ -1,35 +1,57 @@
 class Posts < Application
-  
+  # provides :xml, :yaml, :js
+
   def index
-    render
+    @posts = Post.all
+    display @posts
   end
 
   def show
-    render
+    @post = Post.get(params[:id])
+    raise NotFound unless @post
+    display @post
   end
 
   def new
+    only_provides :html
+    @post = Post.new
     render
   end
 
   def edit
-    render
-  end
-
-  def delete
+    only_provides :html
+    @post = Post.get(params[:id])
+    raise NotFound unless @post
     render
   end
 
   def create
-    render
+    @post = Post.new(params[:post])
+    if @post.save
+      redirect url(:post, @post)
+    else
+      render :new
+    end
   end
 
   def update
-    render
+    @post = Post.get(params[:id])
+    raise NotFound unless @post
+    if @post.update_attributes(params[:post]) || !@post.dirty?
+      redirect url(:post, @post)
+    else
+      raise BadRequest
+    end
   end
 
   def destroy
-    render
+    @post = Post.get(params[:id])
+    raise NotFound unless @post
+    if @post.destroy
+      redirect url(:post)
+    else
+      raise BadRequest
+    end
   end
-  
+
 end

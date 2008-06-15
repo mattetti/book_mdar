@@ -4,4 +4,8 @@ steps_for(:posts) do
     response.body.should match_selector('div.posts')
   end
   
+  Given "there are posts" do
+    Post.create()
+  end
+  
 end

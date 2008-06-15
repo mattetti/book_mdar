@@ -4,9 +4,6 @@
 
 ### Getting started
 
-Having discussed the functionality we can deduce that we will need the 
-following models, `Post`, `Comment`, `Tag`, `User` and `Image`.
-
 Building a model with Merb and DataMapper requires generating a model, 
 specifying attributes (properties), and running a migration to create the 
 database table and all the properties. Generating a model is similar to Rails, 

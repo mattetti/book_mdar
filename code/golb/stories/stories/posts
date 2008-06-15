@@ -1,5 +1,6 @@
 Story: Posts
   
   Scenario: View a lists of posts
+    Given there are posts
     When I visit /
     Then I should see a list of posts
