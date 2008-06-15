@@ -1,0 +1,38 @@
+---
+# This is a sample database file for the DataMapper ORM
+development: &defaults
+  # These are the settings for repository :default
+  adapter:  mysql
+  database: golb
+  username: root
+  password: 
+  host:     localhost
+  socket: /opt/local/var/run/mysql5/mysqld.sock
+  
+
+  # Add more repositories
+  # repositories:
+  #   repo1:
+  #     adapter:  postgresql
+  #     database: sample_development
+  #     username: the_user
+  #     password: secrets
+  #     host:     localhost
+  #   repo2:
+  #     ...
+
+test:
+  <<:       *defaults
+  database: golb_test
+
+  # repositories:
+  #   repo1:
+  #     database: sample_development
+
+production:
+  <<:       *defaults
+  database: golb_production
+
+  # repositories:
+  #   repo1:
+  #     database: sample_development

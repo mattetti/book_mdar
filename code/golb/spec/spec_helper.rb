@@ -9,3 +9,11 @@ Spec::Runner.configure do |config|
   config.include(Merb::Test::RouteHelper)
   config.include(Merb::Test::ControllerHelper)
 end
+
+def valid_post_attrs
+  {
+    :title => "title, " + String.random_alphanumeric,
+    :body => "body, " + String.random_alphanumeric,
+    :user_id => rand(9)
+  }
+end

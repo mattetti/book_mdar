@@ -10,6 +10,11 @@ With Merb, DataMapper & RSpec.
 * `webrat` - git clone git://github.com/gwynm/webrat.git
 
 
+### For stories
+MERB_ENV=test rake story[all]
+MERB_ENV=test rake dm:db:automigrate
+
+
 ## License
 
 Dual licensed under the MIT and GPL licenses:

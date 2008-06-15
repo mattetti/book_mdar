@@ -5,7 +5,10 @@ steps_for(:posts) do
   end
   
   Given "there are posts" do
-    Post.create()
+    2.times do 
+      post = Post.new(valid_post_attrs)
+      post.save
+    end
   end
   
 end

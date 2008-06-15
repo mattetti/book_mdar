@@ -4,3 +4,14 @@ Story: Posts
     Given there are posts
     When I visit /
     Then I should see a list of posts
+    
+  Scenario: Adding a new post
+    Given I am an admin
+    When I visit /posts/new
+    Then I should see the text New Post
+    When I enter "My first post" in title
+    And I enter "This is the body" in body
+    When I click the button publish
+    Then I should see the newly created post
+    
+  
