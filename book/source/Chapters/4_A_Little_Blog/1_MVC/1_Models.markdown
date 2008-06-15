@@ -4,9 +4,18 @@
 
 ### Getting started
 
-Having discussed the functionality we can deduce that we will need the following models, `Post`, `Comment`, `Tag`, `User` and `Image`.
+Having discussed the functionality we can deduce that we will need the 
+following models, `Post`, `Comment`, `Tag`, `User` and `Image`.
 
-Building a model with Merb and DataMapper requires generating a model, specifying attributes (properties), and running a migration to create the database table and all the properties. Generating a model is similar to Rails, as is running a migration. But unlike Rails and ActiveRecord, Mern and DataMapper use no separate migration files. Instead, properties are defined in the model itself. (Describe the benefit of defining properties in the model? Why is that better than the separate ActiveRecord migrations?)
+Building a model with Merb and DataMapper requires generating a model, 
+specifying attributes (properties), and running a migration to create the 
+database table and all the properties. Generating a model is similar to Rails, 
+as is running a migration. But unlike ActiveRecord, DataMapper does not use 
+separate migration files. 
+
+Instead, properties are defined in the model itself. This allows you to easily
+see how your models map to the database and removes the headache of trying to
+use separate migration files (when you have conflicting or irreversible migrations).
 
 #### The Model Generator
 
@@ -14,11 +23,11 @@ DataMapper has a model generator just as Rails does:
 
     merb-gen model post
 
-This will make a post model for you, provided that you have defined an orm and the database golb, in the previous steps.
+This will make a post model for you, provided that you have defined an ORM 
+and the database golb, in the previous steps.
 
-(Don't mention `rake dm:db:automigrate` at this point because if it is run without properties, the user will get an SQL error.)
-
-You can set the name of the database table in your model if it is called something different with:
+You can set the name of the database table in your model if it is called 
+something different with:
 
     set_table_name 'list_of_posts'
     
@@ -26,13 +35,15 @@ This is only necessary if you are using an already existing database.
 
 #### Properties
 
-So DataMapper models differ a bit from ActiveRecord models as previously stated. Defining the database columns is achieved with the `property` method.
+So DataMapper models differ a bit from ActiveRecord models as previously 
+stated. Defining the database columns is achieved with the `property` method.
 
-app/models/post.rb
+`app/models/post.rb`
 
     property :title,  String, :lazy => false
     
-This is the `title` property of the post model. As we can see, the parameters are the name of the table column followed by the type and finally the options. 
+This is the `title` property of the post model. As we can see, the parameters 
+are the name of the table column followed by the type and finally the options. 
 
 Some of the available options are:
 (TODO) - cover more properties
@@ -75,13 +86,17 @@ DataMapper supports the following properties:
 
 #### Associations
 
-Like ActiveRecord, DataMapper has associations which define relationships between models.
-There is difference in syntax but the underling idea is the same. Continuing with the `Post` model we can see a few of the associations defined:
+Like ActiveRecord, DataMapper has associations which define relationships 
+between models. There is difference in syntax but the underling idea is the 
+same. Continuing with the `Post` model we can see a few of the associations 
+defined:
     
     has n, :comments
     belongs_to :author, :class => 'User', :foreign_key => 'author_id'
     
-The `has n` syntax is a very flexible way to define associations and the standard way in DataMapper > 0.9. It can be used to model all of ActiveRecord associations plus more.  The types of associations currently in DataMapper are:
+The `has n` syntax is a very flexible way to define associations and the 
+standard way in DataMapper > 0.9. It can be used to model all of ActiveRecord 
+associations plus more.  The types of associations currently in DataMapper are:
   
      # DataMapper 0.9  | ActiveRecord
      has n             # has_many
@@ -91,25 +106,35 @@ The `has n` syntax is a very flexible way to define associations and the standar
      has n, :association => :join_table # has_and_belongs_to_many NOTE: not currently support see HABTM section below
      has n, :association => :model      # has_many :association, :through => :model  
      
-The `has n` syntax is more powerful than above, since n is the cardinality of the association, it can be an arbitrary range.  Some examples:
+The `has n` syntax is more powerful than above, since n is the cardinality of 
+the association, it can be an arbitrary range.  Some examples:
 
     has 0..n #=> will have a MIN of 0 records and a MAX of n
     has 1..n #=> will have a MIN of 1 record and a MAX of n
     has 1..3 #=> will have a MIN of 1 record and a MAX of 3
     
-Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association.
+Pretty straight forward. A few things you should note however, you do not need 
+to specify the foreign key as a property if it's defined in the association.
 
-You also don't have to specify a relationship at all if you don't want to, as models can have one way relationships.
+You also don't have to specify a relationship at all if you don't want to, as 
+models can have one way relationships.
 
 ##### Polymorphic associations
-http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
-(TODO) -polly assoc (pastie link is broken)
+
+(TODO) -polly assoc
 
 ##### Has And Belongs To Many (HABTM)
-As of this writing HABTM is not supported in DataMapper associations, but it can be modeled as a `has_many :through` association.  The only difference is that instead of having a simple join table, you will need a join Model.  The example below for `has_many :through` would effectively replace a HABTM relationship to Category.
+
+As of this writing HABTM is not supported in DataMapper associations, but it 
+can be modeled as a `has_many :through` association.  The only difference is 
+that instead of having a simple join table, you will need a join Model. The 
+example below for `has_many :through` would effectively replace a HABTM 
+relationship to Category.
 
 ##### Where is my `has\_many :through`?!
-DataMapper > 0.9 now supports has_many :through.  For example, if you have a Post model that has many Categories through the Categorization model you would define these associations:
+DataMapper > 0.9 now supports has_many :through.  For example, if you have a 
+Post model that has many Categories through the Categorization model you 
+would define these associations:
 
      class Post
        include DataMapper::Resource
@@ -136,9 +161,13 @@ DataMapper > 0.9 now supports has_many :through.  For example, if you have a Pos
 (TODO) - does this user bashing fluff need to be here?
 (TODO) - still needs 0.9 love - mostly done now, I think
 
-It’s a known fact that users are stupid. They screw up; it happens. They enter information in the wrong format, leave required fields blank, or even enter in completely horrid data because they’re idiots and that’s what idiots do. I point you at [YouTube](http://www.youtube.com) video comments, [Digg](http://www.digg.com) (as a whole), and [MySpace](http://www.myspace.com) as proof of web users’ collective idiocy.
+It’s a known fact that users will enter invalid, blank or malicious data into
+your web app.
 
-But, alas, they’re how we make our money online. Thus, we need to guard against user error by validating anything that we need to save out to our persistence layers. Sometimes that means guarding against hack attempts, but most of the time it means guarding against invalid data and accidents.
+We need to guard against user error by validating anything that we need to 
+save out to our persistence layers. Sometimes that means guarding against 
+hack attempts, but most of the time it means guarding against invalid data 
+and accidents.
 
 Both ActiveRecord and DataMapper have a concept called Validations, which is
 ultimately a set of callbacks which fire right before an object gets saved out
@@ -338,16 +367,11 @@ brings us a lot of flexibility, and as we're validating with a ruby method, we
 can get as complex as we need to specify our behaviour.  Much nicer than just
 overriding valid.
 
-##### In Conclusion
-
-TODO: Do we actually need this?
-
-Validations with dm-validations (in DataMapper) are that much more powerful than
-their counter-parts in ActiveRecord, and therefore, you should switch to DataMapper.
-
 #### Callbacks
 
-Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource you can set before and after callbacks on any instance/class method.  There are a couple of different ways to define callbacks:
+Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource 
+you can set before and after callbacks on any instance/class method.  There are 
+a couple of different ways to define callbacks:
 
     class Post
       include DataMapper::Resource
@@ -395,12 +419,15 @@ This does the same job as the rake task migrating all your models.
 
     DataMapper.auto_migrate! 
 
-Migrations in the sense of AR migrations, don't exist yet, so you'll have to manually alter your database if you want to retain your data. There are plans however to include migrations in a future version of DataMapper.
+Migrations in the sense of AR migrations, don't exist yet, so you'll have to 
+manually alter your database if you want to retain your data. There are plans 
+however to include migrations in a future version of DataMapper.
 
 ### CRUD
 
 #### Creating
-To create a new record, just call the method create on a model and pass it your attributes.
+To create a new record, just call the method create on a model and pass it your 
+attributes.
 
     @post = Post.create(:title => 'My first post')
     
@@ -410,7 +437,8 @@ Or you can instantiate an object with #new and save it to the repository later:
     @post.title = 'My first post'
     @post.save
     
-There is also an AR like method to `find\_or\_create` which attempts to find an object with the attributes provided, and creates the object if it cannot find it:
+There is also an AR like method to `find\_or\_create` which attempts to find an 
+object with the attributes provided, and creates the object if it cannot find it:
 
     @post = Post.first_or_create(:title => 'My first post')
     
@@ -438,7 +466,8 @@ Find out if an attribute has been changed (aka is dirty):
     
 #### Reading (aka finding)
 
-The syntax for retrieving data from the database is clean an simple. As you can see with the following examples.
+The syntax for retrieving data from the database is clean an simple. As you 
+can see with the following examples.
 
 Finding a post with one as its primary key is done with the following:
 
@@ -461,13 +490,16 @@ When retrieving data the following parameters can be used:
     #   Posts.all :offset => 100                           # => OFFSET 100
     #   Posts.all :includes => [:comments]
 
-If the parameters are not found in these conditions it is assumed to be an attribute of the object.
+If the parameters are not found in these conditions it is assumed to be an 
+attribute of the object.
 
-You can also use symbol operators with the find to further specify a condition, for example:
+You can also use symbol operators with the find to further specify a condition, 
+for example:
 
     Posts.all :title.like => '%welcome%', :created_at.lt => Time.now
 
-This would return all the posts, where the tile was like 'welcome' and was created in the past.
+This would return all the posts, where the tile was like 'welcome' and was 
+created in the past.
 
 Here is a list of the valid operators:
 
@@ -479,11 +511,15 @@ Here is a list of the valid operators:
 * like  - like
 * in    - will be used automatically when an array is passed in as an argument
     
-TODO: no more find_by_sql, but im sure there is another way to just execute SQL.
+TODO: execute sql via the adaptor.
 
 ##### Aggregates
 
-DataMapper by default does not provide aggregator methods, but dm-aggregates in dm-more does. After adding `dependency "dm-aggregates"` to your merb init.rb file, your resource model will have aggregator methods including #count, #min, #max, #avg, and #sum.  You can pass conditions to any of these aggregator methods the same as Resource.first or Resource.all
+DataMapper by default does not provide aggregator methods, but dm-aggregates 
+in dm-more does. After adding `dependency "dm-aggregates"` to your merb `init.rb`
+file, your resource model will have aggregator methods including `count`, `min`, 
+`max`, `avg`, and `sum`.  You can pass conditions to any of these aggregator 
+methods the same as Resource.first or Resource.all
 
     Post.count :title.like => "%hello world%"
     
@@ -497,7 +533,11 @@ DataMapper by default does not provide aggregator methods, but dm-aggregates in 
     
 ##### Each
 
-Each works like like expected iterating over a number of rows and you can pass a block to it. The difference between `Comments.all.each` and `Comments.each` is that instead of retrieving all the rows at once, each works in batches instantiating a few objects at a time and executing the block on them (so is less resource intensive). Each is similar to a finder as it can also take options:
+Each works like like expected iterating over a number of rows and you can pass 
+a block to it. The difference between `Comments.all.each` and `Comments.each` 
+is that instead of retrieving all the rows at once, each works in batches 
+instantiating a few objects at a time and executing the block on them (so is less 
+resource intensive). Each is similar to a finder as it can also take options:
 
     Comments.each(:date.lt => Date.today - 20).each do |c|
         c.destroy!
@@ -518,7 +558,7 @@ You can also just set attributes and then save:
 
 #### Destroying
 
-You can destroy database records with the method destroy!, this work much like AR.
+You can destroy database records with the method `destroy`, this work much like AR.
  
     bad_comment = Comment.first
     bad_comment.destroy
