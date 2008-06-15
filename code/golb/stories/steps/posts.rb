@@ -1,7 +1,7 @@
 steps_for(:posts) do
   
   Then "I should see a list of posts" do
-    Then I should see the div posts
+    response.body.should match_selector('div.posts')
   end
   
 end

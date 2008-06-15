@@ -24,7 +24,6 @@ steps_for(:general) do
   
   When "I visit $url" do |url|
     visits url
-    response.should be_success
   end
   
   ## text helpers
@@ -36,11 +35,7 @@ steps_for(:general) do
   Then("I should not see the text $text") do |text|
     response.body.should_not have_text(text)
   end
-    
-  Then "I should see the div $div" do
-    response.body.should match_selector($div)
-  end
-    
+  
   ## match message divs
   Then "I should see an error message" do
     response.body.should match_selector("div.error")
