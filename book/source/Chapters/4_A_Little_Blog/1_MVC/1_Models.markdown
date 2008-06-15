@@ -158,7 +158,6 @@ would define these associations:
  
 #### Validation
 
-(TODO) - does this user bashing fluff need to be here?
 (TODO) - still needs 0.9 love - mostly done now, I think
 
 It’s a known fact that users will enter invalid, blank or malicious data into
