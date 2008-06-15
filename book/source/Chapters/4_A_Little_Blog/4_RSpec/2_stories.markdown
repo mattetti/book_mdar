@@ -2,11 +2,13 @@
 
 (TODO) - finish stories section
 
-RSpec Stories are use to replace the specification phase in requirements gathering, in the form of scenarios. so we have both a spec and a integration tests. human/customer readable.
+RSpec Stories are use to replace the specification phase in requirements 
+gathering, in the form of scenarios. So we have both a spec and a integration 
+tests.
 
-Add this line to your app's `init.rb`:
+Add this line to your app's test environment:
 
-	dependency "merb_stories" if Merb.environment == "test"
+	dependency "merb_stories"
 	
 Now generate your story:
 
@@ -14,11 +16,12 @@ Now generate your story:
 
 Now run your story:
 
-	rake story\[mystory\]
+	MERB_ENV=test rake story[mystory]
+  
+Yes, you must include the square brackets.
 
-Yes, you must include the square brackets, and you have to escape them.
-
-Now fill out your story. There are some differences to Rails' versions. The best places to look for help are in the Merb code itself:
+Now fill out your story. There are some differences to Rails' versions. 
+The best places to look for help are in the Merb code itself:
 
 	spec/public/test/controller _matchers _spec.rb
 	lib/merb-core/test/helpers
