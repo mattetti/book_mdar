@@ -1,6 +1,6 @@
 ## Getting Started
 
-<a href="http://xkcd.com/303/" target="_blank" class="book-image"> <img src="http://imgs.xkcd.com/comics/compiling.png" alt="XKCD - Compiling"> </a>
+<a href="http://xkcd.com/303/" target="_blank"> <img src="http://imgs.xkcd.com/comics/compiling.png" alt="XKCD - Compiling"> </a>
 
 Before we get started I'm going to assume you have the following installed:
 

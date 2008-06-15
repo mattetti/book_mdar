@@ -1,6 +1,7 @@
 ## Routing
 
-Routing is similar to rails 
+Routing in Merb is similar to Rails, if you take a look at your `router.rb` file
+
 
 ### Strings/Regex
 
