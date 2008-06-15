@@ -105,9 +105,7 @@ To get the gems from source:
 
     cd dm-core ; rake install ; cd ..
     cd dm-more
-    cd merb_datamapper ; rake install ; cd ..    
-    cd dm-migrations ; rake install ; cd ..
-    cd dm-validations ; rake install ; cd ..
+    rake install
     
 To update a gem from source, run `git pull` and `rake install` again.
 
