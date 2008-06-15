@@ -7,7 +7,7 @@ have BlueCloth installed, sudo gem install BlueCloth).
 
 ## To Contribute
 
-Fork the git repository on and send Matt a pull request (matt@new-bamboo.co.uk)
+Fork the git repository and send Matt a pull request (matt@new-bamboo.co.uk)
 Please try and keep a 80 column wrap, it makes git-diffs nicer.
 
 Thanks for your patch!

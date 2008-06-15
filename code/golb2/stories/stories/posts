@@ -1,0 +1,5 @@
+Story: Posts
+  
+  Scenario: View a lists of posts
+    When I visit /
+    Then I should see a list of posts
