@@ -77,9 +77,9 @@ Merb is ORM agnostic, but as the title of this book suggests we'll be using Data
 #### Installing DataMapper
 
 ***
-DataMapper is splitting into `dm-core` and `dm-more` so `datamapper 0.3` will be outdated soon.
-If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first. Remove the `merb_datamapper` gem  before installing `dm-merb` within `dm-more`.
+DataMapper has spit into the gems `dm-core` and `dm-more`, the old `datamapper` gem is now outdated.
 
+If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first.
 ***
 
 We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
@@ -88,8 +88,12 @@ We will use MySQL in the following example, but you can use either sqlite3 or Po
 
 To get the gems from source:
 
+
+    git clone git://github.com/sam/extlib.git  
     git clone git://github.com/sam/do.git
     
+    cd extlib
+    rake install ; cd ..
     cd do
     cd data_objects
     rake install ; cd ..
