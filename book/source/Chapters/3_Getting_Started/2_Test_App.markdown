@@ -2,16 +2,24 @@
 
 Now that we've got all of that installed, time to create a test Merb application. 
 
-Merb-more comes with a `gem` called `merb-gen`, this gives you a command line tool by the same name which is used for all of your generator needs. You can think of it as `script/generate`  done the Merb way. Running `merb-gen` from the command line with no arguments will show you all of the generators that are available.
+Merb-more comes with a `gem` called `merb-gen`, this gives you a command line 
+tool by the same name which is used for all of your generator needs. You can 
+think of it as `script/generate`. Running `merb-gen` from the command line with 
+no arguments will show you all of the generators that are available.
 
-Merb follows the same naming convention for projects as rails, so 'my\_test\_app' and 'Test2' are valid names but 'T 3' is not (they need to be valid SQL table names).
+Merb follows the same naming convention for projects as rails, so 
+'my\_test\_app' and 'Test2' are valid names but 'T 3' is not (they need to be 
+valid SQL table names).
 
     merb-gen app test
     
-This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
+This will generate an empty Merb app, so lets go in and take a look. You'll 
+notice that the directory structure is similar to Rails, with a few differences.
 
     # expected output
     RubiGen::Scripts::Generate
+      create  log
+      create  gems
       create  app
       create  app/controllers
       create  app/helpers
@@ -49,12 +57,15 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
       create  spec/spec_helper.rb
       create  /Rakefile
 
+
 ### Configuring Merb
 
-Before we get the server running, you'll need to edit the init.rb file and un-comment the following line (this is only necessary if you need to connect to a database, which we do in our case):
+Before we get the server running, you'll need to edit the `init.rb` file and 
+un-comment the following line (this is only necessary if you need to connect 
+to a database, which we do in our case):
 
-config/init.rb
-    
+`config/init.rb`
+
     use_orm :datamapper
     
 Typing `merb` now in your command line will try and start the server.
@@ -63,7 +74,8 @@ Typing `merb` now in your command line will try and start the server.
     No database.yml file found in /Users/work/merb/example_one/config.
     A sample file was created called database.sample.yml for you to copy and edit.
 
-As you can see, we forgot to set up the database. A sample file has helpfully been generated for us. Edit this and rename it to database.yml:
+As you can see, we forgot to set up the database. A sample file has helpfully 
+been generated for us. Edit this and rename it to `database.yml`:
 
     # This is a sample database file for the DataMapper ORM
     development:
@@ -74,20 +86,30 @@ As you can see, we forgot to set up the database. A sample file has helpfully be
        host: localhost
 	   socket: /tmp/mysql.sock
 
-Don't forget to specify your socket, if you do not know it's location, you can find it by typing:
+Don't forget to specify your socket, if you do not know it's location, you 
+can find it by typing:
 
-	mysql_config --socket
+	  mysql_config --socket
 
 Starting Merb again shows that everything is running okay.
 
-The following command will give you access to the Merb console:
+The following command will give you access to the Merb interactive console:
 
-	merb -i
+    merb -i
 
-You'll notice Merb runs on port 4000, but this can be changed with flag `-p [port number]`. More options can be found by typing:
+You'll notice Merb runs on port 4000, but this can be changed with flag 
+`-p [port number]`. More options can be found by typing:
 
     merb --help
     
-You can even run Merb with any application server that supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
+You can even run Merb with any application server that supports rack 
+(thin, evented_mongrel, fcgi, mongrel, and webrick):
 
     merb -a thin
+
+If you see a 500 error with the following error message when trying to navigate
+to localhost:4000 in your browser:
+    
+    undefined method `match' for Merb::Router:Class - (NoMethodError)
+
+This means Merb has been started outside of your applications root directory.
