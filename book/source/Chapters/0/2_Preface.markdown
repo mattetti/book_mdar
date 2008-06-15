@@ -1,8 +1,7 @@
 ## Preface
 
-At New Bamboo we've been building our internal applications in Merb for quite
-some time now. This is a collaborative effort to document the features of Merb 
-and DataMapper, while also providing example Merb applications.  
+This is a collaborative effort to document the features of Merb and DataMapper, 
+while also providing example Merb applications.  
 
 ___Who is this for?___
 

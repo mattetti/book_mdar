@@ -17,7 +17,7 @@ In Merb:
     
 `skip_before` is used to skip a before filter
 
-*Note: it's __exclude__ not except*
+> NB: it's __exclude__ not except
 
 
 (TODO) - how params get passed in controllers

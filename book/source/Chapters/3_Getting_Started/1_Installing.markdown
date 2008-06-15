@@ -1,13 +1,13 @@
 ## Getting Started
 
-<a href="http://xkcd.com/303/" target="_blank"> <img src="http://imgs.xkcd.com/comics/compiling.png" alt="XKCD - Compiling"> </a>
+<a href="http://xkcd.com/303/" target="_blank" class="book-image"> <img src="http://imgs.xkcd.com/comics/compiling.png" alt="XKCD - Compiling"> </a>
 
 Before we get started I'm going to assume you have the following installed:
 
 * [Ruby](http://www.ruby-lang.org/) 
 * [RubyGems >= 1.1.0](http://www.rubygems.org/)
 * A DBMS (we'll use [MySQL](http://mysql.org/))
-* [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (on OSX, port install `git-core` worked for me)
+* [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/)
 
 #### What will be covered
 
@@ -17,26 +17,30 @@ Before we get started I'm going to assume you have the following installed:
 
 ### The Easy Way
 
-If you're on a *nix operating system (including Mac OS X) then keeping upto date with all the edge versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
+If you're on a *nix operating system then keeping up to date with all the edge 
+versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
 
-All you need to run to get `RSpec`, `merb-core`, `merb-more`, `dm-core`, `dm-more`, `data_objects` & all the other dependent gems installed automgically is...
+Run the following to install `RSpec`, `merb-core`, `merb-more`, `dm-core`, 
+`dm-more`, `data_objects`:
 
 		sudo gem install sake
 		sake -i 'http://edgy.4ninjas.org/edgy.sake'
 		sake edgy:install packages="merb-stack"
 		
 
-And then to keep upto date you just need to execute
+And then to keep up to date you just need to execute:
 
 		sake edgy:update
 
-### The Hard Way
+### If You're Hardcore
 
 #### Installing Merb
 ***
-If you have an older version of Merb (<0.9.2) you should remove all merb and datamapper related gems before continuing. Use `gem list` to see your installed gems.
+If you have an older version of Merb (<0.9.2) you should remove all merb and 
+datamapper related gems before continuing. Use `gem list` to see your installed
+gems. The following command will uninstall the gem you specify:
 
-    sudo gem uninstall merb
+    sudo gem uninstall the_gem_name
 ***
 Installing the `merb` gems should be as simple as:
     
@@ -46,7 +50,9 @@ Installing the `merb` gems should be as simple as:
     
     jruby -S gem install merb mongrel 
     
-__Unfortunately__ we are living right on the edge of development so we'll need to get down and dirty with building our own gems from source. Luckily this is much easier than it sounds... 
+__Unfortunately__ we are living right on the edge of development so we'll need 
+to get down and dirty with building our own gems from source. Luckily this is 
+much easier than it sounds... 
 
 Start by installing the `gem` dependancies:
 
@@ -72,19 +78,23 @@ Then install the gems via rake:
 
 The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codehaus.org/) (Java implementation of a Ruby Interpreter), otherwise use the `json` gem as it's faster.
 
-Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper. Should you want to stick with ActiveRecord or play with Sequel, check the [Merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
+Merb is ORM agnostic, but as the title of this book suggests we'll be using 
+DataMapper. Should you want to stick with ActiveRecord or play with Sequel, 
+check the [Merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
 #### Installing DataMapper
 
 ***
-DataMapper has spit into the gems `dm-core` and `dm-more`, the old `datamapper` gem is now outdated.
+DataMapper has spit into the gems `dm-core` and `dm-more`, the old `datamapper` 
+gem is now outdated.
 
-If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, `merb_datamapper` (< 0.9) you should remove them first.
+If you have an older version of `datamapper`, `data_objects`, or `do_mysql`, 
+`merb_datamapper` (< 0.9) you should remove them first.
 ***
 
-We will use MySQL in the following example, but you can use either sqlite3 or PostgreSQL, just install the appropriate gem. You will also need to ensure that MySQL is on your system path for the gem to install correctly.
-
-(TODO) - JDBC_do install
+We will use MySQL in the following example, but you can use either sqlite3 or 
+PostgreSQL, just install the appropriate gem. You will also need to ensure that 
+MySQL is on your system path for the gem to install correctly.
 
 To get the gems from source:
 
@@ -111,7 +121,8 @@ To update a gem from source, run `git pull` and `rake install` again.
 
 #### Install RSpec
 
-The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there or want to grab the it from source, run one of the following commands:
+The `rspec` gem was installed in the Merb section above. However, if you want 
+to grab the source, run one of the following commands:
 
     gem install -r rspec
     
