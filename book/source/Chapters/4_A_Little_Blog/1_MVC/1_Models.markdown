@@ -404,7 +404,7 @@ a couple of different ways to define callbacks:
 
 There is a rake task to migrate your models, but be warned migrations are currently destructive!
 
-    rake dm:db:auto_migrate    # Automigrates all models
+    rake dm:db:automigrate    # Automigrates all models
     rake dm:db:autoupgrade     # Perform non destructive automigration
 
 You can also create databases from the Merb console (`merb -i`)
