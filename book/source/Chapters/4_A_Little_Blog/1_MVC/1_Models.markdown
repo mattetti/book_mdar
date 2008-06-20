@@ -26,9 +26,10 @@ and the database golb, in the previous steps.
 You can set the name of the database table in your model if it is called 
 something different with:
 
-    set_table_name 'list_of_posts'
+    storage_names[:default] = 'list_of_posts'
     
-This is only necessary if you are using an already existing database.
+This is only necessary if you are using an already existing database.  Don't
+worry about the `:default` for now, that will be explained later.
 
 #### Properties
 
