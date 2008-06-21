@@ -30,7 +30,7 @@ need to wait for a response.
 ### Mailing Lists
 
 The mailing lists are another good way to get help, the response time isn't as 
-fast as asking in an irc channel but it can be useful to do a search to see if 
+fast as asking in an IRC channel but it can be useful to do a search to see if 
 someone else has had your problem before.
 
 * [http://groups.google.com/group/merb/](http://groups.google.com/group/merb/)
