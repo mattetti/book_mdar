@@ -646,3 +646,25 @@ You can destroy database records with the method `destroy`, this work much like 
     bad_comment = Comment.first
     bad_comment.destroy
 
+#### Bulk Operations
+
+Sometimes, you have to operate on a large number of records at once, to do
+exactly the same thing to each of them.  The example earlier for deleting old
+posts via each.  It involved several `SELECT`s and then lots of `DELETE`s, potentially
+hundreds, depending on the size of the database.  Wouldn't it be nice if you
+could just go `Comments.all(:date.lt => Date.today - 20).destroy!` and it would
+produce an appropriate query to do it in one operation and without loading all
+those posts which are about to be deleted?
+
+Well, that's what happens.  `Collection`s are 'lazily evaluated', which is to
+say, they don't do anything until they've been 'kicked'.  `.each`, mentioned
+earlier, is a kicker method. It issues a `SELECT` appropriate to the conditions.
+`.destroy!` is another one, except it issues a `DELETE`.  The other bulk method is
+`update!`, which looks like (example taken from the DataMapper source)
+
+    Person.all(:age.gte => 21).update!(:allow_beer => true)
+
+This command would update the `allow_beer` attribute of all people aged 21 or
+older in the database, all in one `UPDATE` statement.
+
+
