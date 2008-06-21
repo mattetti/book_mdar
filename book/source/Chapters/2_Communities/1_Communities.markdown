@@ -40,7 +40,7 @@ someone else has had your problem before.
 ### Bug Trackers
 
 Your problem may or may not be a known bug. Search the bug trackers and submit 
-a ticket if its not there already (don't forget to include a description and test 
+a ticket if it's not there already (don't forget to include a description and test 
 cases, or better yet: a patch!). You may find the ticket is solved in the edge 
 version.
 
