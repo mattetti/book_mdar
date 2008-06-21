@@ -7,8 +7,8 @@
 Building a model with Merb and DataMapper requires generating a model, 
 specifying attributes (properties), and running a migration to create the 
 database table and all the properties. Generating a model is similar to Rails, 
-as is running a migration. But unlike ActiveRecord, DataMapper does not use 
-separate migration files. 
+as is running a migration. But unlike ActiveRecord, DataMapper does not use
+migration files to define the model.
 
 Instead, properties are defined in the model itself. This allows you to easily
 see how your models map to the database and removes the headache of trying to
@@ -403,22 +403,105 @@ a couple of different ways to define callbacks:
 
 #### Migrations
 
-There is a rake task to migrate your models, but be warned migrations are currently destructive!
+There is a rake task to migrate your models, but be warned these are currently
+destructive!
 
     rake dm:db:automigrate    # Automigrates all models
     rake dm:db:autoupgrade     # Perform non destructive automigration
 
 You can also create databases from the Merb console (`merb -i`)
 
-    database.save(Posts) 
+    Post.auto_migrate!
+
+or
+    
+    Post.auto_upgrade!
 
 This does the same job as the rake task migrating all your models.
 
-    DataMapper.auto_migrate! 
+    DataMapper.auto_migrate!
 
-Migrations in the sense of AR migrations, don't exist yet, so you'll have to 
-manually alter your database if you want to retain your data. There are plans 
-however to include migrations in a future version of DataMapper.
+Why the two commands? They both do slightly different things.
+
+The first, `auto_migrate!`, works by dropping the table (if it exists) and all
+of its data then working out which columns need to exist from the model
+definition, before finally rebuilding the table in the database.  This includes
+any constraints imposed. For example, `:nullable => false` will add a `NOT NULL`
+to the column definition.
+
+`auto_upgrade!` on the other hand, creates the table from nothing only if the
+table isn't there already.  If it _is_ there, then it compares the current table
+to the model.  If there are properties in the model not defined as columns in
+the table, it will add them to the table.  It does have some limitations though.
+It doesn't delete columns, and it can't detect renaming them.
+
+
+##### Migration Files
+
+Whilst the preceding commands and tasks can keep the database schema in
+perfect sync with the models, they can also wipe out any data you might have in
+the database, or fail to remove columns which are no longer needed.  To avoid
+this, AR style migrations are also supported.  These are stored in `schema/migrations`
+and are ruby files.
+
+    migration(1, :add_homepage_to_comments ) do
+      up do
+        table :comments do
+          add_column :homepage, String, :length => 100, :nullable => true
+        end
+      end
+
+      down do
+        table :comments do
+          remove_column :homepage
+        end
+      end
+    end
+
+The first line of the file is what identifies the migration, and there are two
+components to it.  The more important one is the name, `:add_homepage_to_comments`,
+which must be unique across all the migrations applied to the database.  The
+other parameter, `1` in this case, is the level or order and migrations are
+applied.  This number doesn't have to be unique, although a migration mustn't
+have a higher number than a migration it depends on.  You shouldn't define
+modifications to a table to happen before that table is made, for example.
+
+The `up` and `down` blocks describe the actual behaviour of the migration. `up`
+is what happens when the migration is applied, and `down` happens when the
+migration is 'undone'.  This might not mean undone in the literal sense - if you
+migrate to remove a column, and add it back in the `down` migration, while the
+column will be there, all the data will be lost.
+
+In this case, as the name suggested, we add a homepage column to comments.
+It's specified much like a property (and should match up with the relevant
+property in the model.rb file).  It also takes many of the same options -
+essentially all those which are just database features: `:length`, `:nullable`
+are valid, but `:private`, which is a pure ruby option is not allowed.  The
+`down` migration is the opposite - it removes the column.
+
+To apply the migrations, there are a couple of rake tasks available through
+merb_datamapper
+
+    rake dm:db:migrate:up                   # migrates the database up
+    rake dm:db:migrate:down                 # migrates the database down
+
+Which apply or remove all the migrations in turn.  Sometimes, you don't want to
+go all the way up (or down) and so you can also specify a level to migrate to,
+via `VERSION=2` or invoking a task like `rake dm:db:migrate:up[2]`.  For both up
+and down migrations, the version determines the highest order that will be
+reflected in the table, either by applying `up` migrations until the level is
+complete or applying all the `down` migrations greater than the given level.
+
+There are a couple of generators to make migrations
+
+    merb-gen migration name_of_migration    # an empty migration
+    merb-gen resource_migration Post        # a migration for the post class
+
+The first creates an empty migration stub with the name defined and an `up` and
+`down` block.  The second loads up the class in question from app/models and
+does it's best to construct the appropriate migration from the properties of the
+model.  It currently doesn't generate anything to do with relationships, however.
+
 
 ### CRUD
 
