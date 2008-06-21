@@ -619,9 +619,12 @@ is that instead of retrieving all the rows at once, each works in batches
 instantiating a few objects at a time and executing the block on them (so is less
 resource intensive). Each is similar to a finder as it can also take options:
 
-    Comments.each(:date.lt => Date.today - 20).each do |c|
-        c.destroy!
+    Comments.all.each(:date.lt => Date.today - 20).each do |c|
+      c.destroy
     end
+
+NB: This isn't currently working in DataMapper.  It instead fetches all the
+records.  However, it will be reimplemented soon.
 
 #### Updating
 
