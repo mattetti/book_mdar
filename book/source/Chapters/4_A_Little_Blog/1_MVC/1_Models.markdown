@@ -340,7 +340,7 @@ difficult, and buy you the full power of dm-validations:
 
       validates_with_method :check_times
 
-      def check_times
+      def check_times(context = :default)
         if start_time < end_time
           return true
         else
@@ -362,7 +362,8 @@ Of course, this custom validator can also be applied only in certain contexts,
 just by adding a `:when => [...]` on the `validates_with_method` line.  This
 brings us a lot of flexibility, and as we're validating with a ruby method, we
 can get as complex as we need to specify our behaviour.  Much nicer than just
-overriding valid.
+overriding valid.  It's this functionality which requires the context to be
+passed in (Although your method can feel free to ignore it).
 
 #### Callbacks
 
