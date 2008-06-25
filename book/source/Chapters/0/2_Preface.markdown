@@ -14,17 +14,17 @@ Copyright &copy; 2008 Respective Authors.
 
 ### Authors
 
-* Andy Kent
-* Ben Reubenstein
-* Damien Tanner
-* Eric Allam
-* Gwyn Morfey
-* Jonathan Stott
-* Martyn Loughran
 * Matt Aimonetti
+* Eric Allam
 * Matthew Ford
+* Andy Kent
+* Martyn Loughran
+* Gwyn Morfey
 * Justin Pease
-* (add your name here)
+* Ben Reubenstein
+* Jonathan Stott
+* Damien Tanner
+* (add your name here, alphabetically)
 
 <br />
 This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/">Creative Commons Attribution-Noncommercial 2.0 UK: England & Wales License</a>.<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/">
