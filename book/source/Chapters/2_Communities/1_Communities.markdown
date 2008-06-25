@@ -30,7 +30,7 @@ need to wait for a response.
 ### Mailing Lists
 
 The mailing lists are another good way to get help, the response time isn't as 
-fast as asking in an irc channel but it can be useful to do a search to see if 
+fast as asking in an IRC channel but it can be useful to do a search to see if 
 someone else has had your problem before.
 
 * [http://groups.google.com/group/merb/](http://groups.google.com/group/merb/)
@@ -40,7 +40,7 @@ someone else has had your problem before.
 ### Bug Trackers
 
 Your problem may or may not be a known bug. Search the bug trackers and submit 
-a ticket if its not there already (don't forget to include a description and test 
+a ticket if it's not there already (don't forget to include a description and test 
 cases, or better yet: a patch!). You may find the ticket is solved in the edge 
 version.
 

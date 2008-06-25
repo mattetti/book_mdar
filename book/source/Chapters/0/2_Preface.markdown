@@ -23,6 +23,7 @@ Copyright &copy; 2008 Respective Authors.
 * Martyn Loughran
 * Matt Aimonetti
 * Matthew Ford
+* Justin Pease
 * (add your name here)
 
 <br />

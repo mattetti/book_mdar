@@ -1,6 +1,8 @@
 ## Creating an App
 
-Now that we've got all of that installed, time to create a test Merb application. 
+One of the best ways to become familiar with a framework is to jump in and get 
+your hands dirty.  So now that we've got everything installed, it's time to roll 
+up your sleeves and create a test Merb application. 
 
 Merb-more comes with a `gem` called `merb-gen`, this gives you a command line 
 tool by the same name which is used for all of your generator needs. You can 
