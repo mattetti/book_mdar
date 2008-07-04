@@ -28,7 +28,7 @@ has been built from the outset to prove that Ruby is a viable language for
 building fast and scaleable web applications.
 
 At the end of the day it's about choice. There are many new Ruby frameworks 
-springing up, undoubtedly encouraged by the success of Rails.  In my opinion, 
+springing up, undoubtedly encouraged by the success of Rails.  In our opinion,
 Merb shows the most promise of these.
 
 If you'd like to take a look at some other frameworks these links should get you 

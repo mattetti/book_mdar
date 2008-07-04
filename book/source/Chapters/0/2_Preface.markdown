@@ -16,6 +16,7 @@ Copyright &copy; 2008 Respective Authors.
 
 * Matt Aimonetti
 * Eric Allam
+* Jack Dempsey
 * Matthew Ford
 * Andy Kent
 * Martyn Loughran

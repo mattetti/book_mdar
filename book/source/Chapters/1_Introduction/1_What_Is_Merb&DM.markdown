@@ -28,7 +28,7 @@ features.
 
 The `merb` gem installs both `merb-core` and `merb-more`; all you need in order to 
 get started straight away.  The benefit of this modularity is that the framework 
-remains simple and focussed with additional functionality provided by gems.
+remains simple and focused with additional functionality provided by gems.
 
 Thanks to Merb's modularity, you are not locked into using any particular 
 libraries. For example, Merb ships with plugins for several popular ORMs and 
@@ -46,7 +46,7 @@ We'll be using DataMapper with Merb. As previously mentioned, Merb does not requ
 the use of DataMapper.  You can just as easily use the same ORM as Rails 
 (ActiveRecord) if you prefer.
 
-I have chosen to use DataMapper because of it's feature set and performance. One 
+We have chosen to use DataMapper because of it's feature set and performance. One
 of the differences between it and ActiveRecord that I find useful is the way 
 database attributes are handled. The schema, migrations and attributes are all 
 defined in one place: your model. This means you no longer have to look around in 
