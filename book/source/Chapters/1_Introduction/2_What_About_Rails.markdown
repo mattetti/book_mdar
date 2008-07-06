@@ -25,7 +25,7 @@ and it uses less Ruby 'magic', making it easier to understand and hack.
 Rails (and consequently Ruby) has received a lot of criticism for not being 
 suitable for large scale web applications, which isn't necessarily true. Merb 
 has been built from the outset to prove that Ruby is a viable language for 
-building fast and scaleable web applications.
+building fast and scalable web applications.
 
 At the end of the day it's about choice. There are many new Ruby frameworks 
 springing up, undoubtedly encouraged by the success of Rails.  In our opinion,
