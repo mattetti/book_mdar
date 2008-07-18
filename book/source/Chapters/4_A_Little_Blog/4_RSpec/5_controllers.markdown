@@ -54,7 +54,7 @@ in your controller, simple response status checks can be useful for ensuring the
 overall integrity of your app.
 
 A more important test would be ensuring that a 404 is returned when the post
-cannot be found in the database. When Datamapper cannot find a record is raises
+cannot be found in the database. When Datamapper cannot find a record it raises
 Datamapper::ObjectNotFoundError. Merb has several useful exception classes which
 will set the correct status and then call the relevant action in your Exceptions
 controller. Raising NotFound will set the status to 404 and then call the
