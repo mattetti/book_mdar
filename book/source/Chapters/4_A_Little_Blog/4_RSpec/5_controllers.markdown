@@ -37,16 +37,14 @@ The first should_receive ensures that Post.get!(1) is called, we could mock out
 a Post instance to return here, but in this case we're only interested in it
 being called and not raising an exception.
 
-Next we use the get method to make a request to the controller, the :yields
-option allows us to set what the get request returns. Here we want to grab the
-controller and then stub out the render method before the request is made.
-Anything inside you get method's block will be executed before the request is
-dispatched.
+Next we use the get method to make a request to the controller.  The get method
+yields the controller, allowing us to stub out the render method, as we're not
+interested in how that behaves.  Anything inside the get method's block will be
+executed before the request is dispatched.
 
-After the request has been dispatched, several methods are available to return
-the results from the request: body, status, params, cookies, headers, session,
-response and route. Note that these all just call the same method on controller
-(so status is the same as controller.status).
+After the request has been dispatched, it returns the controller.  Several
+methods are available to examine the results from the request: body, status,
+params, cookies, headers, session, response and route.
 
 This test was fairly simple, and it's likely you won't need to such tests if
 your controllers are as simple as ours. But once you have more than a few lines
