@@ -124,14 +124,6 @@ models can have one way relationships.
 
 (TODO) -polly assoc
 
-##### Has And Belongs To Many (HABTM)
-
-As of this writing HABTM is not supported in DataMapper associations, but it
-can be modeled as a `has_many :through` association.  The only difference is
-that instead of having a simple join table, you will need a join Model. The
-example below for `has_many :through` would effectively replace a HABTM
-relationship to Category.
-
 ##### Where is my `has\_many :through`?!
 DataMapper > 0.9 now supports has_many :through.  For example, if you have a
 Post model that has many Categories through the Categorization model you
@@ -154,6 +146,32 @@ would define these associations:
      Categorization.create(:post => post, :category => Category.first)
 
 
+##### Has And Belongs To Many (HABTM)
+
+A `has n :through` relationship is useful, especially when the join model itself
+has a lot of information on it.  Perhaps a subscription which contains the join
+date and the users rating for the feed it tracks.  Sometimes, however, the join
+model is very simple, just a table with two id columns.
+
+For this, DataMapper offers an alternative to `:through => :models`, which is
+`:through => Resource`.  The use of Resource tells DataMapper to automatically
+create a join table.  So to revisit the previous example:
+
+     class Post
+       include DataMapper::Resource
+
+       has n, :categories, :through => Resource
+
+     end
+
+     post = Post.first
+     post.categories #=> []
+     post.categories << Category.first
+     post.save
+     post.categories #=> [Category.first]
+
+The join table this would create be called `posts_categorizations` which would
+contain the two keys of each post-categorization pair.
 
 #### Validation
 
