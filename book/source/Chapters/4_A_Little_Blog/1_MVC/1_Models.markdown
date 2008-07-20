@@ -23,16 +23,6 @@ DataMapper has a model generator just as Rails does:
 This will make a post model for you, provided that you have defined an ORM
 and the database golb, in the previous steps.
 
-You can set the name of the database table in your model if it is called
-something different by overriding a method in the class:
-
-    def default_storage_name
-      'list_of_posts'
-    end
-
-This is only necessary if you are using an already existing database.  If you
-have a lot of tables to rename, consider instead a `NamingConvention`, detailed
-later.
 
 #### Properties
 
@@ -85,7 +75,118 @@ DataMapper supports the following properties in the core:
 
 (TODO) - creating your own custom properties
 
-#### Associations
+### CRUD
+
+#### Creating
+To create a new record, just call the method create on a model and pass it your
+attributes.
+
+    @post = Post.create(:title => 'My first post')
+
+Or you can instantiate an object with #new and save it to the repository later:
+
+    @post = Post.new
+    @post.title = 'My first post'
+    @post.save
+
+There is also an AR like method to `find\_or\_create` which attempts to find an
+object with the attributes provided, and creates the object if it cannot find it:
+
+    @post = Post.first_or_create(:title => 'My first post')
+
+There are a couple of different ways to set attributes on a model:
+
+    @post.title = 'My first post'
+    @post.attributes = {:title => 'My first post'}
+    @post.attribute_set(:title, 'My first post')
+
+Find out if an attribute has been changed (aka is dirty):
+
+    @post = Post.first
+    @post.dirty?
+    => false
+    @post.attribute_dirty?(:title)
+    => false
+    @post.title = 'Changing the title'
+    @post.dirty?
+    => true
+    @post.attribute_dirty?(:title)
+    => true
+    @post.dirty_attributes
+    => Set: {#<Property:Post:title>}
+
+
+#### Reading (aka finding)
+
+The syntax for retrieving data from the database is clean an simple. As you
+can see with the following examples.
+
+Finding a post with one as its primary key is done with the following:
+
+    # will raise a DataMapper::ObjectNotFoundError if not found
+    # use #get to just return nil if not record is found
+    Post.get!(1)
+
+To get an array of all the records for the post model:
+
+    Post.all
+
+To get the first post, with the condition author = 'Matt':
+
+    Post.first(:author => 'Matt')
+
+When retrieving data the following parameters can be used:
+
+    #   Posts.all :order => 'created_at desc'              # => ORDER BY created_at desc
+    #   Posts.all :limit => 10                             # => LIMIT 10
+    #   Posts.all :offset => 100                           # => OFFSET 100
+    #   Posts.all :includes => [:comments]
+
+If the parameters are not found in these conditions it is assumed to be an
+attribute of the object.
+
+You can also use symbol operators with the find to further specify a condition,
+for example:
+
+    Posts.all :title.like => '%welcome%', :created_at.lt => Time.now
+
+This would return all the posts, where the tile was like 'welcome' and was
+created in the past.
+
+Here is a list of the valid operators:
+
+* gt    - greater than
+* lt    - less than
+* gte   - greater than or equal
+* lte   - less than or equal
+* not   - not equal
+* like  - like
+* in    - will be used automatically when an array is passed in as an argument
+
+TODO: execute sql via the adaptor.
+
+
+#### Updating
+
+Updating attributes has a similar syntax to ARs `update_attributes`:
+
+    @post.update_attributes(:title => 'Opps the title has changed!')
+
+You can also just set attributes and then save:
+
+    @post = Post.first
+    @post.title = 'New Title!'
+    @post.save
+
+
+#### Destroying
+
+You can destroy database records with the method `destroy`, this work much like AR.
+
+    bad_comment = Comment.first
+    bad_comment.destroy
+
+### Associations
 
 Like ActiveRecord, DataMapper has associations which define relationships
 between models. There is difference in syntax but the underling idea is the
@@ -120,11 +221,11 @@ to specify the foreign key as a property if it's defined in the association.
 You also don't have to specify a relationship at all if you don't want to, as
 models can have one way relationships.
 
-##### Polymorphic associations
+#### Polymorphic associations
 
 (TODO) -polly assoc
 
-##### Where is my `has\_many :through`?!
+#### Where is my `has\_many :through`?!
 DataMapper > 0.9 now supports has_many :through.  For example, if you have a
 Post model that has many Categories through the Categorization model you
 would define these associations:
@@ -146,7 +247,7 @@ would define these associations:
      Categorization.create(:post => post, :category => Category.first)
 
 
-##### Has And Belongs To Many (HABTM)
+#### Has And Belongs To Many (HABTM)
 
 A `has n :through` relationship is useful, especially when the join model itself
 has a lot of information on it.  Perhaps a subscription which contains the join
@@ -173,7 +274,7 @@ create a join table.  So to revisit the previous example:
 The join table this would create be called `posts_categorizations` which would
 contain the two keys of each post-categorization pair.
 
-#### Validation
+### Validation
 
 (TODO) - still needs 0.9 love - mostly done now, I think
 
@@ -234,7 +335,7 @@ We can test this by calling `valid?` on one of our posts:
 
 
 
-##### Contextual Validation
+#### Contextual Validation
 
 A problem arises when your website has users creating content and content being
 created automatically from scrapers or some sort of automated background process
@@ -332,7 +433,7 @@ headache and work later on down the line, as well as supporting different
 scenarios where a post might be valid or might not -- all without having to
 hack-around. How enterprise-y!
 
-##### validates\_with\_method
+#### validates\_with\_method
 
 Another very powerful feature in dm-validations is `validates\_with\_method`.
 Think of it as like overloading `valid?` only with the full power of real
@@ -384,44 +485,8 @@ can get as complex as we need to specify our behaviour.  Much nicer than just
 overriding valid.  It's this functionality which requires the context to be
 passed in (Although your method can feel free to ignore it).
 
-#### Callbacks
 
-Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource
-you can set before and after callbacks on any instance/class method.  There are
-a couple of different ways to define callbacks:
-
-    class Post
-      include DataMapper::Resource
-
-      property :id, Integer, :serial => true
-      property :title, String, :length => 200
-
-      # before save call the instance method make_permalink
-      before :save, :make_permalink
-
-      def make_permalink
-        self.title = PermalinkFu.permalink(self.title)
-      end
-
-      #callbacks can be defined for any method
-      after :publish, :send_message
-
-      def publish
-        # do some publishing here
-      end
-
-      def send_message
-        # email someone here
-      end
-
-      # defining a callback on a class method, passing in a block to run before its created.
-      before_class_method :create do
-        # do something before a record is created
-      end
-
-    end
-
-#### Migrations
+### Migrations
 
 There is a rake task to migrate your models, but be warned these are currently
 destructive!
@@ -456,7 +521,7 @@ the table, it will add them to the table.  It does have some limitations though.
 It doesn't delete columns, and it can't detect renaming them.
 
 
-##### Migration Files
+#### Migration Files
 
 Whilst the preceding commands and tasks can keep the database schema in
 perfect sync with the models, they can also wipe out any data you might have in
@@ -522,149 +587,44 @@ The first creates an empty migration stub with the name defined and an `up` and
 does it's best to construct the appropriate migration from the properties of the
 model.  It currently doesn't generate anything to do with relationships, however.
 
+### Other Misc Things
 
-### CRUD
+#### Callbacks
 
-#### Creating
-To create a new record, just call the method create on a model and pass it your
-attributes.
+Callbacks in DataMapper > 0.9 are very powerful.  In any DataMapper::Resource
+you can set before and after callbacks on any instance/class method.  There are
+a couple of different ways to define callbacks:
 
-    @post = Post.create(:title => 'My first post')
+    class Post
+      include DataMapper::Resource
 
-Or you can instantiate an object with #new and save it to the repository later:
+      property :id, Integer, :serial => true
+      property :title, String, :length => 200
 
-    @post = Post.new
-    @post.title = 'My first post'
-    @post.save
+      # before save call the instance method make_permalink
+      before :save, :make_permalink
 
-There is also an AR like method to `find\_or\_create` which attempts to find an
-object with the attributes provided, and creates the object if it cannot find it:
+      def make_permalink
+        self.title = PermalinkFu.permalink(self.title)
+      end
 
-    @post = Post.first_or_create(:title => 'My first post')
+      #callbacks can be defined for any method
+      after :publish, :send_message
 
-There are a couple of different ways to set attributes on a model:
+      def publish
+        # do some publishing here
+      end
 
-    @post.title = 'My first post'
-    @post.attributes = {:title => 'My first post'}
-    @post.attribute_set(:title, 'My first post')
+      def send_message
+        # email someone here
+      end
 
-Find out if an attribute has been changed (aka is dirty):
+      # defining a callback on a class method, passing in a block to run before its created.
+      before_class_method :create do
+        # do something before a record is created
+      end
 
-    @post = Post.first
-    @post.dirty?
-    => false
-    @post.attribute_dirty?(:title)
-    => false
-    @post.title = 'Changing the title'
-    @post.dirty?
-    => true
-    @post.attribute_dirty?(:title)
-    => true
-    @post.dirty_attributes
-    => Set: {#<Property:Post:title>}
-
-
-#### Reading (aka finding)
-
-The syntax for retrieving data from the database is clean an simple. As you
-can see with the following examples.
-
-Finding a post with one as its primary key is done with the following:
-
-    # will raise a DataMapper::ObjectNotFoundError if not found
-    # use #get to just return nil if not record is found
-    Post.get!(1)
-
-To get an array of all the records for the post model:
-
-    Post.all
-
-To get the first post, with the condition author = 'Matt':
-
-    Post.first(:author => 'Matt')
-
-When retrieving data the following parameters can be used:
-
-    #   Posts.all :order => 'created_at desc'              # => ORDER BY created_at desc
-    #   Posts.all :limit => 10                             # => LIMIT 10
-    #   Posts.all :offset => 100                           # => OFFSET 100
-    #   Posts.all :includes => [:comments]
-
-If the parameters are not found in these conditions it is assumed to be an
-attribute of the object.
-
-You can also use symbol operators with the find to further specify a condition,
-for example:
-
-    Posts.all :title.like => '%welcome%', :created_at.lt => Time.now
-
-This would return all the posts, where the tile was like 'welcome' and was
-created in the past.
-
-Here is a list of the valid operators:
-
-* gt    - greater than
-* lt    - less than
-* gte   - greater than or equal
-* lte   - less than or equal
-* not   - not equal
-* like  - like
-* in    - will be used automatically when an array is passed in as an argument
-
-TODO: execute sql via the adaptor.
-
-##### Aggregates
-
-DataMapper by default does not provide aggregator methods, but dm-aggregates
-in dm-more does. After adding `dependency "dm-aggregates"` to your merb `init.rb`
-file, your resource model will have aggregator methods including `count`, `min`,
-`max`, `avg`, and `sum`.  You can pass conditions to any of these aggregator
-methods the same as Resource.first or Resource.all
-
-    Post.count :title.like => "%hello world%"
-
-    # you can also do a count on an association:
-    @post.comments.count
-
-    Post.avg(:reads_count)
-
-    Post.sum(:comments_count)
-
-
-##### Each
-
-Each works like like expected iterating over a number of rows and you can pass
-a block to it. The difference between `Comments.all.each` and `Comments.each`
-is that instead of retrieving all the rows at once, each works in batches
-instantiating a few objects at a time and executing the block on them (so is less
-resource intensive). Each is similar to a finder as it can also take options:
-
-    Comments.all.each(:date.lt => Date.today - 20).each do |c|
-      c.destroy
     end
-
-NB: This isn't currently working in DataMapper.  It instead fetches all the
-records.  However, it will be reimplemented soon.
-
-#### Updating
-
-Updating attributes has a similar syntax to ARs `update_attributes`:
-
-    @post.update_attributes(:title => 'Opps the title has changed!')
-
-You can also just set attributes and then save:
-
-    @post = Post.first
-    @post.title = 'New Title!'
-    @post.save
-
-
-#### Destroying
-
-You can destroy database records with the method `destroy`, this work much like AR.
-
-    bad_comment = Comment.first
-    bad_comment.destroy
 
 #### Bulk Operations
 
@@ -687,4 +647,48 @@ earlier, is a kicker method. It issues a `SELECT` appropriate to the conditions.
 This command would update the `allow_beer` attribute of all people aged 21 or
 older in the database, all in one `UPDATE` statement.
 
+#### Aggregates
 
+DataMapper by default does not provide aggregator methods, but dm-aggregates
+in dm-more does. After adding `dependency "dm-aggregates"` to your merb `init.rb`
+file, your resource model will have aggregator methods including `count`, `min`,
+`max`, `avg`, and `sum`.  You can pass conditions to any of these aggregator
+methods the same as Resource.first or Resource.all
+
+    Post.count :title.like => "%hello world%"
+
+    # you can also do a count on an association:
+    @post.comments.count
+
+    Post.avg(:reads_count)
+
+    Post.sum(:comments_count)
+
+
+#### Each
+
+Each works like like expected iterating over a number of rows and you can pass
+a block to it. The difference between `Comments.all.each` and `Comments.each`
+is that instead of retrieving all the rows at once, each works in batches
+instantiating a few objects at a time and executing the block on them (so is less
+resource intensive). Each is similar to a finder as it can also take options:
+
+    Comments.all.each(:date.lt => Date.today - 20).each do |c|
+      c.destroy
+    end
+
+NB: This isn't currently working in DataMapper.  It instead fetches all the
+records.  However, it will be reimplemented soon.
+
+#### Changing the Table Name
+
+You can set the name of the database table in your model if it is called
+something different by overriding a method in the class:
+
+    def default_storage_name
+      'list_of_posts'
+    end
+
+This is only necessary if you are using an already existing database.  If you
+have a lot of tables to rename, consider instead a `NamingConvention`, detailed
+later.
