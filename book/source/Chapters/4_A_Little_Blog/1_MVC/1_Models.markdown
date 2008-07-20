@@ -692,3 +692,5 @@ something different by overriding a method in the class:
 This is only necessary if you are using an already existing database.  If you
 have a lot of tables to rename, consider instead a `NamingConvention`, detailed
 later.
+
+TODO: Write NamingConventions section.
