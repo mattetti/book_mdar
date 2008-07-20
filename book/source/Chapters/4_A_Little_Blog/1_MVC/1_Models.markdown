@@ -58,7 +58,7 @@ Some of the available options are:
     :serial       - auto-incrementing key
     :lazy         - Lazy load the specified property (:lazy => true).
     :default      - Specifies the default value
-    :column       - Specifies the table column
+    :field        - Specifies the table column
     :nullable     - Can the value be null?
     :index        - Creates a database index for the column
     :accessor     - Set method visibility for the property accessors. Affects both
@@ -70,7 +70,7 @@ Some of the available options are:
 
 (TODO) - talk about accessors and overriding them
 
-DataMapper supports the following properties:
+DataMapper supports the following properties in the core:
 
 * TrueClass, Boolean
 * String
@@ -93,19 +93,19 @@ same. Continuing with the `Post` model we can see a few of the associations
 defined:
 
     has n, :comments
-    belongs_to :author, :class => 'User', :foreign_key => 'author_id'
+    belongs_to :author, :class => 'User', :child_key => [:author_id]
 
 The `has n` syntax is a very flexible way to define associations and the
 standard way in DataMapper > 0.9. It can be used to model all of ActiveRecord
 associations plus more.  The types of associations currently in DataMapper are:
 
      # DataMapper 0.9  | ActiveRecord
-     has n             # has_many
-     has 1             # has_one
-     belongs_to        # belongs_to
-     many_to_one       # belongs_to
-     has n, :association => :join_table # has_and_belongs_to_many NOTE: not currently support see HABTM section below
-     has n, :association => :model      # has_many :association, :through => :model
+     has n, :things     # has_many :things
+     has 1, :thing     # has_one :thing
+     belongs_to :item  # belongs_to :item
+     many_to_one :item # belongs_to :item
+     has n, :items, :through => Resource # has_and_belongs_to_many :items
+     has n, :gizmos, :through => :things  # has_many :gizmos, :through => :things
 
 The `has n` syntax is more powerful than above, since n is the cardinality of
 the association, it can be an arbitrary range.  Some examples:
@@ -141,8 +141,6 @@ would define these associations:
        include DataMapper::Resource
 
        has n, :categorizations
-       has n, :categories => :categorizations
-       # or you could use an alternative syntax:
        has n, :categories, :through => :categorizations
 
      end
