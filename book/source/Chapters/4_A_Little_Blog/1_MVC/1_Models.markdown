@@ -24,12 +24,15 @@ This will make a post model for you, provided that you have defined an ORM
 and the database golb, in the previous steps.
 
 You can set the name of the database table in your model if it is called
-something different with:
+something different by overriding a method in the class:
 
-    storage_names[:default] = 'list_of_posts'
+    def default_storage_name
+      'list_of_posts'
+    end
 
-This is only necessary if you are using an already existing database.  Don't
-worry about the `:default` for now, that will be explained later.
+This is only necessary if you are using an already existing database.  If you
+have a lot of tables to rename, consider instead a `NamingConvention`, detailed
+later.
 
 #### Properties
 
