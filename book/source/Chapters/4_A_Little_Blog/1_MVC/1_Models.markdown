@@ -189,7 +189,7 @@ You can destroy database records with the method `destroy`, this work much like 
 ### Associations
 
 Like ActiveRecord, DataMapper has associations which define relationships
-between models. There is difference in syntax but the underlying idea is the
+between models. There is a difference in syntax but the underlying idea is the
 same. Continuing with the `Post` model we can see a few of the associations
 defined:
 
