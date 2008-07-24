@@ -531,14 +531,14 @@ and are ruby files.
 
     migration(1, :add_homepage_to_comments ) do
       up do
-        table :comments do
+        modify_table :comments do
           add_column :homepage, String, :length => 100, :nullable => true
         end
       end
 
       down do
-        table :comments do
-          remove_column :homepage
+        modify_table :comments do
+          drop_column :homepage
         end
       end
     end
