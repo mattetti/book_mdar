@@ -70,14 +70,19 @@ to a database, which we do in our case):
 
     use_orm :datamapper
     
-Typing `merb` now in your command line will try and start the server.
+Typing `merb` now in your command line will start the server.
 
-    Started merb_init.rb ...
-    No database.yml file found in /Users/work/merb/example_one/config.
-    A sample file was created called database.sample.yml for you to copy and edit.
+    Loaded DEVELOPMENT Environment...
+    No database.yml file found in /Users/work/merb/example_one/config, assuming database connection(s) established in the environment file in /Users/work/merb/example_one/config/environments
+    loading gem 'merb_datamapper' ...
+    Compiling routes...
+    Using 'share-nothing' cookie sessions (4kb limit per client)
+    Using Mongrel adapter
 
-As you can see, we forgot to set up the database. A sample file has helpfully 
-been generated for us. Edit this and rename it to `database.yml`:
+As you can see, however, we did not yet configure the database. Let's create the
+database.yml file that merb is looking for:
+
+`config/database.yml`
 
     # This is a sample database file for the DataMapper ORM
     development:
