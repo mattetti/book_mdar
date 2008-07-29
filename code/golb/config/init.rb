@@ -94,7 +94,7 @@ use_orm :datamapper
 # merb-core provides support for RSpec.
 #
 # use_test :test_unit
-# use_test :rspec
+use_test :rspec
 
 #
 # ==== Set up your basic configuration
