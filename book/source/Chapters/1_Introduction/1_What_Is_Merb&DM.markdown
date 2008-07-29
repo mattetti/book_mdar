@@ -57,13 +57,11 @@ differences as we go along.
 
 ### [RSpec](http://rspec.info/)
 
-RSpec is a Behaviour Driven Development framework for Ruby. 
-Merb currently supports the Test::Unit and RSpec testing frameworks. As the 
-specs for Merb and Datamapper are written in RSpec, we will be covering some 
-aspects of RSpec but it will not be our main focus.
+RSpec is a Behaviour Driven Development framework for Ruby. It consists of two
+main pieces, a Story framework for integration tests and a Spec framework for
+object tests. Both these components are implemented as Domain Specific
+Languages which help to make the stories and specs created more readable.
 
-RSpec consists of two frameworks - a Story Framework where the user can 
-describe a scenario at the application level and a Spec Framework which is 
-used to describe specific object level behavior.
-
-(TODO) Beef up this section a little more?
+Merb currently supports the Test::Unit and RSpec testing frameworks. Both Merb
+and Datamapper use the RSpec testing frameworks and so we will be covering some
+aspects so that you may use it for your own applications.
