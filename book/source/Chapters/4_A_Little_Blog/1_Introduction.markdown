@@ -9,11 +9,11 @@
  * Some of the view helpers in `merb_helpers`
  * Configuring and sending emails
 
-In the examples we'll be developing a small blogging application. It's a good
+In the examples, we'll be developing a small blogging application. It's a good
 idea to grab the source code from [http://github.com/deimos1986/book_mdar/tree/master/code](http://github.com/deimos1986/book_mdar/tree/master/code), 
 so you can follow along with the examples.
 
-First of all let's define some of the functionality we would expect from any 
+First of all, let's define some of the functionality we would expect from any 
 blogging application. 
 
 * Publishing posts
@@ -22,9 +22,9 @@ blogging application.
 * Attaching images
 * Authentication
 
-We're going to call our app `golb`, think of it as a backward blog. Feel free 
-to change the name of your app but remember to change the word `golb` for the 
-name of your app.
+We're going to call our app `golb`. Think of it as a backward blog. Feel free 
+to change the name of your app, but if you do, remember to replace the word
+`golb` with the name of your app.
 
 To make a new app we'll use the command
 
