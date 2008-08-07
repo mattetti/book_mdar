@@ -77,16 +77,19 @@ Start by installing the `gem` dependancies:
 
 Then download the `merb` source:
 
+		git clone git://github.com/sam/extlib.git
     git clone git://github.com/wycats/merb-core.git
     git clone git://github.com/wycats/merb-plugins.git
     git clone git://github.com/wycats/merb-more.git
 
 Then install the gems via rake:
 
+		cd extlib ; rake install ; cd ..
    	cd merb-core ; rake install ; cd ..    
     cd merb-more ; rake install ; cd ..
     cd merb-plugins; rake install ; cd ..
 
+Note that Merb and DataMappers share Extlib library since after 0.9.3 release of DM.
 The `json_pure` gem is needed for merb to install on [JRuby](http://jruby.codehaus.org/) (Java implementation of a Ruby Interpreter), otherwise use the `json` gem as it's faster.
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using 
