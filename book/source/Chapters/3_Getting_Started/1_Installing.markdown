@@ -18,19 +18,30 @@ Before we get started I'm going to assume you have the following installed:
 ### The Easy Way
 
 If you're on a *nix operating system then keeping up to date with all the edge 
-versions of these gems can be made really easy by using the [Edgy sake tasks](http://edgy.4ninjas.org).
+versions of these gems can be made really easy by using the Sake tasks.
 
-Run the following to install `RSpec`, `merb-core`, `merb-more`, `dm-core`, 
-`dm-more`, `data_objects`:
+Merb sake tasks can be found in merb-more repository under tools directory.
+Sake tasks for DataMapper are in dm-dev repository at
+http://github.com/dkubb/dm-dev/.
 
-		sudo gem install sake
-		sake -i 'http://edgy.4ninjas.org/edgy.sake'
-		sake edgy:install packages="merb-stack"
-		
+To install Sake tasks run sake -i PATH where PATH is path to Sake tasks file
+on your local machine. For example,
 
-And then to keep up to date you just need to execute:
+	 	sake -i ~/dev/opensource/merb/merb-more/tools/merb-dev.rake
 
-		sake edgy:update
+To do a fresh clone of all repositories use sake dm:clone and	merb:clone,
+respectively. And then to keep up to date you just need to execute:
+
+		sake dm:update
+
+and
+
+		sake merb:update
+
+to update Merb and DataMapper gems.
+
+But what you really want is probably to wipe out Merb and DM gems before update,
+do the update and install new updated gems. Use sake merb:gems:refresh and dm:gems:refresh to do so.
 
 ### If You're Hardcore
 
