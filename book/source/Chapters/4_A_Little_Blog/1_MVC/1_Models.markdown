@@ -78,6 +78,15 @@ DataMapper supports the following properties in the core:
 ### CRUD
 
 #### Creating
+Before a new record is created, be sure you have syncronized your model with the database.
+In order to do this, load the merb console with:
+    
+     merb -i
+     
+Then migrate your Post model with:
+
+    Post.auto_migrate!
+
 To create a new record, just call the method create on a model and pass it your
 attributes.
 
