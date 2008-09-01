@@ -2,7 +2,7 @@
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
 # require dependancies
-%W(rubygems rake fileutils bluecloth hpricot erb).each do |pkg| 
+%W(rubygems rake fileutils hpricot erb).each do |pkg| 
   begin
     require pkg 
   rescue LoadError => e 
@@ -11,7 +11,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 end
 
 # require book builder files
-%W(book file_finder toc).each do |file| 
+%W(markdown book file_finder toc).each do |file| 
   begin
     require file 
   rescue LoadError => e 
