@@ -23,6 +23,10 @@ DataMapper has a model generator just as Rails does:
 This will make a post model for you, provided that you have defined an ORM
 and the database golb, in the previous steps.
 
+Note: Sometimes you might prefer to directly create a _resource_ (Model, Controller, View):
+
+    merb-gen resource post
+
 
 #### Properties
 
@@ -35,6 +39,12 @@ stated. Defining the database columns is achieved with the `property` method.
 
 This is the `title` property of the post model. As we can see, the parameters
 are the name of the table column followed by the type and finally the options.
+
+Note: We could have somewhat set the properties when we called the generator:
+
+    merb-gen model post title:string
+    
+By default, the lazy attribute is set to _false_ for everything except text fields.
 
 Some of the available options are:
 (TODO) - cover more properties
