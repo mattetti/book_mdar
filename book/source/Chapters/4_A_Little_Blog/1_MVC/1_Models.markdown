@@ -352,7 +352,7 @@ We can test this by calling `valid?` on one of our posts:
     @post.valid?
     => true
 
-If an object isn't valid, you can access its the errors by calling its errors method.
+If an object isn't valid, you can access its the errors by calling its `errors` method.
 
     @post.errors
     => #<DataMapper::Validate::ValidationErrors:0x2537e40 @errors={:body=>["Body must not be blank"]}>
