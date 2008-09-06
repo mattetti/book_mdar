@@ -670,6 +670,8 @@ earlier, is a kicker method. It issues a `SELECT` appropriate to the conditions.
 This command would update the `allow_beer` attribute of all people aged 21 or
 older in the database, all in one `UPDATE` statement.
 
+Note: ActiveRecord has a well known `Model.delete_all` class method to erase all table entries. In DataMapper to delete all instances of an Object in the database, you would do `Model.all.destroy!`
+
 #### Aggregates
 
 DataMapper by default does not provide aggregator methods, but dm-aggregates
