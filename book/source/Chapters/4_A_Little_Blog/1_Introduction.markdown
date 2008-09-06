@@ -59,5 +59,16 @@ Now add a `config/database.yml` file with the following:
 	test: &defaults
 	    # These are the settings for repository :default
 	    :database: golb_test
+	    
+	    
+Note: DataMapper has a rake task to create a default database.yml file:
+    
+    dm:db:database_yaml
+    
+You can also put a database URI in development.rb (or other environments) just as easily:
+
+    Merb::BootLoader.after_app_loads do
+      DataMapper.setup(:default, 'mysql://user:pass@localhost/database')
+    end
       
 Now we're ready to rock and roll ...
