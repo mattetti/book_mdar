@@ -43,21 +43,56 @@ gems to load for plugins and generators.
 
 
 Now add a `config/database.yml` file with the following:
-    
-	---
-	# Edit this file:
-	:development: &defaults
-	    # These are the settings for repository :default
-	    :adapter:  mysql
-	    :database: golb
-	    :host: localhost
-	    :encoding: utf8
-	    :username: root
-	    :password:
-	    :socket: 
 
-	test: &defaults
-	    # These are the settings for repository :default
-	    :database: golb_test
+    ---
+    # This is a sample database file for the DataMapper ORM
+    development: &defaults
+      # These are the settings for repository :default
+      adapter:  mysql
+      database: golb
+      encoding: utf8
+      username: root
+      password: 
+      host:     localhost
+
+      # Add more repositories
+      # repositories:
+      #   repo1:
+      #     adapter:  postgresql
+      #     database: sample_development
+      #     username: the_user
+      #     password: secrets
+      #     host:     localhost
+      #   repo2:
+      #     ...
+
+    test:
+      <<:       *defaults
+      database: golb_test
+
+      # repositories:
+      #   repo1:
+      #     database: sample_development
+
+    production:
+      <<:       *defaults
+      database: golb_production
+
+      # repositories:
+      #   repo1:
+      #     database: sample_development
+  
+	---
+	    
+	    
+Note: DataMapper has a rake task to generate a default database.yml file:
+    
+    dm:db:database_yaml
+    
+You can also put a database URI in development.rb (or other environments) just as easily:
+
+    Merb::BootLoader.after_app_loads do
+      DataMapper.setup(:default, 'mysql://user:pass@localhost/database')
+    end
       
 Now we're ready to rock and roll ...
