@@ -2,8 +2,15 @@
 
 The book is written in Markdown comes complete with a set of rake tasks for 
 publishing to HTML and plain text formats.
-run 'rake -T' from the root to see the options available (you will need to 
-have BlueCloth installed, sudo gem install BlueCloth).
+Run 'rake -T' from the root to see the options available.
+
+You will need to have one of the following gems installed.
+
+  * `rdiscount`
+  * `rpeg-markdown`
+  * `BlueCloth`
+
+Use `sudo gem install <name>` to install one of them.
 
 ## To Contribute
 
