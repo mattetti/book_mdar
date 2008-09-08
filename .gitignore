@@ -2,3 +2,4 @@
 *.tmproj
 *.log
 book/output/*
+tasks/mine.rake
