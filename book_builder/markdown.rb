@@ -2,8 +2,8 @@
 # Attempts to load RDiscount markdown parser first, if that
 # fails then it will try to load PEGMarkdown and if that also
 # fails then it will try to load BlueCloth.
-# 
-# This is done because both RDiscount and PEGMarkdown are 
+#
+# This is done because both RDiscount and PEGMarkdown are
 # faster and more correct Markdown parsers.
 
 begin

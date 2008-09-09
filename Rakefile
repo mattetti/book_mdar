@@ -2,7 +2,7 @@
 require 'book_builder/book_builder'
 
 # The book tasks are loaded first, then any
-# additional tasks are loaded. This should 
+# additional tasks are loaded. This should
 # allow you to override the book tasks with
 # your own.
 Dir["tasks/book/*.rake"].each { |ext| load ext }
