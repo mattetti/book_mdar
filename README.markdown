@@ -8,6 +8,7 @@ You will need to have one of the following gems installed.
 
   * `rdiscount`
   * `rpeg-markdown`
+  * `maruku`
   * `BlueCloth`
 
 Use `sudo gem install <name>` to install one of them.
