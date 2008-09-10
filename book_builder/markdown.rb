@@ -15,9 +15,14 @@ rescue LoadError
     BlueCloth = PEGMarkdown
   rescue LoadError
     begin
-      require 'bluecloth'
+      require 'maruku'
+      BlueCloth = Maruku
     rescue LoadError
-      raise "Unable to load Markdown parser. Please install rdiscount, rpeg-markdown or bluecloth."
+      begin
+        require 'bluecloth'
+      rescue LoadError
+        raise "Unable to load Markdown parser. Please install rdiscount, rpeg-markdown or bluecloth."
+      end
     end
   end
 end
