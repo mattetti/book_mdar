@@ -37,8 +37,8 @@ The Merb router, which maps the incoming requests to the controllers is also
 here. The `rack.rb` file is the rack handler and you can pass options to 
 `merb -a` to change rack adapter.
 
-    config
-      `--> environments
+	config
+	  `--> environments
 
 RSpec specs can be found in the spec folder.
 

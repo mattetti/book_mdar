@@ -11,9 +11,9 @@ Before we get started I'm going to assume you have the following installed:
 
 #### What will be covered
 
- * Installing Merb, DataMapper and RSpec
- * Creating a temporary test app
- * The basic directory structure for the framework
+* Installing Merb, DataMapper and RSpec
+* Creating a temporary test app
+* The basic directory structure for the framework
 
 ### The Easy Way
 
@@ -27,16 +27,16 @@ http://github.com/dkubb/dm-dev/.
 To install Sake tasks run sake -i PATH where PATH is path to Sake tasks file
 on your local machine. For example,
 
-	 	sake -i ~/dev/opensource/merb/merb-more/tools/merb-dev.rake
+    sake -i ~/dev/opensource/merb/merb-more/tools/merb-dev.rake
 
 To do a fresh clone of all repositories use sake dm:clone and	merb:clone,
 respectively. And then to keep up to date you just need to execute:
 
-		sake dm:update
+    sake dm:update
 
 and
 
-		sake merb:update
+    sake merb:update
 
 to update Merb and DataMapper gems.
 
@@ -77,15 +77,15 @@ Start by installing the `gem` dependancies:
 
 Then download the `merb` source:
 
-		git clone git://github.com/sam/extlib.git
+    git clone git://github.com/sam/extlib.git
     git clone git://github.com/wycats/merb-core.git
     git clone git://github.com/wycats/merb-plugins.git
     git clone git://github.com/wycats/merb-more.git
 
 Then install the gems via rake:
 
-		cd extlib ; rake install ; cd ..
-   	cd merb-core ; rake install ; cd ..    
+    cd extlib ; rake install ; cd ..
+    cd merb-core ; rake install ; cd ..    
     cd merb-more ; rake install ; cd ..
     cd merb-plugins; rake install ; cd ..
 

@@ -96,7 +96,7 @@ database.yml file that merb is looking for:
 Don't forget to specify your socket, if you do not know it's location, you 
 can find it by typing:
 
-	  mysql_config --socket
+    mysql_config --socket
 
 Starting Merb again shows that everything is running okay.
 

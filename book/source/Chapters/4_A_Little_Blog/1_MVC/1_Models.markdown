@@ -297,7 +297,7 @@ contain the two keys of each post-categorization pair.
 
 (TODO) - still needs 0.9 love - mostly done now, I think
 
-It’s a known fact that users will enter invalid, blank or malicious data into
+It's a known fact that users will enter invalid, blank or malicious data into
 your web app.
 
 We need to guard against user error by validating anything that we need to
@@ -363,19 +363,19 @@ If an object isn't valid, you can access its the errors by calling its `errors` 
 A problem arises when your website has users creating content and content being
 created automatically from scrapers or some sort of automated background process
 (be it from RSS feeds, an FTP server or a web service). No idiots are involved
-in the creation of content when it’s imported into the system and you likely
+in the creation of content when it's imported into the system and you likely
 really want that content to appear in your system. This is where context specific
 validations come into play.
 
 Contexts let you control which validations run when you perform a particular
 operation. You might want to make sure that a user enters the title for a blog
-post in your system, but you don’t really want such a check for when that blog post
-comes in off of your RSS scraping system. Maybe you’d send those imported blog
+post in your system, but you don't really want such a check for when that blog post
+comes in off of your RSS scraping system. Maybe you'd send those imported blog
 posts into a holding pen somewhere so that they can be rescued later, rather than
 preventing their save and never importing them in at all.
 
 With ActiveRecord, if you declare a `validates\_presence\_of` on `:title`,
-that’s it - game over. The only way to bypass that validation is to
+that's it - game over. The only way to bypass that validation is to
 `save\_without\_validations` and that skips all of your validations, rather
 than just this one.
 
@@ -409,7 +409,7 @@ not-so-idiotic scrapper:
       end
     end
 
-Running quickly through my sample here, you’ll spot a few things.  The first
+Running quickly through my sample here, you'll spot a few things.  The first
 is the `:auto_validation => false` on the `title` and the `original_uri`.
 Because we want to define custom contexts for when we need these properties to
 be checked, we have to override the ones dm-validations adds by default.  The
@@ -422,13 +422,13 @@ is valid for displaying. These contexts are also honoured by the `save` method,
 allowing us to call `@post.save :import` after our RSS scrapper has parsed the
 RSS feed and assigned our variables.
 
-You’ll notice that I gave `:body` a `validates\_present` for all my contexts.
+You'll notice that I gave `:body` a `validates\_present` for all my contexts.
 This means that, no matter what, that validation callback will kick in.  At
 present there doesn't appear to be a meta "all" context, which will fire under
 any circumstances.
 
 Also of note is the `can\_be\_displayed` boolean and the `before :save` manual
-callback I defined. Here, I’m helping myself out later on so that it’s easy to
+callback I defined. Here, I'm helping myself out later on so that it's easy to
 pull out valid blog posts that can be displayed without worrying about nil field
 values and such:
 
@@ -462,9 +462,9 @@ Another very powerful feature in dm-validations is `validates\_with\_method`.
 Think of it as like overloading `valid?` only with the full power of real
 validations still there too.
 
-Say, for example, you’ve got an Event model that needs to make sure the
-`end\_date` for the event is greater than the start_date. Wouldn’t want to
-break the laws of physics, so we’d do something like:
+Say, for example, you've got an Event model that needs to make sure the
+`end\_date` for the event is greater than the start_date. Wouldn't want to
+break the laws of physics, so we'd do something like:
 
     class Event < ActiveRecord::Base
       def valid?
@@ -472,8 +472,8 @@ break the laws of physics, so we’d do something like:
       end
     end
 
-Yup, it’s pretty simple with ActiveRecord. Just toss in our own valid? method and
-we’re done. With DataMapper, things are a touch more complicated, but not
+Yup, it's pretty simple with ActiveRecord. Just toss in our own valid? method and
+we're done. With DataMapper, things are a touch more complicated, but not
 difficult, and buy you the full power of dm-validations:
 
     class Event
