@@ -32,13 +32,16 @@ Note: Sometimes you might prefer to directly create a _resource_ (Model, Control
 
 So DataMapper models differ a bit from ActiveRecord models as previously
 stated. Defining the database columns is achieved with the `property` method.
+Add this code to the `Post` class:
 
 `app/models/post.rb`
 
+    property :id, Integer, :serial => true
     property :title,  String, :lazy => false
 
-This is the `title` property of the post model. As we can see, the parameters
-are the name of the table column followed by the type and finally the options.
+This creates a primary key (the `id` property) and the `title` property of the
+post model. As we can see, the parameters are the name of the table column
+followed by the type and finally the options.
 
 Note: We could have also directly set the properties when we called the generator:
 
