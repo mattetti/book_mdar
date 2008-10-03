@@ -499,7 +499,7 @@ difficult, and buy you the full power of dm-validations:
 So, a couple of things are going on here.  First, we declare that we're going to
 use our custom validation method `check_times` for the model.  Then comes the
 method itself.  It's a pretty simple method.  If our `start\_time` is before
-our `end\_time`, return `true` as we're valid.  Otherwise, it return an array. The
+our `end\_time`, return `true` as we're valid.  Otherwise, it returns an array. The
 first entry in the array is `false`, which lets DataMapper know the validation
 has failed.  The second entry is a string, which is added to `@event.errors` so
 the user has some idea what has gone wrong.
@@ -658,7 +658,7 @@ Sometimes, you have to operate on a large number of records at once, to do
 exactly the same thing to each of them.  The example earlier for deleting old
 posts via each.  It involved several `SELECT`s and then lots of `DELETE`s, potentially
 hundreds, depending on the size of the database.  Wouldn't it be nice if you
-could just go `Comments.all(:date.lt => Date.today - 20).destroy!` and it would
+could just go `Comment.all(:date.lt => Date.today - 20).destroy!` and it would
 produce an appropriate query to do it in one operation and without loading all
 those posts which are about to be deleted?
 
@@ -695,18 +695,18 @@ methods the same as Resource.first or Resource.all
 
 #### Each
 
-Each works like like expected iterating over a number of rows and you can pass
-a block to it. The difference between `Comments.all.each` and `Comments.each`
+Each works as expected, iterating over a number of rows and you can pass
+a block to it. The difference between `Comment.all.each` and `Comment.each`
 is that instead of retrieving all the rows at once, each works in batches
 instantiating a few objects at a time and executing the block on them (so is less
 resource intensive). Each is similar to a finder as it can also take options:
 
-    Comments.all.each(:date.lt => Date.today - 20).each do |c|
+    Comment.all.each(:date.lt => Date.today - 20).each do |c|
       c.destroy
     end
 
-NB: This isn't currently working in DataMapper.  It instead fetches all the
-records.  However, it will be reimplemented soon.
+NB: This isn't currently working in DataMapper. However, it will be
+reimplemented soon.
 
 #### Changing the Table Name
 
