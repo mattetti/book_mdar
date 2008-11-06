@@ -68,7 +68,7 @@ much easier than it sounds...
 Start by installing the `gem` dependancies:
 
     sudo gem install rack mongrel json erubis mime-types rspec hpricot \
-        mocha rubigen haml markaby mailfactory ruby2ruby
+        mocha rubigen haml markaby mailfactory ruby2ruby templater
 
 *or for JRuby:*
 
