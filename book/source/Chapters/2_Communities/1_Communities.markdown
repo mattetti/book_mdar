@@ -24,24 +24,24 @@ see if you can find your answer there.
 
 Japanese:
 
-* [http://wiki.merb.jp/](Merb wiki)
-* [http://www.lingr.com/room/merb.jp](Merb Japan chat room)
+* [Merb wiki](http://wiki.merb.jp/)
+* [Merb Japan chat room](http://www.lingr.com/room/merb.jp)
 
 Chinese:
 
-* [http://groups.google.com/group/merb-cn](Merb China chat room)
+* [Merb China chat room](http://groups.google.com/group/merb-cn)
 
 French:
 
-* [http://groups.google.com/group/merb-france](Merb Mailing list)
+* [Merb Mailing list](http://groups.google.com/group/merb-france)
 
 Portuguese:
 
-* [http://merb-br.com](http://merb-br.org/)
+* [Merb Brazil web site](http://merb-br.org/)
 
 Others:
 
-* [http://groups.google.com/group/singapore-merb-group](Singapore Mailing list in English)
+* [Singapore Mailing list in English](http://groups.google.com/group/singapore-merb-group)
 
 ### IRC Channels - freenode.net
 
