@@ -21,12 +21,11 @@ While there are similarities, Merb is not Ruby on Rails.  There are core
 differences in design and philosophy.  In many areas that Rails chooses to be 
 opinionated, Merb is agnostic - with respect to the ORM, the JavaScript library 
 and template language. The Merb philosophy also disbelieves in having a monolithic 
-framework. Instead, it consists of a number of gems: `merb-core`, `merb-more` and 
-`merb-plugins`. This means that it is possible to pick and choose the 
+framework. Instead, it consists of a number of modules distributed as Ruby gems. This means that it is possible to pick and choose the 
 functionality you need, instead of cluttering up the framework with non-essential 
 features. 
 
-The `merb` gem installs both `merb-core` and `merb-more`; all you need in order to 
+The `merb` gem installs `merb-core`, a series of plugins as well as a default ORM (DataMapper); all you need in order to 
 get started straight away.  The benefit of this modularity is that the framework 
 remains simple and focused with additional functionality provided by gems.
 
