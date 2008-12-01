@@ -12,10 +12,32 @@ community, if something needs fixing consider helping out.
 These are the first places to go for help. Check out the API documentation and 
 see if you can find your answer there.
 
-* [http://merbivore.com/](http://merbivore.com/)
-* [http://merbunity.com/](http://merbunity.com/)
+* [http://merbivore.com/](http://merbivore.com/) Official Merb website
+* [http://wiki.merbivore.com/](http://wiki.merbivore.com) Official Merb wiki
+* [http://merbunity.com/](http://merbunity.com/) Articles and news from the Merb Community 
+* [http://yehudakatz.com/](http://yehudakatz.com) Merb lead developer's blog
+* [http://merbist.com/](http://merbist.com) Matt Aimonetti's Merb blog (Merb news from a Merb team member)
 * [http://datamapper.org/](http://datamapper.org/)
 * [http://rspec.info/](http://rspec.info/)
+
+**Non-English resources**
+
+Japanese:
+* [http://wiki.merb.jp/](Merb wiki)
+* [http://www.lingr.com/room/merb.jp](Merb Japan chat room)
+
+Chinese:
+* [http://groups.google.com/group/merb-cn](Merb China chat room)
+
+French:
+* [http://groups.google.com/group/merb-france](Merb Mailing list)
+
+Portuguese:
+* [http://merb-br.com](http://merb-br.org/)
+
+Others:
+
+* [http://groups.google.com/group/singapore-merb-group](Singapore Mailing list in English)
 
 ### IRC Channels - freenode.net
 
@@ -45,10 +67,5 @@ cases, or better yet: a patch!). You may find the ticket is solved in the edge
 version.
 
 * [http://merb.lighthouseapp.com/](http://merb.lighthouseapp.com/)
-* [http://wm.lighthouseapp.com/projects/4819-datamapper/overview](http://wm.lighthouseapp.com/projects/4819-datamapper/overview)
-* [http://rspec.lighthouseapp.com/](http://wm.lighthouseapp.com/projects/4819-datamapper/overview)
-
-### Wikis
-
-* [http://wiki.merbivore.com/](http://wiki.merbivore.com/)
-* [http://wiki.datamapper.org/](http://wiki.datamapper.org/doku.php?id=start)
+* [http://datamapper.lighthouseapp.com/](http://datamapper.lighthouseapp.com/)
+* [http://rspec.lighthouseapp.com/](http://rspec.lighthouseapp.com)
